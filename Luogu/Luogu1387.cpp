@@ -53,7 +53,6 @@ int main()
             if (u[i][j] < i) {
 				l[i][j] = max(l[i][j], l[i - 1][j]);
 				r[i][j] = min(r[i][j], r[i - 1][j]);
-
             }
 			int len1 = i - u[i][j] + 1;
 			int len2 = r[i][j] - l[i][j] + 1;
