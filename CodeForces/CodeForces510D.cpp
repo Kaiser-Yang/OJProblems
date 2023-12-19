@@ -42,7 +42,5 @@ int main()
 	} else {
 		cout << dp[las][1] << endl;
 	}
-
-
 	return 0;
 }
