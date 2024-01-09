@@ -1,3 +1,7 @@
+# input data and output data
+*.in
+*.out
+
 # temporary c++ file
 temp.cpp
 
