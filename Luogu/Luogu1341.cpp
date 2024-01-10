@@ -20,9 +20,9 @@ int getId(char ch)
 char getChar(int id)
 {
     if (id >= 0 && id <= 25) {
-        return char{id + 'A'};
+        return char(id + 'A');
     }
-    return char{id - 26 + 'a'};
+    return char(id - 26 + 'a');
 }
 
 void dfs(int u)
