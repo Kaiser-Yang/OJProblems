@@ -60,7 +60,7 @@ void build(int id, int l, int r)
 		tr[id].ans = tr[id].lazy = 0;
 		return;
 	}
-	int mid = l + r >> 1;
+	int mid = (l + r) >> 1;
 	build(lc(id), l, mid);
 	build(rc(id), mid + 1, r);
 	pushup(id);
