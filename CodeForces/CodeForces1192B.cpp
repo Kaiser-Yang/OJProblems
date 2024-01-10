@@ -89,7 +89,7 @@ void update(int id, int l, int r, long long delta)
 		return;
 	}
 	pushdown(id);
-	int mid = tr[id].left + tr[id].right >> 1;
+	int mid = (tr[id].left + tr[id].right) >> 1;
 	if (l <= mid) { update(lc(id), l, r, delta); }
 	if (mid < r) { update(rc(id), l, r, delta); }
 	pushup(id);
