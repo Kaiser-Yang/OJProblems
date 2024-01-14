@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <functional>
 
 using namespace std;
 
@@ -22,7 +21,7 @@ void findCentroid(int u, int par)
         size[u] += size[v];
         maxSonSize = max(maxSonSize, size[v]);
     }
-    if (maxSonSize <= n / 2 && n - size[u] <= n) { centroid = u; }
+    if (maxSonSize <= n / 2 && n - size[u] <= n / 2) { centroid = u; }
 }
 
 void placeAns(int u, int par, int fromWhich, int nodeNum)
@@ -52,10 +51,8 @@ int main()
     findCentroid(1, 0);
     ans[centroid] = true;
     findCentroid(centroid, 0); // caculate size when centroid is as root.
-    // cout << centroid << endl;
     for (int v : g[centroid]) { subTreeSize.push_back({size[v], v}); }
     sort(subTreeSize.begin(), subTreeSize.end(), greater<pair<int, int>>());
-    // for_each(subTreeSize.begin(), subTreeSize.end(), [] (auto val) { cout << val.first << " " << val.second << endl; });
     for (auto item : subTreeSize) { placeAns(item.second, centroid, item.second, n - item.first); }
     for_each(ans + 1, ans + 1 + n, [] (bool val) { cout << val << " "; });
     cout << endl;
