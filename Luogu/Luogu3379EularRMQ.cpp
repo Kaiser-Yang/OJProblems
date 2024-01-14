@@ -24,7 +24,7 @@ void dfs(int u, int depth)
     }
 }
 
-void sparseTable()
+void sparseTableInit()
 {
     for (int i = 2; i <= 2 * n - 1; i++) { lg[i] = lg[i >> 1] + 1; }
     for (int i = 1; i <= 2 * n - 1; i++) { st[i][0] = depth[i], stId[i][0] = nodeId[i]; }
@@ -60,7 +60,7 @@ int main()
     }
     depth[0] = -1;
     dfs(s, 0);
-    sparseTable();
+    sparseTableInit();
     for (int i = 0; i < m; i++) {
         cin >> u >> v;
         cout << lca(u, v) << endl;
