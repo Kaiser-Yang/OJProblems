@@ -1,3 +1,5 @@
+// problem statement: https://acm.uestc.edu.cn/problem/lu-shi-chuan-shuo/description
+
 #include <bits/stdc++.h>
 
 using namespace std;
