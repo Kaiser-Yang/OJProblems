@@ -1,3 +1,5 @@
+// problem statement: http://poj.org/problem?id=2117
+
 #include <iostream>
 #include <cstring>
 #include <vector>
