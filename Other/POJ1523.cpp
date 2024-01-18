@@ -17,16 +17,6 @@ bool g[MAXN][MAXN];
 
 vector<pair<int, int> > edge;
 
-// struct Graph
-// {
-//     int to, nex;
-// } es[MAXN * MAXN * 2];
-
-// void addEdge(int u, int v) 
-// {
-//     es
-// }
-
 void tarjan(int u, int par)
 {
     dfn[u] = low[u] = ++cnt;
