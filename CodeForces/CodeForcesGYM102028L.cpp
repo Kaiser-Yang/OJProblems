@@ -14,8 +14,6 @@ bool vis[MAXN];
 long long cnt;
 long long ans[5];
 
-// vector<int> g[MAXN], newG[MAXN], newG1[MAXN];
-
 struct Graph
 {
     int to, nex;
