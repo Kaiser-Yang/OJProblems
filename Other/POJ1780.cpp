@@ -15,28 +15,31 @@ int n;
 int cnt[MAXN], tenPow[] = {1, 10, 100, 1000, 10000, 100000, 1000000};
 string ans[6];
 
-vector<int> g[MAXN];
+int len[MAXN];
+int g[MAXN][10];
 
 struct Node 
 {
     int first, second;
-    Node() {}
-    Node(int a, int b) : first(a), second(b) {}
 };
 
 Node s[MAXN * 100];
 
 void hierholzer(int startNode, int index)
 {
-    int tp = 0;
-    s[tp++] = Node(startNode, 0);
+    int tp = 0, u = 0, w = 0, v = 0, newW = 0;
+    s[tp].first = startNode;
+    s[tp].second = 0;
+    tp++;
     while (tp) {
-        int u = s[tp - 1].first, w= s[tp - 1].second;
-        if (cnt[u] < g[u].size()) {
-            int v = (u * 10 + g[u][cnt[u]]) % tenPow[index];
-            int newW = g[u][cnt[u]];
+        u = s[tp - 1].first, w= s[tp - 1].second;
+        if (cnt[u] < len[u]) {
+            v = (u * 10 + g[u][cnt[u]]) % tenPow[index];
+            newW = g[u][cnt[u]];
             cnt[u]++;
-            s[tp++] = Node(v, newW);
+            s[tp].first = v;
+            s[tp].second = newW;
+            tp++;
         } else {
             ans[index].push_back(s[tp - 1].second + '0');
             tp--;
@@ -47,21 +50,20 @@ void hierholzer(int startNode, int index)
 int main()
 {
     n = 10;
-    ans[0] = "0123456789";
+    ans[0] = "9876543210";
     for (int i = 1; i < 6; i++) {
         for (int j = 0; j < n; j++) {
             cnt[j] = 0;
-            g[j].resize(0);
-            for (int k = 0; k < 10; k++) { g[j].push_back(k); }
+            if (len[j]) { continue; }
+            for (int k = 0; k < 10; k++) { g[j][len[j]++] = k; }
         }
         ans[i].reserve(tenPow[i + 1] + i);
         hierholzer(0, i);
         for (int j = 0; j < i - 1; j++) { ans[i].push_back('0'); }
-        reverse(ans[i].begin(), ans[i].end());
         n *= 10;
     }
     while (scanf("%d", &n) && n != 0) {
-        for (int i = 0; i < ans[n - 1].length(); i++) { putchar(ans[n - 1][i]); }
+        for (int i = ans[n - 1].length() - 1; i >= 0; i--) { putchar(ans[n - 1][i]); }
         putchar('\n');
     }
 	return 0;
