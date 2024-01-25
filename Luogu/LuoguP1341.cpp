@@ -1,3 +1,5 @@
+// problem statement: https://www.luogu.com.cn/problem/P1341
+
 #include <bits/stdc++.h>
 
 using namespace std;
