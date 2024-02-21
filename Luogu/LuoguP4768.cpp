@@ -1,3 +1,6 @@
+// problem statement: https://www.luogu.com.cn/problem/P4768
+// Tag: having been in my blog
+
 #include <bits/stdc++.h>
 
 using namespace std;
