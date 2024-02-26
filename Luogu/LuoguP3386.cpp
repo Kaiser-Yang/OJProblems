@@ -2,14 +2,14 @@
 
 #include <bits/stdc++.h>
 
-const int maxn = 1010;
-const int maxm = 1010; 
+const int MAXN = 1010;
+const int MAXM = 1010; 
 
 using namespace std;
 
 int n, m, e, u, v;
-int match[maxm];
-bool connected[maxn][maxm], augmented[maxm];
+int match[MAXM];
+bool connected[MAXN][MAXM], augmented[MAXM];
 
 bool findAugmentedPath(int leftnode)
 {
