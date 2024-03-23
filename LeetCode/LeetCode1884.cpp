@@ -1,4 +1,4 @@
-// problem statement: https://leetcode.cn/problems/egg-drop-with-2-eggs-and-n-floors/
+// problem statement: https://leetcode.cn/problems/egg-drop-with-2-eggs-and-n-floors/description/
 
 class Solution {
 private:
