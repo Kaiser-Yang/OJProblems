@@ -1,5 +1,9 @@
 // problem statement: https://leetcode.cn/problems/super-egg-drop/description/
 
+#include <bits/stdc++.h>
+
+using namespace std;
+
 class Solution {
 private:
     static constexpr int MAXN = 1e4 + 10;

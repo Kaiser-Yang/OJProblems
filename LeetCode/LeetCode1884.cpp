@@ -1,5 +1,9 @@
 // problem statement: https://leetcode.cn/problems/egg-drop-with-2-eggs-and-n-floors/description/
 
+#include <bits/stdc++.h>
+
+using namespace std;
+
 class Solution {
 private:
     static constexpr int MAXN = 1e3 + 10;
