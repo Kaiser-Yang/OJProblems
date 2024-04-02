@@ -1,6 +1,5 @@
 // problem statement: https://leetcode.cn/problems/strong-password-checker/
 
-#include <algorithm>
 #include <bits/stdc++.h>
 
 using namespace std;
