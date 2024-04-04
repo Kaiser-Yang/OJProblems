@@ -17,7 +17,7 @@ public:
         };
         sort(qAndW.begin(), qAndW.end(), cmp);
         double ans = numeric_limits<double>::max(), nowSumQ = 0;
-        // minQSet stores the most smaller k - 1 qualities
+        // minQSet stores the smallest k - 1 qualities
         // otherQ stores the other qualities
         multiset<int> minQSet, otherQ;
         for (int i = 1; i < qAndW.size(); i++) {
