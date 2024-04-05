@@ -1,4 +1,4 @@
-// problem statement:
+// problem statement: https://leetcode.cn/problems/valid-triangle-number/
 
 #include <bits/stdc++.h>
 
