@@ -1,4 +1,5 @@
 // problem statement: https://loj.ac/p/10091
+// Tag: having been in my blog
 
 #include <bits/stdc++.h>
 

@@ -1,3 +1,6 @@
+// problem statement: https://codeforces.com/problemset/problem/685/B
+// Tag: having been in my blog
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -5,18 +8,18 @@ using namespace std;
 constexpr int MAXN = 3e5 + 10;
 
 int n, q, node;
-int centroid[MAXN], parent[MAXN], size[MAXN], maxSonSize[MAXN];
+int centroid[MAXN], parent[MAXN], siz[MAXN], maxSonSize[MAXN];
 
 vector<int> g[MAXN];
 
 void dfs(int u)
 {
-    size[u] = 1;
+    siz[u] = 1;
     maxSonSize[u] = 0;
     for (int v : g[u]) {
         dfs(v);
-        size[u] += size[v];
-        maxSonSize[u] = max(maxSonSize[u], size[v]);
+        siz[u] += siz[v];
+        maxSonSize[u] = max(maxSonSize[u], siz[v]);
     }
     centroid[u] = u;
     for (int v : g[u]) {
@@ -24,13 +27,13 @@ void dfs(int u)
         int newCentroid = centroid[v];
         while (parent[node] != u) {
             node = parent[node];
-            if (max(maxSonSize[node], size[u] - size[node]) <
-                max(maxSonSize[newCentroid], size[u] - size[newCentroid]))
+            if (max(maxSonSize[node], siz[u] - siz[node]) <
+                max(maxSonSize[newCentroid], siz[u] - siz[newCentroid]))
                 { newCentroid = node; }
             else { break; }
         }
-        if (max(maxSonSize[newCentroid], size[u] - size[newCentroid]) <
-            max(maxSonSize[centroid[u]], size[u] - size[centroid[u]])) {
+        if (max(maxSonSize[newCentroid], siz[u] - siz[newCentroid]) <
+            max(maxSonSize[centroid[u]], siz[u] - siz[centroid[u]])) {
             centroid[u] = newCentroid;
         }
     }

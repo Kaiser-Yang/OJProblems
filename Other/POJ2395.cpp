@@ -1,3 +1,6 @@
+// problem statement: http://poj.org/problem?id=2395
+// Tag: having been in my blog
+
 #include <iostream>
 #include <algorithm>
 #include <limits>

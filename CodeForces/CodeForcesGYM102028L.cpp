@@ -1,4 +1,5 @@
 // problem statement: https://codeforces.com/gym/102028/problem/L
+// Tag: having been in my blog
 
 #include <bits/stdc++.h>
 

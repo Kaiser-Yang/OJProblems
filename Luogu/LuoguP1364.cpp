@@ -8,7 +8,7 @@ using namespace std;
 constexpr int MAXN = 100 + 10;
 
 int n, totPeople, ans = numeric_limits<int>::max();
-int size[MAXN], depth[MAXN], dp[MAXN];
+int siz[MAXN], depth[MAXN], dp[MAXN];
 
 struct Node
 {
@@ -25,17 +25,17 @@ void dfs(int u)
         depth[node[u].right] = depth[u] + 1;
         dfs(node[u].right);
     }
-    size[u] = node[u].w + size[node[u].right] + size[node[u].left];
+    siz[u] = node[u].w + siz[node[u].right] + siz[node[u].left];
     dp[1] += node[u].w * depth[u]; // disance from u to 1 is depth[u].
 }
 
 void updateDp(int u, int par)
 {
-    // the first -size[u] means that the sub-tree u's nodes has no need
+    // the first -siz[u] means that the sub-tree u's nodes has no need
     // to trapass the path between u and par,
-    // the totPeople - size[u] means that all the other nodes
+    // the totPeople - siz[u] means that all the other nodes
     // which are node in the sub-tree u need trapass the path between u and par.
-    dp[u] = dp[par] - size[u] + totPeople - size[u];
+    dp[u] = dp[par] - siz[u] + totPeople - siz[u];
     ans = min(ans, dp[u]);
 }
 

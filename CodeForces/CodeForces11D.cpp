@@ -1,4 +1,5 @@
 // problem statement: https://codeforces.com/problemset/problem/11/D
+// Tag: having been in my blog
 
 #include <bits/stdc++.h>
 

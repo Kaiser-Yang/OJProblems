@@ -1,3 +1,5 @@
+// problem statement: 
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -22,7 +24,7 @@ long long closestDistance(int l, int r)
         sort(dot + l, dot + r + 1, [](const Dot &a, const Dot &b) { return a.second < b.second; });
 		return min(getDisSquare(dot[l], dot[l + 1]), min(getDisSquare(dot[l], dot[r]), getDisSquare(dot[l + 1], dot[r])));
 	} else {
-		int mid = l + r >> 1;
+		int mid = (l + r) >> 1;
         int tempMidFirst = dot[mid].first;
 		long long dis = min(closestDistance(l, mid), closestDistance(mid + 1, r));
 		int i = l, j = mid + 1, k = l;

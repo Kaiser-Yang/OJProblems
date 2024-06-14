@@ -1,4 +1,5 @@
 // problem statement: https://loj.ac/p/10085
+// Tag: having been in my blog
 
 #include <iostream>
 #include <vector>

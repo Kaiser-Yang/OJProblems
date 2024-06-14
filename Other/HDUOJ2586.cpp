@@ -1,3 +1,6 @@
+// problem statement: https://vjudge.net/problem/HDU-2586
+// Tag: having been in my blog
+
 #include <bits/stdc++.h>
 
 using namespace std;

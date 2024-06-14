@@ -1,3 +1,5 @@
+// problem statement: 
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -22,7 +24,8 @@ void addEdge(int u, int v, int w)
 	head[u] = ecnt++;
 }
 
-void Dijkstra()
+// TODO update wrong codes
+void SPFA()
 {
 	struct Compare
 	{
@@ -75,7 +78,7 @@ int main()
 			addEdge(v + 2 * n, u + 2 * n, 0);
 		}
 	}
-	Dijkstra();
+	SPFA();
 	cout << dis[3 * n] << endl;
 	return 0;
 }

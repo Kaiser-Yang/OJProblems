@@ -1,4 +1,5 @@
 // problem statement: https://www.luogu.com.cn/problem/P6066
+// Tag: having been in my blog
 
 #include <bits/stdc++.h>
 

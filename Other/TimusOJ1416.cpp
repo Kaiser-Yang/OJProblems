@@ -1,6 +1,7 @@
 // Timus Online Judge
 // Judge ID: 375702TB
 // problem statement: https://acm.timus.ru/problem.aspx?space=1&num=1416
+// Tag: having been in my blog
 
 #include <bits/stdc++.h>
 

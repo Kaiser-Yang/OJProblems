@@ -1,3 +1,6 @@
+// problem statement: https://loj.ac/p/6021
+// Tag: having been in my blog
+
 #include <bits/stdc++.h>
 
 using namespace std;

@@ -1,3 +1,5 @@
+// problem statement: 
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -54,7 +56,8 @@ void getLastPoint()
 	p[3].second += p[0].second - p[1].second;
 }
 
-void dijkstra()
+// TODO update wrong codes
+void SPFA()
 {
 	fill(dis, dis + MAX_NODE + 2, 0x3f3f3f3f);
 	struct Comparor {
@@ -119,7 +122,7 @@ int main()
 			addEdge(MAX_NODE, id[node[(A - 1) * 4 + i]], 0);
 			addEdge(id[node[(B - 1) * 4 + i]], MAX_NODE + 1, 0);
 		}
-		dijkstra();
+		SPFA();
 		cout << fixed << setprecision(1) << dis[MAX_NODE + 1] << endl;
 	}
 	return 0;

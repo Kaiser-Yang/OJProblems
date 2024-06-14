@@ -1,3 +1,6 @@
+//problem statement: https://loj.ac/p/10130
+// Tag: having been in my blog
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -7,7 +10,7 @@ constexpr int MAXQ = 1e5 + 10;
 
 int n, q, ecnt, u, v, lca;
 int queryHead[MAXQ], depth[MAXN], parent[MAXN];
-bool visit[MAXN];
+bool vis[MAXN];
 
 vector<int> g[MAXN];
 
@@ -29,16 +32,16 @@ int find(int x) { return x == parent[x] ? x : parent[x] = find(parent[x]); }
 void tarjan(int u)
 {
     parent[u] = u;
-    visit[u] = true;
+    vis[u] = true;
     for (int v : g[u]) {
-        if (visit[v]) { continue; }
+        if (vis[v]) { continue; }
         depth[v] = depth[u] + 1;
         tarjan(v);
         parent[v] = u;
     }
     for (int i = queryHead[u]; i != -1; i = queryEdge[i].nex) {
         int v = queryEdge[i].to;
-        if (visit[v]) {
+        if (vis[v]) {
             queryEdge[i].lca = queryEdge[i ^ 1].lca = find(v);
         }
     }

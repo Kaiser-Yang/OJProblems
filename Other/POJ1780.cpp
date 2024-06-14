@@ -1,4 +1,5 @@
 // problem statement: http://poj.org/problem?id=1780
+// Tag: having been in my blog
 
 #include <iostream>
 #include <vector>

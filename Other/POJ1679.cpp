@@ -1,6 +1,8 @@
+// problem statement: http://poj.org/problem?id=1679
+// Tag: having been in my blog
+
 #include <algorithm>
 #include <iostream>
-#include <cstring>
 #include <vector>
 
 using namespace std;

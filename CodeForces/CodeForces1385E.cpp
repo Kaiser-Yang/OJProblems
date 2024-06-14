@@ -1,3 +1,6 @@
+// problem statement: https://codeforces.com/problemset/problem/1385/E
+// Tag: having been in my blog
+
 #include <bits/stdc++.h>
 
 using namespace std;

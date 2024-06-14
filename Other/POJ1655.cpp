@@ -1,3 +1,6 @@
+// problem statement: http://poj.org/problem?id=1655
+// Tag: having been in my blog
+
 // NOTICE: POJ only supports C++ 98
 #include <vector>
 #include <iostream>
@@ -7,26 +10,26 @@ using namespace std;
 const int MAXN = 2e4 + 10;
 
 int T, n, u, v, ans;
-int size[MAXN];
+int siz[MAXN];
 
 vector<int> g[MAXN], centroid;
 
 void dfs(int u, int par)
 {
-    size[u] = 1;
+    siz[u] = 1;
     int maxSonSize = 0;
     for (int i = 0; i < g[u].size(); i++) {
         int v = g[u][i];
         if (v == par) { continue; }
         dfs(v, u);
-        size[u] += size[v];
-        maxSonSize = max(maxSonSize, size[v]);
+        siz[u] += siz[v];
+        maxSonSize = max(maxSonSize, siz[v]);
     }
-    if (maxSonSize <= n / 2 && n - size[u] <= n / 2) {
-        if (centroid.size() == 0) { ans = max(maxSonSize, n - size[u]); }
-        else if (ans < max(maxSonSize, n - size[u])) { return; }
-        else if (ans > max(maxSonSize, n - size[u])) {
-            ans = max(maxSonSize, n - size[u]);
+    if (maxSonSize <= n / 2 && n - siz[u] <= n / 2) {
+        if (centroid.size() == 0) { ans = max(maxSonSize, n - siz[u]); }
+        else if (ans < max(maxSonSize, n - siz[u])) { return; }
+        else if (ans > max(maxSonSize, n - siz[u])) {
+            ans = max(maxSonSize, n - siz[u]);
             centroid.pop_back();
         }
         centroid.push_back(u);

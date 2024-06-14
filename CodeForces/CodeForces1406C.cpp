@@ -1,3 +1,6 @@
+// problem statement: https://codeforces.com/problemset/problem/1406/C
+// Tag: having been in my blog
+
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -5,21 +8,21 @@ using namespace std;
 constexpr int MAXN = 1e5 + 10;
 
 int T, n, u, v, fathest, fathestParent;
-int size[MAXN], depth[MAXN];
+int siz[MAXN], depth[MAXN];
 
 vector<int> g[MAXN], centroid;
 
 void dfs(int u, int par)
 {
-    size[u] = 1;
+    siz[u] = 1;
     int maxSonSize = 0;
     for (int v : g[u]) {
         if (v == par) { continue; }
         dfs(v, u);
-        size[u] += size[v];
-        maxSonSize = max(maxSonSize, size[v]);
+        siz[u] += siz[v];
+        maxSonSize = max(maxSonSize, siz[v]);
     }
-    if (maxSonSize <= n / 2 && n - size[u] <= n / 2) {
+    if (maxSonSize <= n / 2 && n - siz[u] <= n / 2) {
         centroid.push_back(u);
     }
 }

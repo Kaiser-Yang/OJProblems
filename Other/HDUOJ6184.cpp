@@ -1,4 +1,5 @@
 // problem statement: https://vjudge.net/problem/HDU-6184
+// Tag: having been in my blog
 
 #include <bits/stdc++.h>
 
