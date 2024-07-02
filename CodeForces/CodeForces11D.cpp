@@ -15,9 +15,8 @@ vector<int> g[MAXN];
 
 constexpr int lowbit(int x) { return x & (-x); }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
         cin >> u >> v;
@@ -41,5 +40,5 @@ int main()
         }
     }
     cout << (ans - m) / 2 << endl;
-	return 0;
+    return 0;
 }

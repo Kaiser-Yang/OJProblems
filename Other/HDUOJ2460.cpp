@@ -12,30 +12,27 @@ int n, m, u, v, ecnt, cnt, q, kase, totBridge;
 int head[MAXN], dfn[MAXN], low[MAXN], depth[MAXN], parent[MAXN];
 bool bridge[MAXN];
 
-struct Graph
-{
+struct Graph {
     int to, nex;
 } es[MAXM << 1];
 
-void addEdge(int u, int v)
-{
-    es[ecnt].to = v;
+void addEdge(int u, int v) {
+    es[ecnt].to  = v;
     es[ecnt].nex = head[u];
-    head[u] = ecnt++;
+    head[u]      = ecnt++;
 }
 
-void tarjan(const int &u, const int &par, const int &fromEdgeNumber)
-{
+void tarjan(const int &u, const int &par, const int &fromEdgeNumber) {
     dfn[u] = low[u] = ++cnt;
-    parent[u] = par;
-    depth[u] = depth[par] + 1;
+    parent[u]       = par;
+    depth[u]        = depth[par] + 1;
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
         if (dfn[v] == 0) {
             tarjan(v, u, i);
             low[u] = min(low[u], low[v]);
-            if (low[v] > dfn[u]) { 
-                bridge[v] = true; 
+            if (low[v] > dfn[u]) {
+                bridge[v] = true;
                 totBridge++;
             }
         } else if (fromEdgeNumber == -1 || (i ^ 1) != fromEdgeNumber) {
@@ -44,34 +41,32 @@ void tarjan(const int &u, const int &par, const int &fromEdgeNumber)
     }
 }
 
-int query(int a, int b) 
-{
+int query(int a, int b) {
     int res = 0;
     if (depth[a] > depth[b]) { swap(a, b); }
     while (depth[b] > depth[a]) {
         res += bridge[b];
         bridge[b] = false;
-        b = parent[b];
+        b         = parent[b];
     }
     if (a == b) { return res; }
     while (parent[a] != parent[b]) {
         res += bridge[a] + bridge[b];
         bridge[a] = bridge[b] = false;
-        a = parent[a];
-        b = parent[b];
+        a                     = parent[a];
+        b                     = parent[b];
     }
     res += bridge[a] + bridge[b];
     bridge[a] = bridge[b] = false;
     return res;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     while (cin >> n >> m) {
         if (n == 0 && m == 0) { break; }
-        ecnt = 0;
-        cnt = 0;
+        ecnt      = 0;
+        cnt       = 0;
         totBridge = 0;
         memset(dfn + 1, 0x00, sizeof(int) * n);
         memset(low + 1, 0x00, sizeof(int) * n);
@@ -94,5 +89,5 @@ int main()
         }
         cout << endl;
     }
-	return 0;
+    return 0;
 }

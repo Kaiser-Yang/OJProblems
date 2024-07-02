@@ -3,38 +3,40 @@
 #include <bits/stdc++.h>
 
 constexpr int MAXM = 100 + 10;
-constexpr int  INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 using namespace std;
 
 int n, m;
 
-struct Patch
-{
+struct Patch {
     int cost;
     string a, b;
 } patch[MAXM];
 
-bool canUse(int now, int id)
-{
+bool canUse(int now, int id) {
     for (int i = 0; i < patch[id].a.length(); i++) {
-        if (patch[id].a[i] == '+' && !(now & (1 << i))) { return false; }
-        else if (patch[id].a[i] == '-' && (now & (1 << i))) { return false; }
+        if (patch[id].a[i] == '+' && !(now & (1 << i))) {
+            return false;
+        } else if (patch[id].a[i] == '-' && (now & (1 << i))) {
+            return false;
+        }
     }
     return true;
 }
 
-int getNewState(int now, int id)
-{
+int getNewState(int now, int id) {
     for (int i = 0; i < patch[id].b.length(); i++) {
-        if (patch[id].b[i] == '+') { now |= (1 << i); }
-        else if (patch[id].b[i] == '-' && (now & (1 << i))) { now -= (1 << i); }
+        if (patch[id].b[i] == '+') {
+            now |= (1 << i);
+        } else if (patch[id].b[i] == '-' && (now & (1 << i))) {
+            now -= (1 << i);
+        }
     }
     return now;
 }
 
-int dijkstra()
-{
+int dijkstra() {
     vector<bool> used(1 << n, false);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
     vector<int> dis(1 << n, INF);
@@ -57,13 +59,15 @@ int dijkstra()
     return dis[0];
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m;
     for (int i = 0; i < m; i++) { cin >> patch[i].cost >> patch[i].a >> patch[i].b; }
     int ans = dijkstra();
-    if (ans >= INF) { cout << "0\n"; }
-    else { cout << ans << "\n"; }
-	return 0;
+    if (ans >= INF) {
+        cout << "0\n";
+    } else {
+        cout << ans << "\n";
+    }
+    return 0;
 }

@@ -14,8 +14,7 @@ bool augmented[MAXM];
 unordered_set<int> gone;
 vector<int> ans, g[MAXM];
 
-bool findAugmentedPath(int leftNode)
-{
+bool findAugmentedPath(int leftNode) {
     for (const int &rightNode : g[leftNode]) {
         if (augmented[rightNode]) { continue; }
         augmented[rightNode] = true;
@@ -27,9 +26,8 @@ bool findAugmentedPath(int leftNode)
     return false;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(match, 0xff, sizeof(match));
     cin >> n >> m;
     for (int i = 1; i <= n; i++) { cin >> p[i]; }
@@ -55,5 +53,5 @@ int main()
         g[p[leave[i]]].push_back(c[leave[i]]);
     }
     for (auto it = ans.rbegin(); it != ans.rend(); it++) { cout << *it << "\n"; }
-	return 0;
+    return 0;
 }

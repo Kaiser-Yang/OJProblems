@@ -9,30 +9,27 @@ constexpr int MAXN = 2e5 + 10;
 constexpr int MAXM = 4e5 + 10;
 
 int T, n, m, q, ecnt, cnt, ans, k, s, v0, p0, v, p;
-int h[MAXN << 1], head[MAXN << 1], dis[MAXN << 1], depth[MAXN << 1], value[MAXN << 1][21], parent[MAXN << 1][21], val[MAXN << 1];
+int h[MAXN << 1], head[MAXN << 1], dis[MAXN << 1], depth[MAXN << 1], value[MAXN << 1][21],
+    parent[MAXN << 1][21], val[MAXN << 1];
 
-struct Edge
-{
+struct Edge {
     int u, v, l, a;
 } edge[MAXM];
 
-struct Graph
-{
+struct Graph {
     int to, nex, w;
 } es[MAXM << 1];
 
 int find(int x) { return x == h[x] ? x : h[x] = find(h[x]); }
 
-void addEdge(int u, int v, int w)
-{
-    es[ecnt].to = v;
-    es[ecnt].w = w;
+void addEdge(int u, int v, int w) {
+    es[ecnt].to  = v;
+    es[ecnt].w   = w;
     es[ecnt].nex = head[u];
-    head[u] = ecnt++;
+    head[u]      = ecnt++;
 }
 
-void dijkstra()
-{
+void dijkstra() {
     memset(dis + 1, 0x3f, sizeof(int) * (2 * n - 1));
     dis[1] = 0;
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
@@ -54,25 +51,23 @@ void dijkstra()
     }
 }
 
-void dfs(int u, int par)
-{
-    depth[u] = depth[par] + 1;
+void dfs(int u, int par) {
+    depth[u]     = depth[par] + 1;
     parent[u][0] = par;
-    value[u][0] = min(val[u], val[par]);
+    value[u][0]  = min(val[u], val[par]);
     for (int j = 1; j <= 20; j++) {
         parent[u][j] = parent[parent[u][j - 1]][j - 1];
-        value[u][j] = min(value[u][j - 1], value[parent[u][j - 1]][j - 1]);
+        value[u][j]  = min(value[u][j - 1], value[parent[u][j - 1]][j - 1]);
     }
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
         if (v == par) { continue; }
         dfs(v, u);
-        dis[u] = min(dis[u] , dis[v]);
+        dis[u] = min(dis[u], dis[v]);
     }
 }
 
-int query(int u, int limit)
-{
+int query(int u, int limit) {
     int now = parent[u][0];
     for (int j = 20; j >= 0; j--) {
         if (value[now][j] <= limit) { continue; }
@@ -82,9 +77,8 @@ int query(int u, int limit)
     return dis[now];
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
         cin >> n >> m;
@@ -99,12 +93,12 @@ int main()
         ecnt = 0;
         memset(head + 1, -1, sizeof(int) * (2 * n - 1));
         for (int i = 0; i <= 2 * n; i++) { h[i] = i; }
-        sort(edge, edge + m, [] (const auto &a, const auto &b) { return a.a > b.a; });
+        sort(edge, edge + m, [](const auto &a, const auto &b) { return a.a > b.a; });
         cnt = n;
         for (int i = 0; i < m; i++) {
             int fu = find(edge[i].u), fv = find(edge[i].v);
             if (fu == fv) { continue; }
-            cnt ++;
+            cnt++;
             h[fu] = h[fv] = cnt;
             addEdge(fu, cnt, 0);
             addEdge(cnt, fu, 0);
@@ -124,5 +118,5 @@ int main()
             cout << (ans = query(v, p)) << endl;
         }
     }
-	return 0;
+    return 0;
 }

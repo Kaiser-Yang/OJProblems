@@ -10,13 +10,11 @@ constexpr int MAXN = 100 + 10;
 int n, totPeople, ans = numeric_limits<int>::max();
 int siz[MAXN], depth[MAXN], dp[MAXN];
 
-struct Node
-{
+struct Node {
     int left, right, w;
 } node[MAXN];
 
-void dfs(int u)
-{
+void dfs(int u) {
     if (node[u].left != 0) {
         depth[node[u].left] = depth[u] + 1;
         dfs(node[u].left);
@@ -26,21 +24,19 @@ void dfs(int u)
         dfs(node[u].right);
     }
     siz[u] = node[u].w + siz[node[u].right] + siz[node[u].left];
-    dp[1] += node[u].w * depth[u]; // disance from u to 1 is depth[u].
+    dp[1] += node[u].w * depth[u];  // disance from u to 1 is depth[u].
 }
 
-void updateDp(int u, int par)
-{
+void updateDp(int u, int par) {
     // the first -siz[u] means that the sub-tree u's nodes has no need
     // to trapass the path between u and par,
     // the totPeople - siz[u] means that all the other nodes
     // which are node in the sub-tree u need trapass the path between u and par.
     dp[u] = dp[par] - siz[u] + totPeople - siz[u];
-    ans = min(ans, dp[u]);
+    ans   = min(ans, dp[u]);
 }
 
-void treeDP(int u)
-{
+void treeDP(int u) {
     if (node[u].left != 0) {
         updateDp(node[u].left, u);
         treeDP(node[u].left);
@@ -51,9 +47,8 @@ void treeDP(int u)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n;
     for (int i = 1; i <= n; i++) {
         cin >> node[i].w >> node[i].left >> node[i].right;
@@ -63,5 +58,5 @@ int main()
     ans = dp[1];
     treeDP(1);
     cout << ans << endl;
-	return 0;
+    return 0;
 }

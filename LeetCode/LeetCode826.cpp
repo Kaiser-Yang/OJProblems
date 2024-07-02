@@ -6,14 +6,12 @@ using namespace std;
 
 class Solution {
 public:
-    int maxProfitAssignment(vector<int>& difficulty, vector<int>& profit, vector<int>& worker) {
+    int maxProfitAssignment(vector<int> &difficulty, vector<int> &profit, vector<int> &worker) {
         using Work = pair<int, int>;
         vector<Work> workList;
         int n = (int)difficulty.size();
-        for (int i = 0; i < n; i++) {
-            workList.push_back({profit[i], difficulty[i]});
-        }
-        auto comparor = [] (const Work &a, const Work &b) {
+        for (int i = 0; i < n; i++) { workList.push_back({profit[i], difficulty[i]}); }
+        auto comparor = [](const Work &a, const Work &b) {
             if (a.first != b.first) { return a.first > b.first; }
             return a.second < b.second;
         };
@@ -24,7 +22,9 @@ public:
             if (worker[i] >= workList[now].second) {
                 ans += workList[now].first;
                 i++;
-            } else { now++; }
+            } else {
+                now++;
+            }
             if (now == workList.size()) { break; }
         }
         return ans;

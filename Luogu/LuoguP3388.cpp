@@ -13,10 +13,9 @@ bool cut[MAXN];
 
 vector<int> g[MAXN];
 
-void tarjan(int u, int par)
-{
+void tarjan(int u, int par) {
     dfn[u] = low[u] = ++cnt;
-    int son = 0;
+    int son         = 0;
     for (int v : g[u]) {
         if (dfn[v] == 0) {
             son++;
@@ -30,9 +29,8 @@ void tarjan(int u, int par)
     if (par == 0 && son >= 2) { cut[u] = true; }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
         cin >> u >> v;
@@ -43,12 +41,10 @@ int main()
         if (dfn[i] != 0) { continue; }
         tarjan(i, 0);
     }
-    cout << count_if(cut + 1, cut + 1 + n, [] (bool val) { return val; }) << endl;
+    cout << count_if(cut + 1, cut + 1 + n, [](bool val) { return val; }) << endl;
     for (int i = 1; i <= n; i++) {
-        if (cut[i]) {
-            cout << i << " ";
-        }
+        if (cut[i]) { cout << i << " "; }
     }
     cout << endl;
-	return 0;
+    return 0;
 }

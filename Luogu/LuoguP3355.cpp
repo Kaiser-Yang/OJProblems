@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 210;
 constexpr int MAXM = MAXN * MAXN;
-constexpr int INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -15,21 +15,18 @@ bool blocked[MAXN][MAXN];
 int dx[] = {2, 2, -2, -2, 1, 1, -1, -1};
 int dy[] = {1, -1, 1, -1, 2, -2, 2, -2};
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity;
 } es[18 * MAXN * MAXN];
 
-void addEdge(int u, int v, int capacity)
-{
+void addEdge(int u, int v, int capacity) {
     es[ecnt] = {v, head[u], capacity};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
 }
 
 int getID(int i, int j) { return (i - 1) * n + j; }
 
-bool bfs()
-{
+bool bfs() {
     memset(depth, 0xff, sizeof(depth));
     queue<int> q;
     q.push(s);
@@ -47,8 +44,7 @@ bool bfs()
     return depth[t] != -1;
 }
 
-int dfs(int u, int inFlow)
-{
+int dfs(int u, int inFlow) {
     if (u == t || inFlow == 0) { return inFlow; }
     int outFlow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
@@ -65,8 +61,7 @@ int dfs(int u, int inFlow)
     return outFlow;
 }
 
-int dinic()
-{
+int dinic() {
     int res = 0;
     while (bfs()) {
         memcpy(cur, head, sizeof(head));
@@ -75,9 +70,8 @@ int dinic()
     return res;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n >> m;
     int x = 0, y = 0;
@@ -106,5 +100,5 @@ int main()
         }
     }
     cout << ans - dinic() << "\n";
-	return 0;
+    return 0;
 }

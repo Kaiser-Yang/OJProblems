@@ -28,7 +28,7 @@ public:
             while (!before && nex != numList.end() && *nex == '0') { numList.erase(nex++); }
             if (!before) {
                 now = nex;
-                if (nex != numList.end()){ nex++; }
+                if (nex != numList.end()) { nex++; }
             }
         }
         while (!numList.empty() && k--) { numList.pop_back(); }

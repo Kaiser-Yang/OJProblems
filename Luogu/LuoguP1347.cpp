@@ -15,21 +15,15 @@ queue<char> ans;
 
 vector<int> g[MAXN];
 
-void addEdge(int u, int v)
-{
-    g[u].push_back(v);
-}
+void addEdge(int u, int v) { g[u].push_back(v); }
 
-void toposort(int iter)
-{
+void toposort(int iter) {
     vector<int> inDegree(n + 1);
     std::copy(::inDegree, ::inDegree + n, inDegree.begin());
     while (!ans.empty()) { ans.pop(); }
     queue<int> q;
     for (int i = 0; i < n; i++) {
-        if (inDegree[i] == 0) {
-            q.push(i);
-        }
+        if (inDegree[i] == 0) { q.push(i); }
     }
     bool determined = true;
     while (!q.empty()) {
@@ -38,9 +32,7 @@ void toposort(int iter)
         q.pop();
         if (!q.empty()) { determined = false; }
         for (int v : g[u]) {
-            if (--inDegree[v] == 0) {
-                q.push(v);
-            }
+            if (--inDegree[v] == 0) { q.push(v); }
         }
     }
     for (int i = 0; i < n; i++) {
@@ -60,9 +52,8 @@ void toposort(int iter)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m;
     for (int i = 1; i <= m; i++) {
         cin >> relation;
@@ -71,5 +62,5 @@ int main()
         toposort(i);
     }
     cout << "Sorted sequence cannot be determined.\n";
-	return 0;
+    return 0;
 }

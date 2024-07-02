@@ -8,6 +8,7 @@ class Solution {
 private:
     static constexpr int MAXN = 1e3 + 10;
     int dp[MAXN][3];
+
 public:
     int twoEggDrop(int n) {
         dp[0][1] = dp[0][2] = 0;

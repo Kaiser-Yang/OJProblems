@@ -6,12 +6,11 @@ using namespace std;
 
 class Solution {
     int getID(char ch) { return ch == 'R' ? 0 : 1; }
+
 public:
     string predictPartyVictory(string senate) {
         queue<int> q[2], votedQ[2];
-        for (int i = 0; i < senate.length(); i++) {
-            q[getID(senate[i])].push(i);
-        }
+        for (int i = 0; i < senate.length(); i++) { q[getID(senate[i])].push(i); }
         while (true) {
             while (!q[0].empty() || !q[1].empty()) {
                 if (q[0].empty()) {

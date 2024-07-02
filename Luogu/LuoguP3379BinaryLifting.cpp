@@ -1,4 +1,4 @@
-// problem statement: 
+// problem statement:
 
 #include <bits/stdc++.h>
 
@@ -10,15 +10,12 @@ const int MAXM = 5e5 + 10;
 int n, m, s, u, v;
 int parent[MAXN][21], depth[MAXN];
 
-vector<int> g[MAXN]; // tree
+vector<int> g[MAXN];  // tree
 
-void dfs(int u, int par)
-{
+void dfs(int u, int par) {
     parent[u][0] = par;
-    depth[u] = depth[par] + 1;
-    for (int j = 1; j <= 20; j++) {
-        parent[u][j] = parent[parent[u][j - 1]][j - 1];
-    }
+    depth[u]     = depth[par] + 1;
+    for (int j = 1; j <= 20; j++) { parent[u][j] = parent[parent[u][j - 1]][j - 1]; }
     for (int v : g[u]) {
         if (v == par) { continue; }
         dfs(v, u);
@@ -26,10 +23,8 @@ void dfs(int u, int par)
 }
 
 int lca(int a, int b) {
-    if (depth[a] > depth[b]) {
-        swap(a, b);
-    }
-    for ( int j = 20; j >= 0; j--) {
+    if (depth[a] > depth[b]) { swap(a, b); }
+    for (int j = 20; j >= 0; j--) {
         if (depth[parent[b][j]] < depth[a]) { continue; }
         b = parent[b][j];
     }
@@ -42,8 +37,7 @@ int lca(int a, int b) {
     return parent[a][0];
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n >> m >> s;
     for (int i = 1; i < n; i++) {
@@ -57,5 +51,5 @@ int main()
         cin >> u >> v;
         cout << lca(u, v) << endl;
     }
-	return 0;
+    return 0;
 }

@@ -1,18 +1,17 @@
 // problem statement: https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/
 
-#include <algorithm>
 #include <bits/stdc++.h>
+
+#include <algorithm>
 
 using namespace std;
 
 class Solution {
 public:
-    double mincostToHireWorkers(vector<int>& quality, vector<int>& wage, int k) {
+    double mincostToHireWorkers(vector<int> &quality, vector<int> &wage, int k) {
         vector<pair<int, int>> qAndW;
-        for (int i = 0; i < quality.size(); i++) {
-            qAndW.push_back({quality[i], wage[i]});
-        }
-        auto &&cmp = [] (const auto &a, const auto &b) {
+        for (int i = 0; i < quality.size(); i++) { qAndW.push_back({quality[i], wage[i]}); }
+        auto &&cmp = [](const auto &a, const auto &b) {
             return a.second * b.first >= b.second * a.first;
         };
         sort(qAndW.begin(), qAndW.end(), cmp);
@@ -36,8 +35,7 @@ public:
         }
         int left = 0;
         while (left + k <= qAndW.size()) {
-            ans = min(ans, nowSumQ / qAndW[left].first * qAndW[left].second +
-                           qAndW[left].second);
+            ans = min(ans, nowSumQ / qAndW[left].first * qAndW[left].second + qAndW[left].second);
             left++;
             if (left + k > qAndW.size()) { break; }
             auto &&iter = minQSet.find(qAndW[left].first);

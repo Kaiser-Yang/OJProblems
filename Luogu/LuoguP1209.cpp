@@ -12,13 +12,12 @@ int m, c, s, cnt, ans;
 int p[MAXC];
 list<pair<int, int>> section;
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> m >> s >> c;
     for (int i = 1; i <= c; i++) { cin >> p[i]; }
     sort(p + 1, p + 1 + c);
-    for (int i = 1; i <= c; ) {
+    for (int i = 1; i <= c;) {
         int j = i;
         while (j + 1 <= c && p[j + 1] == p[j] + 1) { j++; }
         section.push_back({p[i], p[j]});
@@ -32,10 +31,9 @@ int main()
             auto nex = ++it;
             --it;
             if (nex == section.end()) { break; }
-            if (temp == - 1 || nex->first - it->second < temp) {
+            if (temp == -1 || nex->first - it->second < temp) {
                 temp = nex->first - it->second;
-                pos = it;
-                
+                pos  = it;
             }
         }
         auto nex = ++pos, nexNex = ++pos;
@@ -48,5 +46,5 @@ int main()
     }
     for (auto item : section) { ans += item.second - item.first + 1; }
     cout << ans << "\n";
-	return 0;
+    return 0;
 }

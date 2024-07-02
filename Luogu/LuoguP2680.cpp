@@ -7,7 +7,7 @@ constexpr int MAXM = 3e5 + 10;
 
 using namespace std;
 
-int n, m , u, v, w;
+int n, m, u, v, w;
 int head[MAXN], ecnt;
 
 struct edge {
@@ -15,10 +15,10 @@ struct edge {
 } es[MAXN << 1];
 
 void add_edge(int u, int v, int w) {
-    es[ecnt].to = v;
-    es[ecnt].w = w;
+    es[ecnt].to   = v;
+    es[ecnt].w    = w;
     es[ecnt].next = head[u];
-    head[u] = ecnt++;
+    head[u]       = ecnt++;
 }
 
 struct carriage {
@@ -32,12 +32,10 @@ void build(int u, int fa) {
     for (int i = head[u]; ~i; i = es[i].next) {
         int v = es[i].to;
         if (v == fa) continue;
-        dis[v] = dis[u] + es[i].w;
+        dis[v]    = dis[u] + es[i].w;
         par[v][0] = u;
-        depth[v] = depth[u] + 1;
-        for (int j = 1; j < 20; j++) {
-            par[v][j] = par[par[v][j - 1]][j - 1];
-        }
+        depth[v]  = depth[u] + 1;
+        for (int j = 1; j < 20; j++) { par[v][j] = par[par[v][j - 1]][j - 1]; }
         build(v, u);
     }
 }
@@ -57,9 +55,7 @@ int lca(int a, int b) {
     return par[a][0];
 }
 
-int get_dis(int a, int b, int lca) {
-    return dis[a] + dis[b] - 2 * dis[lca];
-}
+int get_dis(int a, int b, int lca) { return dis[a] + dis[b] - 2 * dis[lca]; }
 
 void dfs(int u, int fa, vector<int> &cnt) {
     for (int i = head[u]; ~i; i = es[i].next) {
@@ -86,7 +82,9 @@ bool check(int ans) {
     if (exceed_cnt == 0) { return true; }
     dfs(1, 0, difference_cnt);
     for (int i = 2; i <= n; i++) {
-        if (difference_cnt[i] >= exceed_cnt && get_dis(i, par[i][0], par[i][0]) >= max_exceed) { return true; }
+        if (difference_cnt[i] >= exceed_cnt && get_dis(i, par[i][0], par[i][0]) >= max_exceed) {
+            return true;
+        }
     }
     return false;
 }
@@ -95,7 +93,7 @@ int main() {
     ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n >> m;
-    for (int i = 0; i < n - 1; i++) { 
+    for (int i = 0; i < n - 1; i++) {
         cin >> u >> v >> w;
         add_edge(u, v, w);
         add_edge(v, u, w);
@@ -106,12 +104,15 @@ int main() {
         cin >> car[i].u >> car[i].v;
         car[i].lca = lca(car[i].u, car[i].v);
         car[i].dis = get_dis(car[i].u, car[i].v, car[i].lca);
-        r = max(r, car[i].dis);
+        r          = max(r, car[i].dis);
     }
     while (l <= r) {
         int mid = l + ((r - l) >> 1);
-        if (check(mid)) { r = mid - 1; }
-        else { l = mid + 1; }
+        if (check(mid)) {
+            r = mid - 1;
+        } else {
+            l = mid + 1;
+        }
     }
     cout << l << endl;
     return 0;

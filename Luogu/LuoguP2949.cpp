@@ -12,14 +12,11 @@ long long ans;
 pair<int, int> task[MAXN];
 priority_queue<int, vector<int>, greater<int>> q;
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n;
-    for (int i = 0; i < n; i++) {
-        cin >> task[i].second >> task[i].first;
-    }
-    sort(task, task + n, [] (const auto &a, const auto &b) {
+    for (int i = 0; i < n; i++) { cin >> task[i].second >> task[i].first; }
+    sort(task, task + n, [](const auto &a, const auto &b) {
         if (a.second != b.second) { return a.second < b.second; }
         return a.first > b.first;
     });
@@ -37,5 +34,5 @@ int main()
         }
     }
     cout << ans << "\n";
-	return 0;
+    return 0;
 }

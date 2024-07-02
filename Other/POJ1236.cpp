@@ -1,11 +1,11 @@
 // problem statement: http://poj.org/problem?id=1236
 // Tag: having been in my blog
 
+#include <cstring>
+#include <iostream>
 #include <stack>
 #include <string>
 #include <vector>
-#include <cstring>
-#include <iostream>
 
 using namespace std;
 
@@ -18,8 +18,7 @@ stack<int> s;
 
 vector<int> g[MAXN];
 
-void tarjan(int u)
-{
+void tarjan(int u) {
     dfn[u] = low[u] = ++cnt;
     s.push(u);
     ins[u] = true;
@@ -36,18 +35,17 @@ void tarjan(int u)
         colorCnt++;
         while (s.top() != u) {
             color[s.top()] = colorCnt;
-            ins[s.top()] = false;
+            ins[s.top()]   = false;
             s.pop();
         }
         color[s.top()] = colorCnt;
-        ins[s.top()] = false;
+        ins[s.top()]   = false;
         s.pop();
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n;
     for (int i = 1; i <= n; i++) {
         int v = 0;
@@ -75,5 +73,5 @@ int main()
     }
     ans2 = max(ans1, ans2);
     cout << ans1 << endl << ans2 << endl;
-	return 0;
+    return 0;
 }

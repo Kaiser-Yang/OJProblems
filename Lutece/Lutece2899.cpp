@@ -5,8 +5,7 @@ using namespace std;
 int n, ans;
 string s;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n >> s;
     s.pop_back();

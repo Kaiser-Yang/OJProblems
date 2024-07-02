@@ -19,15 +19,13 @@ int dy[] = {0, 0, 1, -1};
 
 bool hasKey(int s, int i) { return (s & (1 << (i - 1))) != 0; }
 
-int getKeySet(int x, int y) 
-{
+int getKeySet(int x, int y) {
     int res = 0;
     for (const auto &key : ::key[x][y]) { res |= 1 << (key - 1); }
     return res;
 }
 
-int bfs()
-{
+int bfs() {
     struct State {
         int x, y, keySet;
     };
@@ -45,7 +43,10 @@ int bfs()
         for (int i = 0; i < 4; i++) {
             int nx = now.x + dx[i], ny = now.y + dy[i];
             if (nx < 1 || nx > n || ny < 1 || ny > m || barrier[now.x][now.y][nx][ny] == 0 ||
-                (barrier[now.x][now.y][nx][ny] != -1 && !hasKey(now.keySet, barrier[now.x][now.y][nx][ny]))) { continue; }
+                (barrier[now.x][now.y][nx][ny] != -1 &&
+                 !hasKey(now.keySet, barrier[now.x][now.y][nx][ny]))) {
+                continue;
+            }
             int newKeySet = (now.keySet | getKeySet(nx, ny));
             if (vis[nx][ny][newKeySet]) { continue; }
             vis[nx][ny][newKeySet] = true;
@@ -56,9 +57,8 @@ int bfs()
     return -1;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(barrier, 0xff, sizeof(barrier));
     cin >> n >> m >> p;
     cin >> k;
@@ -72,5 +72,5 @@ int main()
         key[a1][b1].push_back(q);
     }
     cout << bfs() << "\n";
-	return 0;
+    return 0;
 }

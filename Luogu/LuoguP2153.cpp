@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 210;
 constexpr int MAXM = 2e4 + 10;
-constexpr int  INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -12,19 +12,16 @@ int n, m, s, t, u, v, cost, ecnt;
 int head[MAXN * 2], cur[MAXN * 2], dis[MAXN * 2];
 bool vis[MAXN * 2];
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity, cost;
 } es[MAXM * 2 + MAXN * 2];
 
-void addEdge(int u, int v, int capacity, int cost)
-{
+void addEdge(int u, int v, int capacity, int cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
 }
 
-bool spfa()
-{
+bool spfa() {
     memset(dis, 0x3f, sizeof(dis));
     auto &inq = vis;
     queue<int> q;
@@ -49,10 +46,9 @@ bool spfa()
     return dis[t] != INF;
 }
 
-int dfs(int u, int inFLow, pair<int, int> &ans)
-{
+int dfs(int u, int inFLow, pair<int, int> &ans) {
     if (u == t || inFLow == 0) { return inFLow; }
-    vis[u] = true;
+    vis[u]      = true;
     int outFLow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -70,8 +66,7 @@ int dfs(int u, int inFLow, pair<int, int> &ans)
     return outFLow;
 }
 
-pair<int, int> MCMFDinic()
-{
+pair<int, int> MCMFDinic() {
     pair<int, int> ans{0, 0};
     int flow = 0;
     while (spfa()) {
@@ -81,13 +76,12 @@ pair<int, int> MCMFDinic()
     return ans;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n >> m;
     s = 1, t = n;
-    for (int i = 2; i < n;i ++) {
+    for (int i = 2; i < n; i++) {
         addEdge(i, i + n, 1, 0);
         addEdge(i + n, i, 0, 0);
     }
@@ -103,5 +97,5 @@ int main()
     }
     auto &&ans = MCMFDinic();
     cout << ans.first << " " << ans.second << "\n";
-	return 0;
+    return 0;
 }

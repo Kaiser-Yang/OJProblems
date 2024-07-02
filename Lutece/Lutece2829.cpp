@@ -4,26 +4,22 @@ using namespace std;
 
 int n, m, s = -1;
 
-int sum(int i)
-{
-    return (1 + i) * i / 2 * (1 + i) * i / 2;
-}
+int sum(int i) { return (1 + i) * i / 2 * (1 + i) * i / 2; }
 
-int maxVolumn(int i, int r, int h)
-{
+int maxVolumn(int i, int r, int h) {
     int res = 0;
-    for (int rr = r - 1, hh = h - 1; i > 0; i--, rr--, hh--) {
-        res += rr * rr * hh;
-    }
+    for (int rr = r - 1, hh = h - 1; i > 0; i--, rr--, hh--) { res += rr * rr * hh; }
     return res;
 }
 
-void dfs(int depth, int nowN, int nowS, int lasR, int lasH)
-{
+void dfs(int depth, int nowN, int nowS, int lasR, int lasH) {
     if (depth == m) {
         if (nowN != 0) { return; }
-        if (s == -1) { s = nowS; }
-        else { s = min(s, nowS); }
+        if (s == -1) {
+            s = nowS;
+        } else {
+            s = min(s, nowS);
+        }
         return;
     }
     if (s != -1 && nowS >= s) { return; }
@@ -33,14 +29,13 @@ void dfs(int depth, int nowN, int nowS, int lasR, int lasH)
         for (int h = m - depth; h < lasH; h++) {
             int newN = nowN - r * r * h;
             int newS = nowS + 2 * r * h;
-            if (depth == 0) { newS +=  r * r; }
+            if (depth == 0) { newS += r * r; }
             dfs(depth + 1, newN, newS, r, h);
         }
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n >> m;
     int maxR = sqrt((n - sum(m - 1)) / m + 1) + 1;

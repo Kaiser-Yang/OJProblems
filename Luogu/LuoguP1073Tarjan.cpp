@@ -9,15 +9,15 @@ constexpr int MAXN = 1e5 + 10;
 constexpr int MAXM = 5e5 + 10;
 
 int n, m, u, v, type, cnt, colorCnt;
-int price[MAXN], dfn[MAXN], low[MAXN], color[MAXN], minPrice[MAXN], maxPrice[MAXN], inDegree[MAXN], dp[MAXN];
+int price[MAXN], dfn[MAXN], low[MAXN], color[MAXN], minPrice[MAXN], maxPrice[MAXN], inDegree[MAXN],
+    dp[MAXN];
 bool ins[MAXN];
 
 stack<int> s;
 
 vector<int> g[MAXN], dag[MAXN];
 
-void tarjan(int u)
-{
+void tarjan(int u) {
     dfn[u] = low[u] = ++cnt;
     s.push(u);
     ins[u] = true;
@@ -32,36 +32,35 @@ void tarjan(int u)
     if (dfn[u] == low[u]) {
         colorCnt++;
         while (s.top() != u) {
-            color[s.top()] = colorCnt;
-            ins[s.top()] = false;
+            color[s.top()]     = colorCnt;
+            ins[s.top()]       = false;
             minPrice[colorCnt] = min(minPrice[colorCnt], price[s.top()]);
             maxPrice[colorCnt] = max(maxPrice[colorCnt], price[s.top()]);
             s.pop();
         }
-        color[s.top()] = colorCnt;
-        ins[s.top()] = false;
+        color[s.top()]     = colorCnt;
+        ins[s.top()]       = false;
         minPrice[colorCnt] = min(minPrice[colorCnt], price[s.top()]);
         maxPrice[colorCnt] = max(maxPrice[colorCnt], price[s.top()]);
         s.pop();
     }
 }
 
-void bfs(){
-	queue<int> q;
-	q.push(color[1]);
-	while(!q.empty()) {
-		int u = q.front();
-		q.pop();
-		for (int v : dag[u]) {
-			minPrice[v] = min(minPrice[v], minPrice[u]);
-			dp[v] = max(dp[v], max(dp[u], maxPrice[v] - minPrice[v]));
-			if ((--inDegree[v]) == 0) { q.push(v); }
-		}
-	}
+void bfs() {
+    queue<int> q;
+    q.push(color[1]);
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (int v : dag[u]) {
+            minPrice[v] = min(minPrice[v], minPrice[u]);
+            dp[v]       = max(dp[v], max(dp[u], maxPrice[v] - minPrice[v]));
+            if ((--inDegree[v]) == 0) { q.push(v); }
+        }
+    }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     memset(minPrice, 0x3f, sizeof(minPrice));
     cin >> n >> m;
@@ -81,5 +80,5 @@ int main()
     }
     bfs();
     cout << dp[color[n]] << endl;
- 	return 0;
+    return 0;
 }

@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minimumJumps(vector<int>& forbidden, int a, int b, int x) {
+    int minimumJumps(vector<int> &forbidden, int a, int b, int x) {
         int bound = x + b;
         for (int p : forbidden) { bound = max(bound, p + a + b); }
         vector<bool> reachable(bound + 1, true);
@@ -21,9 +21,7 @@ public:
             auto item = q.front();
             q.pop();
             int i = item.first, s = item.second;
-            if (i == x) {
-                return dis[i][s];
-            }
+            if (i == x) { return dis[i][s]; }
             if (s != 1 && i - b >= 0 && reachable[i - b] && dis[i - b][1] > dis[i][s] + 1) {
                 dis[i - b][1] = dis[i][s] + 1;
                 q.push({i - b, 1});

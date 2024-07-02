@@ -5,7 +5,7 @@
 constexpr int MAXN = 35 + 5;
 constexpr int MAXP = 35 + 5;
 constexpr int MAXQ = 35 + 5;
-constexpr int  INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -18,19 +18,16 @@ int head[2 * MAXP * MAXQ], cur[2 * MAXP * MAXQ], dis[2 * MAXP * MAXQ];
 bool vis[2 * MAXP * MAXQ];
 vector<vector<int>> path;
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity, cost;
 } es[8 * MAXP * MAXQ];
 
-void addEdge(int u, int v, int capacity, int cost)
-{
+void addEdge(int u, int v, int capacity, int cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
 }
 
-bool spfa()
-{
+bool spfa() {
     memset(dis, 0x3f, sizeof(dis));
     auto &inq = vis;
     queue<int> q;
@@ -55,10 +52,9 @@ bool spfa()
     return dis[t] != INF;
 }
 
-int dfs(int u, int inFlow, pair<int, int> &ans)
-{
+int dfs(int u, int inFlow, pair<int, int> &ans) {
     if (u == t || inFlow == 0) { return inFlow; }
-    vis[u] = true;
+    vis[u]      = true;
     int outFlow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -76,8 +72,7 @@ int dfs(int u, int inFlow, pair<int, int> &ans)
     return outFlow;
 }
 
-pair<int, int> MCMFDinic()
-{
+pair<int, int> MCMFDinic() {
     pair<int, int> ans{0, 0};
     int flow = 0;
     while (spfa()) {
@@ -89,8 +84,7 @@ pair<int, int> MCMFDinic()
 
 int getID(int i, int j, int level) { return (i - 1) * q + j + level * p * q; }
 
-void findPath(int u, int len)
-{
+void findPath(int u, int len) {
     if (u >= 1 && u <= p * q) { path[len].push_back(u); }
     for (int i = head[u]; i != -1; i = es[i].nex) {
         if (i % 2 == 1 || es[i ^ 1].capacity == 0) { continue; }
@@ -101,15 +95,12 @@ void findPath(int u, int len)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n >> q >> p;
     for (int i = 1; i <= p; i++) {
-        for (int j = 1; j <= q; j++) {
-            cin >> mp[i][j];
-        }
+        for (int j = 1; j <= q; j++) { cin >> mp[i][j]; }
     }
     s = 0, t = getID(p, q, 1) + 1;
     addEdge(s, getID(1, 1, 0), n, 0);
@@ -142,9 +133,12 @@ int main()
         findPath(s, i);
         for (int j = 1; j < path[i].size(); j++) {
             cout << i + 1 << " ";
-            if (path[i][j] == path[i][j - 1] + 1) { cout << "1\n"; }
-            else { cout << "0\n"; }
+            if (path[i][j] == path[i][j - 1] + 1) {
+                cout << "1\n";
+            } else {
+                cout << "0\n";
+            }
         }
     }
-	return 0;
+    return 0;
 }

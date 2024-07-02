@@ -12,8 +12,7 @@ int dfn[MAXN], low[MAXN];
 
 vector<int> g[MAXN];
 
-void tarjan(int u, int par)
-{
+void tarjan(int u, int par) {
     dfn[u] = low[u] = ++cnt;
     for (int v : g[u]) {
         if (dfn[v] == 0) {
@@ -26,9 +25,8 @@ void tarjan(int u, int par)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n;
     while (cin >> u >> v) {
         if (u == 0 && v == 0) { break; }
@@ -38,5 +36,5 @@ int main()
     cin >> s >> t;
     tarjan(s, 0);
     cout << (ans == MAXN ? "No solution" : to_string(ans)) << endl;
-	return 0;
+    return 0;
 }

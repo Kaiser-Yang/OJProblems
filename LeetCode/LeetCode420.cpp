@@ -6,13 +6,13 @@ using namespace std;
 
 class Solution {
 private:
-    int getID(char ch)
-    {
+    int getID(char ch) {
         if (ch >= 'a' && ch <= 'z') { return 0; }
         if (ch >= 'A' && ch <= 'Z') { return 1; }
         if (ch >= '0' && ch <= '9') { return 2; }
         return 3;
     }
+
 public:
     int strongPasswordChecker(string password) {
         int n = password.length(), deleteNum = max(0, n - 20), ans = deleteNum;
@@ -50,8 +50,9 @@ public:
                     deleteNum--;
                     deleted[p[2] + 2] = true;
                 }
+            } else {
+                break;
             }
-            else { break; }
         }
         int cnt[4] = {0, 0, 0, n};
         for (int i = 0; i < n; i++) {
@@ -77,8 +78,8 @@ public:
             cnt1 += (j - i) / 3;
             i = j;
         }
-        int cnt2 = count_if(cnt, cnt + 3, [] (int val) { return val > 0; });
-        n = count_if(deleted.begin(), deleted.end(), [] (bool item) { return !item; });
+        int cnt2 = count_if(cnt, cnt + 3, [](int val) { return val > 0; });
+        n        = count_if(deleted.begin(), deleted.end(), [](bool item) { return !item; });
         if (n >= 6 && n <= 20) { return ans + max(cnt1, 3 - cnt2); }
         if (n <= 5) { return 6 - n + max(0, 3 - cnt2 - (6 - n)); }
         return -1;

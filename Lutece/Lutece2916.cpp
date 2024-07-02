@@ -10,8 +10,7 @@ int getMonthDay(int i) {
     return day[i];
 }
 
-int getDays(string date1, string date2)
-{
+int getDays(string date1, string date2) {
     int month1 = 0, month2 = 0, day1 = 0, day2 = 0;
     for (int i = 4; i < 6; i++) {
         month1 = month1 * 10 + date1[i] - '0';
@@ -25,9 +24,7 @@ int getDays(string date1, string date2)
         swap(month1, month2);
         swap(day1, day2);
     } else if (month1 == month2) {
-        if (day1 > day2) {
-            swap(day1, day2);
-        }
+        if (day1 > day2) { swap(day1, day2); }
     }
     int res = 0;
     while (month1 < month2) {
@@ -41,8 +38,7 @@ int getDays(string date1, string date2)
     return res;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> date >> number;
     if (getDays(date, "20221201") % 7 == 0) {

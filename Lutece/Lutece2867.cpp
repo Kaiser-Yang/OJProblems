@@ -7,8 +7,7 @@ long long q;
 vector<long long> a;
 vector<long long> len;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n >> m;
     a.resize(n + 1);
@@ -21,9 +20,7 @@ int main()
             a[i] /= 3;
         }
     }
-    for (int i = 1; i <= n; i++) {
-        len[i] += len[i - 1];
-    }
+    for (int i = 1; i <= n; i++) { len[i] += len[i - 1]; }
     for (int i = 0; i < m; i++) {
         cin >> q;
         int pos = lower_bound(len.begin(), len.end(), q) - len.begin();

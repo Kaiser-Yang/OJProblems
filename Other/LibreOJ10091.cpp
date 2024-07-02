@@ -16,10 +16,9 @@ stack<int> s;
 
 vector<int> g[MAXN], dag[MAXN];
 
-void tarjan(int u)
-{
+void tarjan(int u) {
     dfn[u] = low[u] = ++cnt;
-    ins[u] = true;
+    ins[u]          = true;
     s.push(u);
     for (int v : g[u]) {
         if (dfn[v] == 0) {
@@ -33,17 +32,16 @@ void tarjan(int u)
         colorCnt++;
         while (s.top() != u) {
             color[s.top()] = colorCnt;
-            ins[s.top()] = false;
+            ins[s.top()]   = false;
             s.pop();
         }
         color[s.top()] = colorCnt;
-        ins[s.top()] = false;
+        ins[s.top()]   = false;
         s.pop();
     }
 }
 
-void toposort()
-{
+void toposort() {
     queue<int> q;
     for (int i = 1; i <= colorCnt; i++) {
         dp[i] = 1;
@@ -54,16 +52,13 @@ void toposort()
         q.pop();
         for (int v : dag[u]) {
             dp[v] += dp[u];
-            if ((--inDegree[v]) == 0) {
-                q.push(v);
-            }
+            if ((--inDegree[v]) == 0) { q.push(v); }
         }
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
         cin >> u >> v;
@@ -85,5 +80,5 @@ int main()
         if (dp[color[i]] == colorCnt) { ans++; }
     }
     cout << ans << endl;
-	return 0;
+    return 0;
 }

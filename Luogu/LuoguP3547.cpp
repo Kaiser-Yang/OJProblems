@@ -9,41 +9,35 @@ constexpr int MAXN = 1e5 + 10;
 constexpr int MAXM = 1e5 + 10;
 constexpr int INF  = 0x3f3f3f3f;
 
-
 int n, m, k, a, b, u, v;
 int ans[MAXN], dis[MAXN];
 bool vis[MAXN];
 
-struct Graph
-{
+struct Graph {
     int ecnt;
     int head[MAXN], to[MAXM << 1], nex[MAXM << 1], pre[MAXM << 1];
 
-    Graph() 
-    {
-        ecnt = 1; // must count fron 1, otherwise pre[head[u]] may call pre[-1]
+    Graph() {
+        ecnt = 1;  // must count fron 1, otherwise pre[head[u]] may call pre[-1]
         memset(head, 0, sizeof(head));
     }
 
-    void addEdge(int u, int v)
-    {
-        to[ecnt] = v;
-        nex[ecnt] = head[u];
+    void addEdge(int u, int v) {
+        to[ecnt]     = v;
+        nex[ecnt]    = head[u];
         pre[head[u]] = ecnt;
-        head[u] = ecnt++;
+        head[u]      = ecnt++;
     }
 
-    void delEdge(int u, int i)
-    {
+    void delEdge(int u, int i) {
         nex[pre[i]] = nex[i];
         pre[nex[i]] = pre[i];
         if (head[u] == i) { head[u] = nex[i]; }
     }
-}g, newG;
+} g, newG;
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m >> k >> a >> b;
     for (int i = 0; i < m; i++) {
         cin >> u >> v;
@@ -68,8 +62,11 @@ int main()
         }
     }
     for (int i = 1; i <= n; i++) {
-        if (dis[i] != INF) { ans[i] = min(dis[i] * a, dis[i] / 2 * b + dis[i] % 2 * a); }
-        else { ans[i] = 1e9; }
+        if (dis[i] != INF) {
+            ans[i] = min(dis[i] * a, dis[i] / 2 * b + dis[i] % 2 * a);
+        } else {
+            ans[i] = 1e9;
+        }
     }
     memset(dis, 0x3f, sizeof(dis));
     dis[k] = 0;
@@ -78,7 +75,7 @@ int main()
         int u = q.front();
         q.pop();
         for (int i = g.head[u]; i != 0; i = g.nex[i]) {
-            int v = g.to[i];
+            int v  = g.to[i];
             vis[v] = true;
         }
         for (int i = g.head[u]; i != 0; i = g.nex[i]) {
@@ -92,7 +89,7 @@ int main()
             }
         }
         for (int i = g.head[u]; i != 0; i = g.nex[i]) {
-            int v = g.to[i];
+            int v  = g.to[i];
             vis[v] = false;
         }
     }
@@ -100,5 +97,5 @@ int main()
         if (dis[i] != INF) { ans[i] = min(ans[i], b * dis[i]); }
         cout << ans[i] << endl;
     }
-	return 0;
+    return 0;
 }

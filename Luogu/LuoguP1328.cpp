@@ -15,8 +15,8 @@ int state[5][5] = {{0, -1, 1, 1, -1},
                    {-1, -1, 1, 0, 1},
                    {1, 1, -1, -1, 0}};
 
-int main(){
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> na >> nb;
     for (int i = 0; i < na; i++) {
         cin >> temp;
@@ -30,11 +30,14 @@ int main(){
         int aState = a.front(), bState = b.front();
         a.pop();
         b.pop();
-        if (state[aState][bState] == 1) { ans1++; }
-        else if (state[aState][bState] == -1) { ans2++; }
+        if (state[aState][bState] == 1) {
+            ans1++;
+        } else if (state[aState][bState] == -1) {
+            ans2++;
+        }
         a.push(aState);
         b.push(bState);
     }
     cout << ans1 << " " << ans2 << "\n";
-	return 0;
+    return 0;
 }

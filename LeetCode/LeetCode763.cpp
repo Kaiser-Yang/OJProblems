@@ -13,9 +13,7 @@ public:
         int i = 0;
         while (i < s.length()) {
             int right = rightestPos[i];
-            for (int j = i; j <= right; j++) {
-                right = max(right, rightestPos[j]);
-            }
+            for (int j = i; j <= right; j++) { right = max(right, rightestPos[j]); }
             ans.push_back(right - i + 1);
             i = right + 1;
         }

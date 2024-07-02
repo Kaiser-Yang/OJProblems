@@ -16,8 +16,7 @@ string color[2];
 
 vector<int> g[MAXN << 1];
 
-void dfs(int u)
-{
+void dfs(int u) {
     vis[u] = true;
     for (int v : g[u]) {
         if (vis[v]) { continue; }
@@ -25,10 +24,9 @@ void dfs(int u)
     }
 }
 
-int main()
-{
+int main() {
     // freopen("test.in", "r" , stdin);
-	ios::sync_with_stdio(false);
+    ios::sync_with_stdio(false);
     while (cin >> color[0] >> color[1]) {
         if (id.count(color[0]) == 0) { id[color[0]] = n++; }
         if (id.count(color[1]) == 0) { id[color[1]] = n++; }
@@ -39,7 +37,7 @@ int main()
         g[v].push_back(u);
     }
     for (int i = 0; i < n; i++) {
-        if (vis[i] || degree[i] == 0) {continue; }
+        if (vis[i] || degree[i] == 0) { continue; }
         scc++;
         dfs(i);
     }
@@ -48,11 +46,13 @@ int main()
         return 0;
     }
     int cnt = 0;
-    for (int i = 0; i < n; i++) { if (degree[i] & 1) { cnt++; } }
+    for (int i = 0; i < n; i++) {
+        if (degree[i] & 1) { cnt++; }
+    }
     if (cnt != 0 && cnt != 2) {
         cout << "Impossible\n";
         return 0;
     }
     cout << "Possible" << endl;
-	return 0;
+    return 0;
 }

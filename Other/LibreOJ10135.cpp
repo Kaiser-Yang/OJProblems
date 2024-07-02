@@ -1,5 +1,5 @@
-//problem statement: https://loj.ac/p/10135
-// Tag: having been in my blog
+// problem statement: https://loj.ac/p/10135
+//  Tag: having been in my blog
 
 #include <bits/stdc++.h>
 
@@ -12,21 +12,17 @@ int depth[MAXN], parent[MAXN][20];
 
 vector<int> g[MAXN];
 
-void dfs(int u, int par)
-{
+void dfs(int u, int par) {
     parent[u][0] = par;
-    depth[u] = depth[par] + 1;
-    for (int j = 1; j < 20;j ++) {
-        parent[u][j] = parent[parent[u][j - 1]][j - 1];
-    }
+    depth[u]     = depth[par] + 1;
+    for (int j = 1; j < 20; j++) { parent[u][j] = parent[parent[u][j - 1]][j - 1]; }
     for (int v : g[u]) {
         if (v == par) { continue; }
         dfs(v, u);
     }
 }
 
-int lca(int a, int b)
-{
+int lca(int a, int b) {
     if (depth[a] > depth[b]) { swap(a, b); }
     for (int j = 19; j >= 0; j--) {
         if (depth[parent[b][j]] < depth[a]) { continue; }
@@ -41,9 +37,8 @@ int lca(int a, int b)
     return parent[a][0];
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n;
     for (int i = 0; i < n; i++) {
         cin >> u >> v;
@@ -60,9 +55,13 @@ int main()
     for (int i = 0; i < m; i++) {
         cin >> u >> v;
         int lca = ::lca(u, v);
-        if (lca == u) { cout << "1\n"; }
-        else if (lca == v) { cout << "2\n"; }
-        else { cout << "0\n"; }
+        if (lca == u) {
+            cout << "1\n";
+        } else if (lca == v) {
+            cout << "2\n";
+        } else {
+            cout << "0\n";
+        }
     }
-	return 0;
+    return 0;
 }

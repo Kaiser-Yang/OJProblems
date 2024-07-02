@@ -11,8 +11,7 @@ int n, m, u, v;
 int match[MAXN];
 bool connected[MAXN][MAXN], augmented[MAXN];
 
-bool findAugmentedPath(int leftNode)
-{
+bool findAugmentedPath(int leftNode) {
     for (int rightNode = m + 1; rightNode <= n; rightNode++) {
         if (!connected[leftNode][rightNode] || augmented[rightNode]) { continue; }
         augmented[rightNode] = true;
@@ -24,8 +23,7 @@ bool findAugmentedPath(int leftNode)
     return false;
 }
 
-int hungrian()
-{
+int hungrian() {
     int res = 0;
     for (int leftNode = 1; leftNode <= m; leftNode++) {
         memset(augmented, 0, sizeof(augmented));
@@ -34,9 +32,8 @@ int hungrian()
     return res;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> m >> n;
     while (cin >> u >> v) {
         if (u == -1 && v == -1) { break; }
@@ -47,5 +44,5 @@ int main()
         if (match[rightNode] == 0) { continue; }
         cout << match[rightNode] << " " << rightNode << "\n";
     }
-	return 0;
+    return 0;
 }

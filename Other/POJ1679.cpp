@@ -8,14 +8,13 @@
 using namespace std;
 
 const int MAXN = 110;
-const int INF = 0x3f3f3f3f;
+const int INF  = 0x3f3f3f3f;
 
 int T, n, m, u, v, w, ans;
 bool uniqueMST;
 int h[MAXN];
 
-struct Edge
-{
+struct Edge {
     int u, v, w;
     Edge() {}
     Edge(int u, int v, int w) : u(u), v(v), w(w) {}
@@ -27,15 +26,13 @@ int find(int x) { return x == h[x] ? x : h[x] = find(h[x]); }
 
 bool same(int a, int b) { return find(a) == find(b); }
 
-void join(int a, int b)
-{
+void join(int a, int b) {
     int fa = find(a), fb = find(b);
     h[fa] = fb;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
         cin >> n >> m;
@@ -45,7 +42,7 @@ int main()
             cin >> u >> v >> w;
             edge.push_back(Edge(u, v, w));
         }
-        ans = 0;
+        ans       = 0;
         uniqueMST = true;
         sort(edge.begin(), edge.end());
         // cnt is the number of added edges;
@@ -74,8 +71,11 @@ int main()
             cnt++;
             cnt2++;
         }
-        if (uniqueMST) { cout << ans << endl; }
-        else { cout << "Not Unique!\n"; }
+        if (uniqueMST) {
+            cout << ans << endl;
+        } else {
+            cout << "Not Unique!\n";
+        }
     }
-	return 0;
+    return 0;
 }

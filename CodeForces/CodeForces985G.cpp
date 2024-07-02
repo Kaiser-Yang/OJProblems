@@ -15,9 +15,8 @@ unsigned long long sum[MAXN];
 
 vector<int> minG[MAXN], maxG[MAXN];
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m;
     cin >> a >> b >> c;
     for (int i = 0; i < m; i++) {
@@ -80,7 +79,7 @@ int main()
         minG[u[i]].push_back(v[i]);
     }
     for (int u = 0; u < n; u++) {
-        for (int v : minG[u]) { vis[v] = true;}
+        for (int v : minG[u]) { vis[v] = true; }
         for (int v : minG[u]) {
             for (int w : minG[v]) {
                 if (!vis[w]) { continue; }
@@ -92,5 +91,5 @@ int main()
         for (int v : minG[u]) { vis[v] = false; }
     }
     cout << ans << endl;
-	return 0;
+    return 0;
 }

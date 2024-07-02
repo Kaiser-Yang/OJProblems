@@ -11,19 +11,16 @@ constexpr int MAXK = 11;
 int n, m, k, s, t, u, v, w, ans = numeric_limits<int>::max();
 int dis[MAXN][MAXK];
 
-struct Edge
-{
+struct Edge {
     int to, w;
 };
 
 vector<Edge> g[MAXN];
 
-void dijkstra()
-{
+void dijkstra() {
     vector<vector<bool>> used(n, vector<bool>(k + 1, false));
     memset(dis, 0x3f, sizeof(dis));
-    struct State
-    {
+    struct State {
         int dis, u, cnt;
         bool operator<(const State &other) const { return dis > other.dis; }
     };
@@ -50,9 +47,8 @@ void dijkstra()
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m >> k;
     cin >> s >> t;
     for (int i = 0; i < m; i++) {
@@ -63,5 +59,5 @@ int main()
     dijkstra();
     for (int i = 0; i <= k; i++) { ans = min(ans, dis[t][i]); }
     cout << ans << endl;
-	return 0;
+    return 0;
 }

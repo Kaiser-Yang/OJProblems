@@ -1,4 +1,4 @@
-// problem statement: 
+// problem statement:
 
 #include <bits/stdc++.h>
 
@@ -11,26 +11,23 @@ int n, m, s, ecnt, u, v;
 int queryHead[MAXN], parent[MAXN];
 bool visit[MAXN];
 
-vector<int> g[MAXN]; // tree
+vector<int> g[MAXN];  // tree
 
-struct QueryEdge
-{
+struct QueryEdge {
     int from, to, nex, lca;
 } queryEdge[MAXM << 1];
 
-void addQueryEdge(int u, int v)
-{
-    queryEdge[ecnt].to = v;
+void addQueryEdge(int u, int v) {
+    queryEdge[ecnt].to   = v;
     queryEdge[ecnt].from = u;
-    queryEdge[ecnt].nex = queryHead[u];
-    queryHead[u] = ecnt++;
+    queryEdge[ecnt].nex  = queryHead[u];
+    queryHead[u]         = ecnt++;
 }
 
 int find(int x) { return x == parent[x] ? x : parent[x] = find(parent[x]); }
 
-void tarjan(int u)
-{
-    visit[u] = true;
+void tarjan(int u) {
+    visit[u]  = true;
     parent[u] = u;
     for (int v : g[u]) {
         if (visit[v]) { continue; }
@@ -39,14 +36,11 @@ void tarjan(int u)
     }
     for (int i = queryHead[u]; i != -1; i = queryEdge[i].nex) {
         int v = queryEdge[i].to;
-        if (visit[v]) {
-            queryEdge[i].lca = queryEdge[i ^ 1].lca = find(v);
-        }
+        if (visit[v]) { queryEdge[i].lca = queryEdge[i ^ 1].lca = find(v); }
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     memset(queryHead, 0xff, sizeof(queryHead));
     cin >> n >> m >> s;
@@ -61,8 +55,6 @@ int main()
         addQueryEdge(v, u);
     }
     tarjan(s);
-    for (int i = 0; i < m; i++) {
-        cout << queryEdge[i * 2].lca << endl;
-    }
-	return 0;
+    for (int i = 0; i < m; i++) { cout << queryEdge[i * 2].lca << endl; }
+    return 0;
 }

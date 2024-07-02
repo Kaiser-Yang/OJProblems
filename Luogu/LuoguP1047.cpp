@@ -9,10 +9,9 @@ constexpr int MAXN = 1e4 + 10;
 int n, m, l, r, ans;
 int sum[MAXN];
 
-int main()
-{
-	ios::sync_with_stdio(false);
-	cin >> n >> m;
+int main() {
+    ios::sync_with_stdio(false);
+    cin >> n >> m;
     for (int i = 0; i < m; i++) {
         cin >> l >> r;
         sum[l]--;
@@ -23,5 +22,5 @@ int main()
         if (sum[i] >= 0) { ans++; }
     }
     cout << ans << endl;
-	return 0;
+    return 0;
 }

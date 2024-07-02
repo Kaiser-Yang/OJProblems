@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 constexpr size_t MAX_PATTERN_NUM = 2e5 + 10;
-constexpr size_t MAX_TEXT_LEN = 2e6 + 10;
+constexpr size_t MAX_TEXT_LEN    = 2e6 + 10;
 
 using namespace std;
 
@@ -21,9 +21,7 @@ struct ac_automaton {
     void add_word(const string &word, const size_t &index) {
         size_t now = root;
         for (const auto &ch : word) {
-            if (to[now][ch - 'a'] == 0) {
-                to[now][ch - 'a'] = ++node_num;
-            }
+            if (to[now][ch - 'a'] == 0) { to[now][ch - 'a'] = ++node_num; }
             now = to[now][ch - 'a'];
         }
         pos[index] = now;
@@ -54,7 +52,7 @@ struct ac_automaton {
         }
     }
 
-    size_t node_num = 1;
+    size_t node_num              = 1;
     static constexpr size_t root = 1;
     size_t to[MAX_NODE_NUM][MAX_ALPHABET_SIZE];
     size_t fail[MAX_NODE_NUM];
@@ -68,9 +66,7 @@ string pattern, text;
 size_t match_cnt[(size_t)2e5 + 10];
 vector<int> g[(size_t)2e5 + 10];
 
-void add_edge(int u, int v) {
-    g[u].push_back(v);
-}
+void add_edge(int u, int v) { g[u].push_back(v); }
 
 void dfs(int u) {
     for (auto v : g[u]) {
@@ -79,8 +75,7 @@ void dfs(int u) {
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n;
     for (int i = 0; i < n; i++) {
@@ -94,12 +89,8 @@ int main()
         now = ac.to[now][ch - 'a'];
         match_cnt[now]++;
     }
-    for (int i = 2; i <= ac.node_num; i++) {
-        add_edge(ac.fail[i], i);
-    }
+    for (int i = 2; i <= ac.node_num; i++) { add_edge(ac.fail[i], i); }
     dfs(ac.root);
-    for (int i = 0; i < n; i++) {
-        cout << match_cnt[ac.pos[i]] << '\n';
-    }
+    for (int i = 0; i < n; i++) { cout << match_cnt[ac.pos[i]] << '\n'; }
     return 0;
 }

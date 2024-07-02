@@ -13,8 +13,7 @@ int degree[MAXN], reverseEdgeCnt[MAXN], cnt[MAXN];
 
 stack<int> ans;
 
-struct Edge
-{
+struct Edge {
     int to;
     bool deleted;
     int reverseEdge;
@@ -23,8 +22,7 @@ struct Edge
 
 vector<Edge> g[MAXN];
 
-int getStartNode()
-{
+int getStartNode() {
     for (int i = 1; i <= n; i++) {
         if (degree[i] & 1) { return i; }
     }
@@ -34,9 +32,8 @@ int getStartNode()
     return -1;
 }
 
-void hierholzer(int u)
-{
-    for (int &i = cnt[u]; i < g[u].size(); ) {
+void hierholzer(int u) {
+    for (int &i = cnt[u]; i < g[u].size();) {
         int v = g[u][i].to;
         if (g[u][i].deleted) {
             i++;
@@ -51,9 +48,8 @@ void hierholzer(int u)
     ans.push(u);
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> m;
     for (int i = 0; i < m; i++) {
         cin >> u >> v;
@@ -66,7 +62,7 @@ int main()
     for (int i = 1; i <= n; i++) { sort(g[i].begin(), g[i].end()); }
     for (int i = 1; i <= n; i++) {
         for (int j = 0; j < g[i].size(); j++) {
-            int v = g[i][j].to;
+            int v               = g[i][j].to;
             g[i][j].reverseEdge = reverseEdgeCnt[v]++;
         }
     }
@@ -76,5 +72,5 @@ int main()
         cout << ans.top() << endl;
         ans.pop();
     }
-	return 0;
+    return 0;
 }

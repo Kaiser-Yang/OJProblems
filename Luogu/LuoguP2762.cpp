@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 50 + 10;
 constexpr int MAXM = 50 + 10;
-constexpr int  INF = std::numeric_limits<int>::max();
+constexpr int INF  = std::numeric_limits<int>::max();
 
 using namespace std;
 
@@ -14,19 +14,16 @@ int head[MAXN + MAXM], cur[MAXN + MAXM], depth[MAXN + MAXM];
 bool ins[MAXN + MAXM];
 vector<int> experiment[MAXM];
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity;
 } es[MAXM * 2 + MAXM * 2 + MAXM * MAXN * 2];
 
-void addEdge(int u, int v, int w)
-{
+void addEdge(int u, int v, int w) {
     es[ecnt] = {v, head[u], w};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
 }
 
-bool bfs()
-{
+bool bfs() {
     memset(depth, 0, sizeof(depth));
     queue<int> q;
     depth[s] = 1;
@@ -44,8 +41,7 @@ bool bfs()
     return depth[t] != 0;
 }
 
-int dfs(int u, int flow)
-{
+int dfs(int u, int flow) {
     if (u == t || flow == 0) { return flow; }
     int res = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
@@ -62,8 +58,7 @@ int dfs(int u, int flow)
     return res;
 }
 
-int dinic()
-{
+int dinic() {
     int res = 0;
     while (bfs()) {
         memcpy(cur, head, sizeof(head));
@@ -72,8 +67,7 @@ int dinic()
     return res;
 }
 
-void dfs(int u) 
-{
+void dfs(int u) {
     ins[u] = true;
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -82,9 +76,8 @@ void dfs(int u)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> m >> n;
     getline(cin, line);
@@ -127,5 +120,5 @@ int main()
     }
     cout << "\n";
     cout << ans << "\n";
-	return 0;
+    return 0;
 }

@@ -7,8 +7,7 @@ using namespace std;
 int n, x, y;
 vector<int> a;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n >> x >> y;
     a.resize(n);

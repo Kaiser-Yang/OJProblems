@@ -6,8 +6,7 @@ int n, number;
 bool win;
 vector<bool> x(1e5 + 10, false);
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n;
     for (int i = 0; i < n; i++) {

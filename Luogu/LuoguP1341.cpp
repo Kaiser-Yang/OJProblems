@@ -11,24 +11,17 @@ string s, ans;
 int degree[MAX_NODE_NUM];
 bool connected[MAX_NODE_NUM][MAX_NODE_NUM], vis[MAX_NODE_NUM];
 
-int getId(char ch)
-{
-    if (ch >= 'a' && ch <= 'z') {
-        return ch - 'a' + 26;
-    }
+int getId(char ch) {
+    if (ch >= 'a' && ch <= 'z') { return ch - 'a' + 26; }
     return ch - 'A';
 }
 
-char getChar(int id)
-{
-    if (id >= 0 && id <= 25) {
-        return char(id + 'A');
-    }
+char getChar(int id) {
+    if (id >= 0 && id <= 25) { return char(id + 'A'); }
     return char(id - 26 + 'a');
 }
 
-void dfs(int u)
-{
+void dfs(int u) {
     vis[u] = true;
     for (int v = 0; v < MAX_NODE_NUM; v++) {
         if (!connected[u][v] || vis[v]) { continue; }
@@ -36,8 +29,7 @@ void dfs(int u)
     }
 }
 
-void getAns(int u)
-{
+void getAns(int u) {
     for (int v = 0; v < MAX_NODE_NUM; v++) {
         if (!connected[u][v]) { continue; }
         connected[u][v] = connected[v][u] = false;
@@ -46,8 +38,7 @@ void getAns(int u)
     ans[n--] = getChar(u);
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n;
     for (int i = 0; i < n; i++) {
@@ -69,9 +60,7 @@ int main()
     } else {
         cnt = 0;
         for (int i = 0; i < MAX_NODE_NUM; i++) {
-            if (degree[i] & 1) {
-                cnt++;
-            }
+            if (degree[i] & 1) { cnt++; }
         }
         if (cnt != 0 && cnt != 2) {
             cout << "No Solution" << endl;

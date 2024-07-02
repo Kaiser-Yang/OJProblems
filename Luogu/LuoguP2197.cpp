@@ -15,7 +15,10 @@ int main() {
     while (T--) {
         cin >> n;
         unsigned long long nim_sum = 0;
-        for (int i = 0; i < n; i++) { cin >> a; nim_sum ^= a; }
+        for (int i = 0; i < n; i++) {
+            cin >> a;
+            nim_sum ^= a;
+        }
         cout << (nim_sum != 0 ? "Yes\n" : "No\n");
     }
     return 0;

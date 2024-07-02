@@ -12,9 +12,8 @@ int centroid[MAXN], parent[MAXN], siz[MAXN], maxSonSize[MAXN];
 
 vector<int> g[MAXN];
 
-void dfs(int u)
-{
-    siz[u] = 1;
+void dfs(int u) {
+    siz[u]        = 1;
     maxSonSize[u] = 0;
     for (int v : g[u]) {
         dfs(v);
@@ -23,14 +22,16 @@ void dfs(int u)
     }
     centroid[u] = u;
     for (int v : g[u]) {
-        int node = centroid[v];
+        int node        = centroid[v];
         int newCentroid = centroid[v];
         while (parent[node] != u) {
             node = parent[node];
             if (max(maxSonSize[node], siz[u] - siz[node]) <
-                max(maxSonSize[newCentroid], siz[u] - siz[newCentroid]))
-                { newCentroid = node; }
-            else { break; }
+                max(maxSonSize[newCentroid], siz[u] - siz[newCentroid])) {
+                newCentroid = node;
+            } else {
+                break;
+            }
         }
         if (max(maxSonSize[newCentroid], siz[u] - siz[newCentroid]) <
             max(maxSonSize[centroid[u]], siz[u] - siz[centroid[u]])) {
@@ -39,9 +40,8 @@ void dfs(int u)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> q;
     for (int i = 2; i <= n; i++) {
         cin >> node;
@@ -53,5 +53,5 @@ int main()
         cin >> node;
         cout << centroid[node] << endl;
     }
-	return 0;
+    return 0;
 }

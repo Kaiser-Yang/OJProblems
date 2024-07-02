@@ -6,8 +6,7 @@ using namespace std;
 
 class Solution {
 private:
-    bool check(string s, int pos)
-    {
+    bool check(string s, int pos) {
         s.erase(pos, 1);
         int n = s.length();
         for (int i = 0; i < n; i++) {
@@ -15,6 +14,7 @@ private:
         }
         return true;
     }
+
 public:
     bool validPalindrome(string s) {
         int n = s.length(), pos = -1;

@@ -5,8 +5,7 @@ using namespace std;
 int T;
 string str;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
@@ -18,7 +17,7 @@ int main()
             if (str[i] == ':') {
                 str[i] = '-';
                 i++;
-                while(i < str.length() && isdigit(str[i])) { i++; }
+                while (i < str.length() && isdigit(str[i])) { i++; }
                 string ending = str.substr(i);
                 str.replace(i, str.length() - i, "");
                 str += "-p";

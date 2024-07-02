@@ -17,17 +17,16 @@ using namespace std;
  */
 class Solution {
 private:
-    int count(TreeNode* root, long long targetSum) {
+    int count(TreeNode *root, long long targetSum) {
         if (root == nullptr) { return 0; }
-        return (root->val == targetSum) + 
-               count(root->left, (long long)targetSum - root->val) + 
+        return (root->val == targetSum) + count(root->left, (long long)targetSum - root->val) +
                count(root->right, (long long)targetSum - root->val);
     }
+
 public:
-    int pathSum(TreeNode* root, int targetSum) {
+    int pathSum(TreeNode *root, int targetSum) {
         if (root == nullptr) { return 0; }
-        return count(root, targetSum) + 
-               pathSum(root->left, targetSum) + 
+        return count(root, targetSum) + pathSum(root->left, targetSum) +
                pathSum(root->right, targetSum);
     }
 };

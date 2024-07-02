@@ -21,9 +21,7 @@ public:
         for (auto iter = id.rbegin(); iter != id.rend(); iter++) {
             while (!iter->second.empty()) {
                 if (ans.empty()) {
-                    for (int i = 0; i < iter->first; i++) {
-                        ans.push_back(iter->second.back());
-                    }
+                    for (int i = 0; i < iter->first; i++) { ans.push_back(iter->second.back()); }
                     pos = ++ans.begin();
                 } else {
                     for (int i = 0; i < iter->first; i++) {

@@ -1,11 +1,11 @@
 // problem statement: http://poj.org/problem?id=1523
 // Tag: having been in my blog
 
-#include <string>
-#include <vector>
+#include <algorithm>
 #include <cstring>
 #include <iostream>
-#include <algorithm>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -18,10 +18,9 @@ bool g[MAXN][MAXN];
 
 vector<pair<int, int> > edge;
 
-void tarjan(int u, int par)
-{
+void tarjan(int u, int par) {
     dfn[u] = low[u] = ++cnt;
-    int son = 0;
+    int son         = 0;
     for (int v = 1; v <= n; v++) {
         if (!g[u][v]) { continue; }
         if (dfn[v] == 0) {
@@ -37,9 +36,8 @@ void tarjan(int u, int par)
     if (par == 0 && cut[u] <= 1) { cut[u] = 0; }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     while (cin >> u) {
         if (u == 0) { break; }
         edge.clear();
@@ -59,20 +57,23 @@ int main()
             g[u][v] = g[v][u] = true;
         }
         cutNodeCnt = 0;
-        cnt = 0;
+        cnt        = 0;
         tarjan(1, 0);
         kase++;
         cout << "Network #" << kase << endl;
         for (int i = 1; i <= n; i++) {
             if (cut[i] > 0) { cutNodeCnt++; }
         }
-        if (cutNodeCnt == 0) { cout << "  No SPF nodes\n"; }
-        else {
+        if (cutNodeCnt == 0) {
+            cout << "  No SPF nodes\n";
+        } else {
             for (int i = 1; i <= n; i++) {
-                if (cut[i] > 0) { cout << "  SPF node " << i << " leaves " << cut[i] << " subnets\n"; }
+                if (cut[i] > 0) {
+                    cout << "  SPF node " << i << " leaves " << cut[i] << " subnets\n";
+                }
             }
         }
         cout << endl;
     }
-	return 0;
+    return 0;
 }

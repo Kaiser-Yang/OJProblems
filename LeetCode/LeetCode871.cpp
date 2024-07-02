@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minRefuelStops(int target, int startFuel, vector<vector<int>>& stations) {
+    int minRefuelStops(int target, int startFuel, vector<vector<int>> &stations) {
         priority_queue<pair<int, int>> q;
         int i = 0;
         for (auto &&item : stations) {

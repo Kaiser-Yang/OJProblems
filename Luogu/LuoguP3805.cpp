@@ -18,7 +18,7 @@ size_t manacher(const string &src) {
     s.push_back('#');
     size_t ans = 0;
     vector<size_t> p(s.size());
-    p[0] = 1;
+    p[0]      = 1;
     size_t id = 0, max_right = 0;
     for (size_t i = 1; i < s.length(); i++) {
         if (i < max_right) {
@@ -26,12 +26,10 @@ size_t manacher(const string &src) {
         } else {
             p[i] = 1;
         }
-        while (i + p[i] < s.length() && i >= p[i] && s[i + p[i]] == s[i - p[i]]) {
-            p[i]++;
-        }
+        while (i + p[i] < s.length() && i >= p[i] && s[i + p[i]] == s[i - p[i]]) { p[i]++; }
         if (i + p[i] - 1 > max_right) {
             max_right = i + p[i] - 1;
-            id = i;
+            id        = i;
         }
         ans = max(ans, p[i] - 1);
     }

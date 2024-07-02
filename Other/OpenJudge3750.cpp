@@ -15,13 +15,9 @@ queue<int> redSequence, blueSequence;
 array<int, MAXN> cityWealth;
 const array<string, 5> fighterName = {"dragon", "ninja", "iceman", "lion", "wolf"};
 
-enum FLAG_TYPE
-{
-    NONE, RED_FLAG, BLUE_FLAG
-};
+enum FLAG_TYPE { NONE, RED_FLAG, BLUE_FLAG };
 
-struct Fighter
-{
+struct Fighter {
     int type, id, hp, attack, killTime;
 };
 
@@ -29,20 +25,17 @@ vector<Fighter> cityRedFighter[MAXN], cityBlueFighter[MAXN];
 array<FLAG_TYPE, MAXN> cityFlag;
 array<pair<int, int>, MAXN> cityWinTime;
 
-void outputTime(int x)
-{
-    int hour = x / 60;
+void outputTime(int x) {
+    int hour   = x / 60;
     int minute = x % 60;
     cout << setw(3) << setfill('0') << hour << ":" << setw(2) << setfill('0') << minute;
 }
 
-void clearQueue(queue<int> &q)
-{
+void clearQueue(queue<int> &q) {
     while (!q.empty()) { q.pop(); }
 }
 
-void init()
-{
+void init() {
     clearQueue(redSequence);
     clearQueue(blueSequence);
 
@@ -51,13 +44,13 @@ void init()
     redSequence.push(4);
     redSequence.push(1);
     redSequence.push(0);
-    
+
     blueSequence.push(3);
     blueSequence.push(0);
     blueSequence.push(1);
     blueSequence.push(2);
     blueSequence.push(4);
-    
+
     nowTime = 0;
 
     fill(cityWealth.begin(), cityWealth.end(), 0);
@@ -72,14 +65,13 @@ void init()
     fill(cityWinTime.begin(), cityWinTime.end(), pair<int, int>{0, 0});
 }
 
-void createFighter()
-{
+void createFighter() {
     int redFighterType = redSequence.front();
     if (redWealth >= hp[redFighterType]) {
         outputTime(nowTime);
         cout << " red " << fighterName[redFighterType] << " " << ++redID << " born\n";
-        cityRedFighter[0].push_back({redFighterType, redID,
-                                     hp[redFighterType], attack[redFighterType], 0});
+        cityRedFighter[0].push_back(
+            {redFighterType, redID, hp[redFighterType], attack[redFighterType], 0});
         redSequence.pop();
         redSequence.push(redFighterType);
         redWealth -= hp[redFighterType];
@@ -89,8 +81,8 @@ void createFighter()
     if (blueWealth >= hp[blueFighterType]) {
         outputTime(nowTime);
         cout << " blue " << fighterName[blueFighterType] << " " << ++blueID << " born\n";
-        cityBlueFighter[cityNum + 1].push_back({blueFighterType, blueID,
-                                               hp[blueFighterType], attack[blueFighterType], 0});
+        cityBlueFighter[cityNum + 1].push_back(
+            {blueFighterType, blueID, hp[blueFighterType], attack[blueFighterType], 0});
         blueSequence.pop();
         blueSequence.push(blueFighterType);
         blueWealth -= hp[blueFighterType];
@@ -99,8 +91,7 @@ void createFighter()
     nowTime += 10;
 }
 
-bool moveFighter()
-{
+bool moveFighter() {
     for (int i = 1; i <= cityNum; i += 2) {
         for (auto &&fighter : cityRedFighter[i]) {
             if (fighterName[fighter.type] == "iceman") {
@@ -122,72 +113,73 @@ bool moveFighter()
     for (auto &&fighter : cityBlueFighter[1]) {
         outputTime(nowTime);
         cout << " blue " << fighterName[fighter.type] << " " << fighter.id
-             << " reached red headquarter with " << fighter.hp << " elements and force " << fighter.attack << "\n";
+             << " reached red headquarter with " << fighter.hp << " elements and force "
+             << fighter.attack << "\n";
         cityBlueFighter[0].push_back(std::move(fighter));
     }
     bool res = false;
     if (cityBlueFighter[0].size() >= 2) {
         outputTime(nowTime);
-        cout << " red headquarter was taken" << "\n";
+        cout << " red headquarter was taken"
+             << "\n";
         res = true;
     }
     for (int i = 1; i <= cityNum; i++) {
         for (auto &&fighter : cityRedFighter[i - 1]) {
             outputTime(nowTime);
-            cout << " red " << fighterName[fighter.type] << " " << fighter.id
-                 << " marched to city " << i << " with " << fighter.hp << " elements and force " << fighter.attack << "\n";
+            cout << " red " << fighterName[fighter.type] << " " << fighter.id << " marched to city "
+                 << i << " with " << fighter.hp << " elements and force " << fighter.attack << "\n";
         }
         for (auto &&fighter : cityBlueFighter[i + 1]) {
             outputTime(nowTime);
             cout << " blue " << fighterName[fighter.type] << " " << fighter.id
-                 << " marched to city " << i << " with " << fighter.hp << " elements and force " << fighter.attack << "\n";
+                 << " marched to city " << i << " with " << fighter.hp << " elements and force "
+                 << fighter.attack << "\n";
         }
     }
     for (auto &&fighter : cityRedFighter[cityNum]) {
         outputTime(nowTime);
         cout << " red " << fighterName[fighter.type] << " " << fighter.id
-            << " reached blue headquarter with " << fighter.hp << " elements and force " << fighter.attack << "\n";
+             << " reached blue headquarter with " << fighter.hp << " elements and force "
+             << fighter.attack << "\n";
         cityRedFighter[cityNum + 1].push_back(std::move(fighter));
     }
     if (cityRedFighter[cityNum + 1].size() >= 2) {
         outputTime(nowTime);
-        cout << " blue headquarter was taken" << "\n";
+        cout << " blue headquarter was taken"
+             << "\n";
         res = true;
     }
 
-    for (int i = cityNum; i >= 1; i--) {
-        cityRedFighter[i] = cityRedFighter[i - 1];
-    }
+    for (int i = cityNum; i >= 1; i--) { cityRedFighter[i] = cityRedFighter[i - 1]; }
     cityRedFighter[0].clear();
-    for (int i = 1; i <= cityNum; i++) {
-        cityBlueFighter[i] = cityBlueFighter[i + 1];
-    }
+    for (int i = 1; i <= cityNum; i++) { cityBlueFighter[i] = cityBlueFighter[i + 1]; }
     cityBlueFighter[cityNum + 1].clear();
     nowTime += 10;
     return res;
 }
 
-void generateWealth()
-{
+void generateWealth() {
     for (int i = 1; i <= cityNum; i++) { cityWealth[i] += 10; }
     nowTime += 10;
 }
 
-void getWealth()
-{
+void getWealth() {
     for (int i = 1; i <= cityNum; i++) {
         if (cityWealth[i] == 0) { continue; }
         if (cityRedFighter[i].size() + cityBlueFighter[i].size() == 1) {
             if (cityRedFighter[i].size() == 1) {
                 redWealth += cityWealth[i];
                 outputTime(nowTime);
-                cout << " red " << fighterName[cityRedFighter[i][0].type] << " " << cityRedFighter[i][0].id 
-                     << " earned " << cityWealth[i] << " elements for his headquarter\n";
+                cout << " red " << fighterName[cityRedFighter[i][0].type] << " "
+                     << cityRedFighter[i][0].id << " earned " << cityWealth[i]
+                     << " elements for his headquarter\n";
             } else {
                 blueWealth += cityWealth[i];
                 outputTime(nowTime);
-                cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " " << cityBlueFighter[i][0].id 
-                     << " earned " << cityWealth[i] << " elements for his headquarter\n";
+                cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " "
+                     << cityBlueFighter[i][0].id << " earned " << cityWealth[i]
+                     << " elements for his headquarter\n";
             }
             cityWealth[i] = 0;
         }
@@ -195,112 +187,133 @@ void getWealth()
     nowTime += 10;
 }
 
-void fight()
-{
+void fight() {
     vector<bool> redAward(cityNum, false), blueAward(cityNum, false);
     for (int i = 1; i <= cityNum; i++) {
         if (cityRedFighter[i].size() == 1 && cityBlueFighter[i].size() == 1) {
             if (cityFlag[i] == RED_FLAG || (cityFlag[i] == NONE && i % 2 == 1)) {
                 outputTime(nowTime);
-                cout << " red " << fighterName[cityRedFighter[i][0].type] << " " << cityRedFighter[i][0].id 
-                     << " attacked blue " << fighterName[cityBlueFighter[i][0].type] << " " << cityBlueFighter[i][0].id 
-                     << " in city " << i << " with " << cityRedFighter[i][0].hp <<" elements and force "
-                     << cityRedFighter[i][0].attack << "\n";
+                cout << " red " << fighterName[cityRedFighter[i][0].type] << " "
+                     << cityRedFighter[i][0].id << " attacked blue "
+                     << fighterName[cityBlueFighter[i][0].type] << " " << cityBlueFighter[i][0].id
+                     << " in city " << i << " with " << cityRedFighter[i][0].hp
+                     << " elements and force " << cityRedFighter[i][0].attack << "\n";
                 int tempHP = cityBlueFighter[i][0].hp;
                 cityBlueFighter[i][0].hp -= cityRedFighter[i][0].attack;
                 if (cityBlueFighter[i][0].hp <= 0) {
                     outputTime(nowTime);
-                    cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " " << cityBlueFighter[i][0].id 
-                         << " was killed in city " << i << "\n";
+                    cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " "
+                         << cityBlueFighter[i][0].id << " was killed in city " << i << "\n";
                     cityWinTime[i].first++;
                     cityWinTime[i].second = 0;
                     cityRedFighter[i][0].killTime++;
-                    if (cityRedFighter[i][0].killTime % 2 == 0 && fighterName[cityRedFighter[i][0].type] == "wolf") {
+                    if (cityRedFighter[i][0].killTime % 2 == 0 &&
+                        fighterName[cityRedFighter[i][0].type] == "wolf") {
                         cityRedFighter[i][0].hp *= 2;
                         cityRedFighter[i][0].attack *= 2;
                     }
-                    if (fighterName[cityBlueFighter[i][0].type] == "lion") { cityRedFighter[i][0].hp += tempHP; }
+                    if (fighterName[cityBlueFighter[i][0].type] == "lion") {
+                        cityRedFighter[i][0].hp += tempHP;
+                    }
                     cityBlueFighter[i].pop_back();
                 }
-                if (!cityBlueFighter[i].empty() && fighterName[cityBlueFighter[i][0].type] != "ninja") {
+                if (!cityBlueFighter[i].empty() &&
+                    fighterName[cityBlueFighter[i][0].type] != "ninja") {
                     outputTime(nowTime);
-                    cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " " << cityBlueFighter[i][0].id
-                         << " fought back against red " << fighterName[cityRedFighter[i][0].type] << " "
-                         << cityRedFighter[i][0].id << " in city " << i << "\n";
+                    cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " "
+                         << cityBlueFighter[i][0].id << " fought back against red "
+                         << fighterName[cityRedFighter[i][0].type] << " " << cityRedFighter[i][0].id
+                         << " in city " << i << "\n";
                     tempHP = cityRedFighter[i][0].hp;
                     cityRedFighter[i][0].hp -= cityBlueFighter[i][0].attack / 2;
                     if (cityRedFighter[i][0].hp <= 0) {
                         outputTime(nowTime);
-                        cout << " red " << fighterName[cityRedFighter[i][0].type] << " " << cityRedFighter[i][0].id 
-                             << " was killed in city " << i << "\n";        
+                        cout << " red " << fighterName[cityRedFighter[i][0].type] << " "
+                             << cityRedFighter[i][0].id << " was killed in city " << i << "\n";
                         cityWinTime[i].first = 0;
                         cityWinTime[i].second++;
-                        if (fighterName[cityRedFighter[i][0].type] == "lion") { cityBlueFighter[i][0].hp += tempHP; }
+                        if (fighterName[cityRedFighter[i][0].type] == "lion") {
+                            cityBlueFighter[i][0].hp += tempHP;
+                        }
                         cityRedFighter[i].pop_back();
                     }
                 }
-                if (!cityRedFighter[i].empty() && fighterName[cityRedFighter[i][0].type] == "dragon") {
+                if (!cityRedFighter[i].empty() &&
+                    fighterName[cityRedFighter[i][0].type] == "dragon") {
                     outputTime(nowTime);
-                    cout << " red dragon " << cityRedFighter[i][0].id << " yelled in city " << i << "\n";
+                    cout << " red dragon " << cityRedFighter[i][0].id << " yelled in city " << i
+                         << "\n";
                 }
             } else {
                 outputTime(nowTime);
-                cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " " << cityBlueFighter[i][0].id 
-                     << " attacked red " << fighterName[cityRedFighter[i][0].type] << " " << cityRedFighter[i][0].id 
-                     << " in city " << i << " with " << cityBlueFighter[i][0].hp <<" elements and force "
-                     << cityBlueFighter[i][0].attack << "\n";
+                cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " "
+                     << cityBlueFighter[i][0].id << " attacked red "
+                     << fighterName[cityRedFighter[i][0].type] << " " << cityRedFighter[i][0].id
+                     << " in city " << i << " with " << cityBlueFighter[i][0].hp
+                     << " elements and force " << cityBlueFighter[i][0].attack << "\n";
                 int tempHP = cityRedFighter[i][0].hp;
                 cityRedFighter[i][0].hp -= cityBlueFighter[i][0].attack;
                 if (cityRedFighter[i][0].hp <= 0) {
                     outputTime(nowTime);
-                    cout << " red " << fighterName[cityRedFighter[i][0].type] << " " << cityRedFighter[i][0].id 
-                         << " was killed in city " << i << "\n";
+                    cout << " red " << fighterName[cityRedFighter[i][0].type] << " "
+                         << cityRedFighter[i][0].id << " was killed in city " << i << "\n";
                     cityWinTime[i].first = 0;
                     cityWinTime[i].second++;
                     cityBlueFighter[i][0].killTime++;
-                    if (cityBlueFighter[i][0].killTime % 2 == 0 && fighterName[cityBlueFighter[i][0].type] == "wolf") {
+                    if (cityBlueFighter[i][0].killTime % 2 == 0 &&
+                        fighterName[cityBlueFighter[i][0].type] == "wolf") {
                         cityBlueFighter[i][0].hp *= 2;
                         cityBlueFighter[i][0].attack *= 2;
                     }
-                    if (fighterName[cityRedFighter[i][0].type] == "lion") { cityBlueFighter[i][0].hp += tempHP; }
+                    if (fighterName[cityRedFighter[i][0].type] == "lion") {
+                        cityBlueFighter[i][0].hp += tempHP;
+                    }
                     cityRedFighter[i].pop_back();
                 }
-                if (!cityRedFighter[i].empty() && fighterName[cityRedFighter[i][0].type] != "ninja") {
+                if (!cityRedFighter[i].empty() &&
+                    fighterName[cityRedFighter[i][0].type] != "ninja") {
                     outputTime(nowTime);
-                    cout << " red " << fighterName[cityRedFighter[i][0].type] << " " << cityRedFighter[i][0].id
-                         << " fought back against blue " << fighterName[cityBlueFighter[i][0].type] << " "
+                    cout << " red " << fighterName[cityRedFighter[i][0].type] << " "
+                         << cityRedFighter[i][0].id << " fought back against blue "
+                         << fighterName[cityBlueFighter[i][0].type] << " "
                          << cityBlueFighter[i][0].id << " in city " << i << "\n";
                     tempHP = cityBlueFighter[i][0].hp;
                     cityBlueFighter[i][0].hp -= cityRedFighter[i][0].attack / 2;
                     if (cityBlueFighter[i][0].hp <= 0) {
                         outputTime(nowTime);
-                        cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " " << cityBlueFighter[i][0].id 
-                             << " was killed in city " << i << "\n";
+                        cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " "
+                             << cityBlueFighter[i][0].id << " was killed in city " << i << "\n";
                         cityWinTime[i].first++;
                         cityWinTime[i].second = 0;
-                        if (fighterName[cityBlueFighter[i][0].type] == "lion") { cityRedFighter[i][0].hp += tempHP; }
+                        if (fighterName[cityBlueFighter[i][0].type] == "lion") {
+                            cityRedFighter[i][0].hp += tempHP;
+                        }
                         cityBlueFighter[i].pop_back();
                     }
                 }
-                if (!cityBlueFighter[i].empty() && fighterName[cityBlueFighter[i][0].type] == "dragon") {
+                if (!cityBlueFighter[i].empty() &&
+                    fighterName[cityBlueFighter[i][0].type] == "dragon") {
                     outputTime(nowTime);
-                    cout << " blue dragon " << cityBlueFighter[i][0].id << " yelled in city " << i << "\n";
+                    cout << " blue dragon " << cityBlueFighter[i][0].id << " yelled in city " << i
+                         << "\n";
                 }
             }
             if (cityRedFighter[i].size() + cityBlueFighter[i].size() == 1) {
                 if (cityRedFighter[i].size() == 1) {
                     redAward[i] = true;
-                    if (cityWealth[i] > 0) {            
+                    if (cityWealth[i] > 0) {
                         outputTime(nowTime);
-                        cout << " red " << fighterName[cityRedFighter[i][0].type] << " " << cityRedFighter[i][0].id 
-                             << " earned " << cityWealth[i] << " elements for his headquarter\n";
+                        cout << " red " << fighterName[cityRedFighter[i][0].type] << " "
+                             << cityRedFighter[i][0].id << " earned " << cityWealth[i]
+                             << " elements for his headquarter\n";
                     }
                 } else {
                     blueAward[i] = true;
                     if (cityWealth[i] > 0) {
                         outputTime(nowTime);
-                        cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " " << cityBlueFighter[i][0].id 
-                             << " earned " << cityWealth[i] << " elements for his headquarter\n";
+                        cout << " blue " << fighterName[cityBlueFighter[i][0].type] << " "
+                             << cityBlueFighter[i][0].id << " earned " << cityWealth[i]
+                             << " elements for his headquarter\n";
                     }
                 }
                 if (cityWinTime[i].first == 2) {
@@ -345,8 +358,7 @@ void fight()
     nowTime += 10;
 }
 
-void reportWealth()
-{
+void reportWealth() {
     outputTime(nowTime);
     cout << " " << redWealth << " elements in red headquarter\n";
     outputTime(nowTime);
@@ -354,12 +366,11 @@ void reportWealth()
     nowTime += 10;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     freopen("test.in", "r", stdin);
     freopen("test.out", "w", stdout);
-	cin >> T;
+    cin >> T;
     while (T--) {
         cin >> redWealth >> cityNum >> endTime;
         blueWealth = redWealth;
@@ -381,5 +392,5 @@ int main()
             reportWealth();
         }
     }
-	return 0;
+    return 0;
 }

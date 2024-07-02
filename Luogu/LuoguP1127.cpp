@@ -16,8 +16,7 @@ stack<int> ans;
 
 vector<int> g[26], mp[26];
 
-void dfs(int u)
-{
+void dfs(int u) {
     vis[u] = true;
     for (int v : g[u]) {
         if (vis[v]) { continue; }
@@ -25,9 +24,8 @@ void dfs(int u)
     }
 }
 
-void hierholzer(int u, int wordIndex)
-{
-    for (int &i = cnt[u]; i < mp[u].size(); ) {
+void hierholzer(int u, int wordIndex) {
+    for (int &i = cnt[u]; i < mp[u].size();) {
         int temp = mp[u][i];
         i++;
         hierholzer(word[temp].back() - 'a', temp);
@@ -35,9 +33,8 @@ void hierholzer(int u, int wordIndex)
     ans.push(wordIndex);
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n;
     for (int i = 0; i < n; i++) { cin >> word[i]; }
     sort(word, word + n);
@@ -94,5 +91,5 @@ int main()
         cout << word[ans.top()] << (ans.size() == 1 ? "\n" : ".");
         ans.pop();
     }
-	return 0;
+    return 0;
 }

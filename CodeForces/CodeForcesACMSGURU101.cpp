@@ -12,8 +12,7 @@ bool vis[7];
 
 stack<pair<int, int>> ans;
 
-struct Edge
-{
+struct Edge {
     int to, dominoNumber;
     bool deleted;
     int reverseEdge;
@@ -21,8 +20,7 @@ struct Edge
 
 vector<Edge> g[7];
 
-void dfs(int u)
-{
+void dfs(int u) {
     vis[u] = true;
     for (int i = 0; i < g[u].size(); i++) {
         int v = g[u][i].to;
@@ -31,9 +29,8 @@ void dfs(int u)
     }
 }
 
-void hierholzer(int u, int par, int dominoNumber)
-{
-    for (int &i = cnt[u]; i < g[u].size(); ) {
+void hierholzer(int u, int par, int dominoNumber) {
+    for (int &i = cnt[u]; i < g[u].size();) {
         if (g[u][i].deleted) {
             i++;
             continue;
@@ -46,9 +43,8 @@ void hierholzer(int u, int par, int dominoNumber)
     ans.push({par, dominoNumber});
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n;
     for (int i = 1; i <= n; i++) {
         cin >> u[i] >> v[i];
@@ -57,7 +53,7 @@ int main()
         if (u[i] == v[i]) {
             g[u[i]].push_back({v[i], i, false, (int)g[v[i]].size() + 1});
             g[v[i]].push_back({u[i], i, false, (int)g[u[i]].size() - 1});
-            continue; 
+            continue;
         }
         g[u[i]].push_back({v[i], i, false, (int)g[v[i]].size()});
         g[v[i]].push_back({u[i], i, false, (int)g[u[i]].size() - 1});
@@ -94,8 +90,11 @@ int main()
         auto item = ans.top();
         ans.pop();
         int u = item.first, index = item.second;
-        if (u == ::u[index]) { cout << index << " +\n"; }
-        else { cout << index << " -\n"; }
+        if (u == ::u[index]) {
+            cout << index << " +\n";
+        } else {
+            cout << index << " -\n";
+        }
     }
-	return 0;
+    return 0;
 }

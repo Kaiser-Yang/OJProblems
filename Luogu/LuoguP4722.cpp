@@ -14,22 +14,19 @@ long long ex[MAXN];
 bool inBucket[MAXN];
 stack<int> bucket[MAXN];
 
-struct Graph
-{
+struct Graph {
     int to, nex;
     long long capacity;
-}es[MAXM << 1];
+} es[MAXM << 1];
 
-void addEdge(int u, int v, long long w)
-{
-    es[ecnt].to = v;
+void addEdge(int u, int v, long long w) {
+    es[ecnt].to       = v;
     es[ecnt].capacity = w;
-    es[ecnt].nex = head[u];
-    head[u] = ecnt++;
+    es[ecnt].nex      = head[u];
+    head[u]           = ecnt++;
 }
 
-bool bfs()
-{
+bool bfs() {
     memset(height, 0xff, sizeof(height));
     queue<int> q;
     q.push(t);
@@ -39,7 +36,7 @@ bool bfs()
         q.pop();
         for (int i = head[u]; i != -1; i = es[i].nex) {
             int v = es[i].to;
-            if (es[i].capacity == 0 && height[v] == -1) { 
+            if (es[i].capacity == 0 && height[v] == -1) {
                 height[v] = height[u] + 1;
                 q.push(v);
             }
@@ -48,20 +45,20 @@ bool bfs()
     return height[s] != -1;
 }
 
-
-int select()
-{
+int select() {
     while (bucket[maxHeight].empty() && maxHeight > -1) { maxHeight--; }
     return maxHeight == -1 ? 0 : bucket[maxHeight].top();
 }
 
-bool push(int u)
-{
+bool push(int u) {
     bool init = (u == s);
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
-        //  checking height[v] == -1 is necessary, because in function relabel the height could be -1
-        if (es[i].capacity == 0 || (!init && height[u] != height[v] + 1) || height[v] == -1) { continue; }
+        //  checking height[v] == -1 is necessary, because in function relabel the height could be
+        //  -1
+        if (es[i].capacity == 0 || (!init && height[u] != height[v] + 1) || height[v] == -1) {
+            continue;
+        }
         long long flow = init ? es[i].capacity : min(es[i].capacity, ex[u]);
         ex[u] -= flow;
         ex[v] += flow;
@@ -70,15 +67,14 @@ bool push(int u)
         if (v != s && v != t && ex[v] != 0 && !inBucket[v]) {
             bucket[height[v]].push(v);
             inBucket[v] = true;
-            maxHeight = max(maxHeight, height[v]);
+            maxHeight   = max(maxHeight, height[v]);
         }
         if (ex[u] == 0) { return false; }
     }
     return true;
 }
 
-void relabel(int u)
-{
+void relabel(int u) {
     height[u] = -1;
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -94,10 +90,11 @@ void relabel(int u)
     }
 }
 
-int hlpp()
-{
+int hlpp() {
     if (!bfs()) { return 0; }
-    for (int i = 1; i <= n; i++) { if (height[i] != -1) { gap[height[i]]++; } }
+    for (int i = 1; i <= n; i++) {
+        if (height[i] != -1) { gap[height[i]]++; }
+    }
     height[s] = n;
     push(s);
     int u;
@@ -117,9 +114,8 @@ int hlpp()
     return ex[t];
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m >> s >> t;
     memset(head, 0xff, sizeof(head));
     for (int i = 0; i < m; i++) {
@@ -128,5 +124,5 @@ int main()
         addEdge(v, u, 0);
     }
     cout << hlpp() << "\n";
-	return 0;
+    return 0;
 }

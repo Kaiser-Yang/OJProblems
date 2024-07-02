@@ -1,8 +1,8 @@
 // problem statement: http://poj.org/problem?id=2117
 // Tag: having been in my blog
 
-#include <iostream>
 #include <cstring>
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -14,10 +14,9 @@ int dfn[MAXN], low[MAXN];
 
 vector<int> g[MAXN];
 
-void tarjan(int u, int par)
-{
+void tarjan(int u, int par) {
     dfn[u] = low[u] = ++cnt;
-    int son = 0; // how many sons cannot go to ancestors who are older than their father.
+    int son         = 0;  // how many sons cannot go to ancestors who are older than their father.
     for (int i = 0; i < g[u].size(); i++) {
         int v = g[u][i];
         if (dfn[v] == 0) {
@@ -31,9 +30,8 @@ void tarjan(int u, int par)
     ans = max(ans, son + (par == 0 ? -1 : 0));
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     while (cin >> n >> m) {
         if (n == 0 && m == 0) { break; }
         memset(dfn + 1, 0, sizeof(int) * n);
@@ -56,5 +54,5 @@ int main()
         }
         cout << ans + scc << endl;
     }
-	return 0;
+    return 0;
 }

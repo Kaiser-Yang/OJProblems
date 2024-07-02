@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    int numRabbits(vector<int>& answers) {
+    int numRabbits(vector<int> &answers) {
         int ans = 0;
         map<int, int> cnt;
         for (int ans : answers) { cnt[ans]++; }

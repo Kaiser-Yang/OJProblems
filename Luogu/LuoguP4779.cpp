@@ -11,15 +11,13 @@ constexpr int MAXM = 2e5 + 10;
 int n, m, s, u, v, w;
 int dis[MAXN];
 
-struct Edge
-{
+struct Edge {
     int to, w;
 };
 
 vector<Edge> g[MAXN];
 
-void dijkstra(int s)
-{
+void dijkstra(int s) {
     memset(dis, 0x3f, sizeof(dis));
     vector<bool> used(n + 1, false);
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> q;
@@ -41,9 +39,8 @@ void dijkstra(int s)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m >> s;
     for (int i = 0; i < m; i++) {
         cin >> u >> v >> w;
@@ -52,5 +49,5 @@ int main()
     dijkstra(s);
     for (int i = 1; i <= n; i++) { cout << dis[i] << " "; }
     cout << endl;
-	return 0;
+    return 0;
 }

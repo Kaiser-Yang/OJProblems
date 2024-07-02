@@ -1,4 +1,4 @@
-// problem statement: 
+// problem statement:
 
 #include <bits/stdc++.h>
 
@@ -9,8 +9,7 @@ constexpr int MAXN = 3e5 + 10;
 int n;
 int number[MAXN];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n;
     for (int i = 0; i < n; i++) { cin >> number[i]; }
@@ -19,8 +18,11 @@ int main()
         if (number[(i + k) % n] == number[(j + k) % n]) {
             k++;
         } else {
-            if (number[(i + k) % n] > number[(j + k) % n]) { i = i + k + 1; }
-            else { j = j + k + 1; }
+            if (number[(i + k) % n] > number[(j + k) % n]) {
+                i = i + k + 1;
+            } else {
+                j = j + k + 1;
+            }
             k = 0;
             if (i == j) { j++; }
         }

@@ -1,12 +1,12 @@
 // problem statement: http://poj.org/problem?id=1780
 // Tag: having been in my blog
 
-#include <iostream>
-#include <vector>
 #include <algorithm>
-#include <string>
-#include <stack>
 #include <cstdio>
+#include <iostream>
+#include <stack>
+#include <string>
+#include <vector>
 
 using namespace std;
 
@@ -19,26 +19,24 @@ string ans[6];
 int len[MAXN];
 int g[MAXN][10];
 
-struct Node 
-{
+struct Node {
     int first, second;
 };
 
 Node s[MAXN * 100];
 
-void hierholzer(int startNode, int index)
-{
+void hierholzer(int startNode, int index) {
     int tp = 0, u = 0, w = 0, v = 0, newW = 0;
-    s[tp].first = startNode;
+    s[tp].first  = startNode;
     s[tp].second = 0;
     tp++;
     while (tp) {
-        u = s[tp - 1].first, w= s[tp - 1].second;
+        u = s[tp - 1].first, w = s[tp - 1].second;
         if (cnt[u] < len[u]) {
-            v = (u * 10 + g[u][cnt[u]]) % tenPow[index];
+            v    = (u * 10 + g[u][cnt[u]]) % tenPow[index];
             newW = g[u][cnt[u]];
             cnt[u]++;
-            s[tp].first = v;
+            s[tp].first  = v;
             s[tp].second = newW;
             tp++;
         } else {
@@ -48,9 +46,8 @@ void hierholzer(int startNode, int index)
     }
 }
 
-int main()
-{
-    n = 10;
+int main() {
+    n      = 10;
     ans[0] = "9876543210";
     for (int i = 1; i < 6; i++) {
         for (int j = 0; j < n; j++) {
@@ -67,5 +64,5 @@ int main()
         for (int i = ans[n - 1].length() - 1; i >= 0; i--) { putchar(ans[n - 1][i]); }
         putchar('\n');
     }
-	return 0;
+    return 0;
 }

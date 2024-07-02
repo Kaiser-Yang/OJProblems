@@ -6,7 +6,7 @@ constexpr int MAXN = 15 + 5;
 constexpr int MAXM = 15 + 5;
 constexpr int MAXA = 4 + 2;
 constexpr int MAXB = 6 + 2;
-constexpr int  INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -16,22 +16,19 @@ int id[MAXN][MAXM];
 int head[MAXN * MAXM], cur[MAXN * MAXM], dis[MAXN * MAXM];
 bool vis[MAXN * MAXM];
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity;
     long long cost;
 } es[8 * MAXN * MAXM + 2 * (MAXA + MAXB)];
 
-void addFlow(int u, int v, int capacity, long long cost)
-{
+void addFlow(int u, int v, int capacity, long long cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
     es[ecnt] = {u, head[v], 0, -cost};
-    head[v] = ecnt++;
+    head[v]  = ecnt++;
 }
 
-bool spfa()
-{
+bool spfa() {
     memset(dis, 0x3f, sizeof(dis));
     auto &inq = vis;
     queue<int> q;
@@ -56,10 +53,9 @@ bool spfa()
     return dis[t] != INF;
 }
 
-int dfs(int u, int inFlow, pair<int, int> &ans)
-{
+int dfs(int u, int inFlow, pair<int, int> &ans) {
     if (u == t || inFlow == 0) { return inFlow; }
-    vis[u] = true;
+    vis[u]      = true;
     int outFlow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -77,8 +73,7 @@ int dfs(int u, int inFlow, pair<int, int> &ans)
     return outFlow;
 }
 
-pair<int, int> MCMFDinic()
-{
+pair<int, int> MCMFDinic() {
     pair<int, int> ans{0, 0};
     int flow = 0;
     while (spfa()) {
@@ -88,16 +83,13 @@ pair<int, int> MCMFDinic()
     return ans;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> a >> b >> n >> m;
     s = ++idCnt, t = ++idCnt;
     for (int i = 0; i <= n; i++) {
-        for (int j = 0; j <= m; j++) {
-            id[i][j] = ++idCnt;
-        }
+        for (int j = 0; j <= m; j++) { id[i][j] = ++idCnt; }
     }
     for (int i = 0; i <= n; i++) {
         for (int j = 0; j < m; j++) {
@@ -123,5 +115,5 @@ int main()
         addFlow(id[x][y], t, num, 0);
     }
     cout << MCMFDinic().second << endl;
-	return 0;
+    return 0;
 }

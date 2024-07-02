@@ -13,20 +13,17 @@ int head[MAXN], u[MAXM], v[MAXM], low[MAXN], dfn[MAXN], vis[MAXN];
 bool cut[MAXN];
 long long ans2;
 
-struct Graph
-{
+struct Graph {
     int to, nex;
 } es[MAXM << 1];
 
-void addEdge(int u, int v) 
-{
-    es[ecnt].to = v;
+void addEdge(int u, int v) {
+    es[ecnt].to  = v;
     es[ecnt].nex = head[u];
-    head[u] = ecnt++;
+    head[u]      = ecnt++;
 }
 
-void tarjan(int u, int par) 
-{
+void tarjan(int u, int par) {
     int son = 0;
     dfn[u] = low[u] = ++cnt;
     for (int i = head[u]; i != -1; i = es[i].nex) {
@@ -43,15 +40,14 @@ void tarjan(int u, int par)
     if (par == 0 && son >= 2) { cut[u] = true; }
 }
 
-void dfs(int u)
-{
+void dfs(int u) {
     vis[u] = cnt;
     nodeCnt++;
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
         if (cut[v] || vis[v] != 0) {
             if (cut[v] && vis[v] != cnt) {
-                vis[v] = cnt; 
+                vis[v] = cnt;
                 cutNodeCnt++;
             }
             continue;
@@ -60,9 +56,8 @@ void dfs(int u)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     while (cin >> m && m != 0) {
         n = 0;
         for (int i = 0; i < m; i++) {
@@ -80,7 +75,7 @@ int main()
         memset(dfn + 1, 0x00, sizeof(int) * n);
         memset(low + 1, 0x00, sizeof(int) * n);
         tarjan(1, 0);
-        cnt = 0;
+        cnt  = 0;
         ans1 = 0;
         ans2 = 1;
         memset(vis + 1, 0x00, sizeof(int) * n);
@@ -92,7 +87,7 @@ int main()
             if (cutNodeCnt == 0) {
                 ans1 += 2;
                 ans2 *= 1LL * nodeCnt * (nodeCnt - 1) / 2;
-            } else if (cutNodeCnt == 1) { 
+            } else if (cutNodeCnt == 1) {
                 ans1 += 1;
                 ans2 *= nodeCnt;
             }
@@ -101,5 +96,5 @@ int main()
         cout << "Case " << kase << ": ";
         cout << ans1 << " " << ans2 << endl;
     }
-	return 0;
+    return 0;
 }

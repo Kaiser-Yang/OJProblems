@@ -6,8 +6,8 @@ using namespace std;
 
 class Solution {
 public:
-    int findLongestChain(vector<vector<int>>& pairs) {
-        sort(pairs.begin(), pairs.end(), [] (const auto &a, const auto &b) {
+    int findLongestChain(vector<vector<int>> &pairs) {
+        sort(pairs.begin(), pairs.end(), [](const auto &a, const auto &b) {
             if (a[1] != b[1]) { return a[1] < b[1]; }
             return a[0] < b[0];
         });

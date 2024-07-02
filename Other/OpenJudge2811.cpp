@@ -8,8 +8,7 @@ array<array<bool, 6>, 5> state, temp, ans;
 int dx[] = {0, 1, -1, 0, 0};
 int dy[] = {0, 0, 0, 1, -1};
 
-void update(array<array<bool, 6>, 5> &s, int i, int j)
-{
+void update(array<array<bool, 6>, 5> &s, int i, int j) {
     for (int k = 0; k < 5; k++) {
         int nx = i + dx[k];
         int ny = j + dy[k];
@@ -17,21 +16,19 @@ void update(array<array<bool, 6>, 5> &s, int i, int j)
     }
 }
 
-bool allZero(const array<bool, 6> &s)
-{
-    for (int i = 0; i < 6; i++) { if (s[i]) { return false; } }
+bool allZero(const array<bool, 6> &s) {
+    for (int i = 0; i < 6; i++) {
+        if (s[i]) { return false; }
+    }
     return true;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
-	for (int i = 0; i < 5; i++) {
-		for (int j = 0; j < 6; j++) {
-			cin >> state[i][j];
-		}
-	}
-	for (int s = 0; s < (1 << 6); s++) {
+int main() {
+    ios::sync_with_stdio(false);
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j < 6; j++) { cin >> state[i][j]; }
+    }
+    for (int s = 0; s < (1 << 6); s++) {
         temp = state;
         for (int j = 0; j < 6; j++) {
             if (s & (1 << j)) {
@@ -52,11 +49,9 @@ int main()
             }
         }
         if (allZero(temp[4])) { break; }
-	}
-    for (int i = 0; i < 5; i++, cout << "\n") {
-        for (int j = 0; j < 6; j++) {
-            cout << ans[i][j] << " ";
-        }
     }
-	return 0;
+    for (int i = 0; i < 5; i++, cout << "\n") {
+        for (int j = 0; j < 6; j++) { cout << ans[i][j] << " "; }
+    }
+    return 0;
 }

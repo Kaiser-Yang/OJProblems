@@ -5,23 +5,18 @@ using namespace std;
 int T;
 vector<string> grid;
 
-
-int numberNotInPosition()
-{
-    int res = 0;
+int numberNotInPosition() {
+    int res                     = 0;
     static const char *result[] = {"11111", "01111", "00*11", "00001", "00000"};
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {
-            if (grid[i][j] != '*' && result[i][j] != grid[i][j]) {
-                res++;
-            }
+            if (grid[i][j] != '*' && result[i][j] != grid[i][j]) { res++; }
         }
     }
     return res;
 }
 
-bool dfs(int nowDepth, int maxDepth)
-{
+bool dfs(int nowDepth, int maxDepth) {
     static int dx[] = {1, 1, -1, -1, 2, 2, -2, -2};
     static int dy[] = {2, -2, 2, -2, 1, -1, 1, -1};
 
@@ -44,8 +39,7 @@ bool dfs(int nowDepth, int maxDepth)
     return false;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
@@ -60,7 +54,7 @@ int main()
                 break;
             }
         }
-        if (!ok) { cout << "-1\n";}
+        if (!ok) { cout << "-1\n"; }
     }
     return 0;
 }

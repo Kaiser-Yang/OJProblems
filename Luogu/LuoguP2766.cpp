@@ -1,7 +1,7 @@
 // problem statement: https://www.luogu.com.cn/problem/P2766
 
 constexpr int MAXN = 500 + 10;
-constexpr int  INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 #include <bits/stdc++.h>
 
@@ -12,24 +12,21 @@ int num[MAXN], dp[MAXN];
 int s, t, ecnt;
 int head[2 * MAXN], cur[2 * MAXN], depth[2 * MAXN];
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity;
 } es[MAXN * MAXN * 2];
 
-void addEdge(int u, int v, int capacity)
-{
+void addEdge(int u, int v, int capacity) {
     es[ecnt] = {v, head[u], capacity};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
 }
 
-bool bfs()
-{
+bool bfs() {
     memset(depth, 0xff, sizeof(depth));
     queue<int> q;
     depth[s] = 0;
     q.push(s);
-    while(!q.empty()) {
+    while (!q.empty()) {
         int u = q.front();
         q.pop();
         for (int i = head[u]; i != -1; i = es[i].nex) {
@@ -42,8 +39,7 @@ bool bfs()
     return depth[t] != -1;
 }
 
-int dfs(int u, int inFlow)
-{
+int dfs(int u, int inFlow) {
     if (u == t || inFlow == 0) { return inFlow; }
     int outFlow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
@@ -60,8 +56,7 @@ int dfs(int u, int inFlow)
     return outFlow;
 }
 
-int dinic()
-{
+int dinic() {
     int res = 0;
     while (bfs()) {
         memcpy(cur, head, sizeof(head));
@@ -70,9 +65,8 @@ int dinic()
     return res;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n;
     for (int i = 1; i <= n; i++) { cin >> num[i]; }
@@ -126,5 +120,5 @@ int main()
         addEdge(t, n + n, 0);
     }
     cout << dinic() << "\n";
-	return 0;
+    return 0;
 }

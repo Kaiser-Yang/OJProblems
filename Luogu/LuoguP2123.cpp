@@ -9,17 +9,16 @@ using namespace std;
 int n, T;
 pair<long long, long long> minister[MAXN];
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
         cin >> n;
         for (int i = 0; i < n; i++) { cin >> minister[i].first >> minister[i].second; }
-        sort(minister, minister + n, [] (const auto &a, const auto &b) {
+        sort(minister, minister + n, [](const auto &a, const auto &b) {
             return min(a.first, b.second) == min(b.first, a.second) ?
-                   a.first < b.first :
-                   min(a.first, b.second) < min(b.first, a.second);
+                       a.first < b.first :
+                       min(a.first, b.second) < min(b.first, a.second);
         });
         long long ans = 0, sum = 0;
         for (int i = 0; i < n; i++) {
@@ -28,5 +27,5 @@ int main()
         }
         cout << ans << "\n";
     }
-	return 0;
+    return 0;
 }

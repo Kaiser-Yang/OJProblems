@@ -15,9 +15,8 @@ bool vis[MAXN];
 
 vector<int> g[MAXN], newG[MAXN];
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
         cin >> u >> v;
@@ -28,16 +27,16 @@ int main()
     }
     for (int u = 1; u <= n; u++) {
         for (int v : g[u]) {
-            if (degree[v] < degree[u] || 
-                (degree[v] == degree[u] && v < u)) { newG[u].push_back(v); }
+            if (degree[v] < degree[u] || (degree[v] == degree[u] && v < u)) {
+                newG[u].push_back(v);
+            }
         }
     }
     for (int a = 1; a <= n; a++) {
         for (int b : newG[a]) {
             for (int c : g[b]) {
-                if (degree[c] > degree[a] ||
-                    (degree[c] == degree[a] && c >= a)) { continue; }
-                ans += cnt[c]; 
+                if (degree[c] > degree[a] || (degree[c] == degree[a] && c >= a)) { continue; }
+                ans += cnt[c];
                 cnt[c]++;
             }
         }
@@ -46,5 +45,5 @@ int main()
         }
     }
     cout << ans << endl;
-	return 0;
+    return 0;
 }

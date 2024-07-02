@@ -26,8 +26,7 @@ bool dfs(size_t nowDepth, size_t a, size_t b, size_t maxDepth) {
     }
     bool done = false;
     if (nowDepth == maxDepth - 2) {
-        const size_t l = 4 * b / (a * a) + 1,
-                     r = min(2 * maxB / a, maxB * (maxB - 1) / b);
+        const size_t l = 4 * b / (a * a) + 1, r = min(2 * maxB / a, maxB * (maxB - 1) / b);
         for (size_t k = l; k <= r; k++) {
             size_t delta     = a * a * k * k - 4 * b * k;
             size_t sqrtDelta = sqrt(delta);

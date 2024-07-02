@@ -5,8 +5,7 @@ using namespace std;
 int n, k, lo, ans;
 vector<bool> love, seasoned;
 
-int main()
-{
+int main() {
     cin >> n >> k;
     love.resize(2 * n);
     seasoned.resize(2 * n);
@@ -39,11 +38,14 @@ int main()
         seasoned[i] = true;
         k--;
     }
-    seasoned[0] = seasoned[n];
+    seasoned[0]     = seasoned[n];
     seasoned[n + 1] = seasoned[1];
     for (int i = 1; i <= n; i++) {
-        if (love[i]) { ans += 3; }
-        else { ans += 3 - seasoned[i - 1] - seasoned[i] - seasoned[i + 1]; }
+        if (love[i]) {
+            ans += 3;
+        } else {
+            ans += 3 - seasoned[i - 1] - seasoned[i] - seasoned[i + 1];
+        }
     }
     cout << ans << endl;
     return 0;

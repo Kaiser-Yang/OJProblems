@@ -9,8 +9,7 @@ constexpr int MAXN = 51;
 int n, m, ans = numeric_limits<int>::max();
 string grid[MAXN];
 
-int getAns(int a, int b, int c)
-{
+int getAns(int a, int b, int c) {
     assert(a >= 1);
     assert(b >= 1);
     assert(c >= 1);
@@ -34,17 +33,16 @@ int getAns(int a, int b, int c)
     return res;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m;
     for (int i = 0; i < n; i++) { cin >> grid[i]; }
     for (int i = 1; i <= n - 2; i++) {
         for (int j = 1; i + j + 1 <= n; j++) {
             int k = n - i - j;
-            ans = min(ans, getAns(i, j, k));
+            ans   = min(ans, getAns(i, j, k));
         }
     }
     cout << ans << endl;
-	return 0;
+    return 0;
 }

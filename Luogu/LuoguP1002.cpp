@@ -1,4 +1,4 @@
-// problem statement: 
+// problem statement:
 
 #include <bits/stdc++.h>
 
@@ -12,13 +12,9 @@ int dx[] = {2, 2, 1, 1, -2, -2, -1, -1};
 int dy[] = {1, -1, 2, -2, 1, -1, 2, -2};
 long long dp[MAXN][MAXM];
 
-bool bound(int x, int y)
-{
-    return x >= 0 && x <= n && y >= 0 && y <= m;
-}
+bool bound(int x, int y) { return x >= 0 && x <= n && y >= 0 && y <= m; }
 
-int main()
-{
+int main() {
     cin >> n >> m >> horseX >> horseY;
     dp[horseX][horseY] = -1;
     for (int i = 0; i < sizeof(dx) / sizeof(int); i++) {

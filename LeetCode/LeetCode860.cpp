@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool lemonadeChange(vector<int>& bills) {
+    bool lemonadeChange(vector<int> &bills) {
         int cnt1 = 0, cnt2 = 0, cnt3 = 0;
         for (int i = 0; i < bills.size(); i++) {
             if (bills[i] == 5) {
@@ -23,7 +23,7 @@ public:
                 } else if (cnt1 >= 3) {
                     cnt1 -= 3;
                     cnt3++;
-                } else { 
+                } else {
                     return false;
                 }
             }

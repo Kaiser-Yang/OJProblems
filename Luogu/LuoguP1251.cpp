@@ -2,8 +2,8 @@
 
 #include <bits/stdc++.h>
 
-constexpr int MAXN = 2e3 + 10;
-constexpr long long  INF = 0x3f3f3f3f3f3f3f3f;
+constexpr int MAXN      = 2e3 + 10;
+constexpr long long INF = 0x3f3f3f3f3f3f3f3f;
 
 using namespace std;
 
@@ -14,22 +14,19 @@ long long dis[2 * MAXN];
 bool vis[2 * MAXN];
 int s, t, ecnt;
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity;
     long long cost;
 } es[12 * MAXN];
 
-void addFlow(int u, int v, int capacity, long long cost)
-{
+void addFlow(int u, int v, int capacity, long long cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
     es[ecnt] = {u, head[v], 0, -cost};
-    head[v] = ecnt++;
+    head[v]  = ecnt++;
 }
 
-bool spfa()
-{
+bool spfa() {
     memset(dis, 0x3f, sizeof(dis));
     auto &inq = vis;
     queue<int> q;
@@ -54,10 +51,9 @@ bool spfa()
     return dis[t] != INF;
 }
 
-int dfs(int u, int inFlow, pair<int, long long> &ans)
-{
+int dfs(int u, int inFlow, pair<int, long long> &ans) {
     if (u == t || inFlow == 0) { return inFlow; }
-    vis[u] = true;
+    vis[u]      = true;
     int outFlow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -75,8 +71,7 @@ int dfs(int u, int inFlow, pair<int, long long> &ans)
     return outFlow;
 }
 
-pair<int, long long> MCMFDinic()
-{
+pair<int, long long> MCMFDinic() {
     pair<int, long long> ans{0, 0};
     int flow = 0;
     while (spfa()) {
@@ -86,22 +81,21 @@ pair<int, long long> MCMFDinic()
     return ans;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n;
     for (int i = 1; i <= n; i++) { cin >> needTowel[i]; }
     cin >> P >> M >> F >> N >> S;
     s = 0, t = 2 * n + 1;
     for (int i = 1; i <= n; i++) {
-        addFlow(s, i + n, needTowel[i], 0); // get dirty towels.
-        addFlow(s, i, needTowel[i], P); // buy new towels
+        addFlow(s, i + n, needTowel[i], 0);  // get dirty towels.
+        addFlow(s, i, needTowel[i], P);      // buy new towels
         addFlow(i, t, needTowel[i], 0);
         if (i + 1 <= n) { addFlow(i + n, i + 1 + n, 0x3f3f3f3f, 0); }
         if (i + M <= n) { addFlow(i + n, i + M, 0x3f3f3f3f, F); }
         if (i + N <= n) { addFlow(i + n, i + N, 0x3f3f3f3f, S); }
     }
     cout << MCMFDinic().second << "\n";
-	return 0;
+    return 0;
 }

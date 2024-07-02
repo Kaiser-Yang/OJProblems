@@ -13,36 +13,31 @@ int dis[MAXN], head[MAXN], reverseHead[MAXN], dfn[MAXN], low[MAXN], color[MAXN],
 stack<int> s;
 bool ins[MAXN];
 
-struct Graph
-{
+struct Graph {
     int to, nex, w;
 } es[MAXM << 1], reverseEs[MAXM << 1];
 
-struct Edge
-{
+struct Edge {
     int u, v, w;
 };
 
 vector<Edge> edge;
 
-void addEdge(int u, int v, int w)
-{
-    es[ecnt].to = v;
-    es[ecnt].w = w;
+void addEdge(int u, int v, int w) {
+    es[ecnt].to  = v;
+    es[ecnt].w   = w;
     es[ecnt].nex = head[u];
-    head[u] = ecnt++;
+    head[u]      = ecnt++;
 }
 
-void addEdgeReverse(int u, int v, int w)
-{
-    reverseEs[reverseEcnt].to = v;
-    reverseEs[reverseEcnt].w = w;
+void addEdgeReverse(int u, int v, int w) {
+    reverseEs[reverseEcnt].to  = v;
+    reverseEs[reverseEcnt].w   = w;
     reverseEs[reverseEcnt].nex = reverseHead[u];
-    reverseHead[u] = reverseEcnt++;
+    reverseHead[u]             = reverseEcnt++;
 }
 
-void tarjan(int u)
-{
+void tarjan(int u) {
     dfn[u] = low[u] = ++cnt;
     s.push(u);
     ins[u] = true;
@@ -59,20 +54,19 @@ void tarjan(int u)
         colorCnt++;
         while (s.top() != u) {
             color[s.top()] = colorCnt;
-            ins[s.top()] = false;
+            ins[s.top()]   = false;
             s.pop();
         }
         color[s.top()] = colorCnt;
-        ins[s.top()] = false;
+        ins[s.top()]   = false;
         s.pop();
     }
 }
 
-bool toposort()
-{
+bool toposort() {
     memset(dis, 0x00, sizeof(dis));
     queue<int> q;
-    for (int i = 1; i <= colorCnt; i++) { 
+    for (int i = 1; i <= colorCnt; i++) {
         if (inDegree[i] != 0) { continue; }
         q.push(i);
         dis[i] = 1;
@@ -91,9 +85,8 @@ bool toposort()
     return res == colorCnt;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     memset(reverseHead, 0xff, sizeof(reverseHead));
     cin >> n >> m;
@@ -124,7 +117,7 @@ int main()
             inDegree[color[v]]++;
         }
     }
-    for (auto item : edge) { 
+    for (auto item : edge) {
         addEdge(color[item.u], color[item.v], item.w);
         inDegree[color[item.v]]++;
     }
@@ -135,5 +128,5 @@ int main()
     long long ans = 0;
     for (int i = 1; i <= n; i++) { ans += dis[color[i]]; }
     cout << ans << endl;
-	return 0;
+    return 0;
 }

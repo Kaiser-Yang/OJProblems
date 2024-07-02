@@ -6,7 +6,7 @@ constexpr int MAXN = 13 + 2;
 constexpr int MAXM = 20 + 2;
 constexpr int MAXK = 50 + 5;
 constexpr int MAXR = MAXN + 2;
-constexpr int  INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -15,22 +15,18 @@ int s, t, ecnt;
 int head[(MAXN + MAXR * MAXK * MAXN) << 1], cur[(MAXN + MAXR * MAXK * MAXN) << 1];
 int depth[(MAXN + MAXR * MAXK * MAXN) << 1], h[MAXN];
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity;
-}es[MAXR * MAXK * 2 * (MAXM + MAXN)];
+} es[MAXR * MAXK * 2 * (MAXM + MAXN)];
 
-
-void addEdge(int u, int v, int capacity)
-{
-    es[ecnt].to = v;
+void addEdge(int u, int v, int capacity) {
+    es[ecnt].to       = v;
     es[ecnt].capacity = capacity;
-    es[ecnt].nex = head[u];
-    head[u] = ecnt++;
+    es[ecnt].nex      = head[u];
+    head[u]           = ecnt++;
 }
 
-bool bfs()
-{
+bool bfs() {
     memset(depth, 0, sizeof(depth));
     queue<int> q;
     q.push(s);
@@ -48,8 +44,7 @@ bool bfs()
     return depth[t] != 0;
 }
 
-int dfs(int u, int flow)
-{
+int dfs(int u, int flow) {
     if (u == t || flow == 0) { return flow; }
     int res = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
@@ -66,28 +61,22 @@ int dfs(int u, int flow)
     return res;
 }
 
-struct SpaceShip
-{
+struct SpaceShip {
     int capacity;
     vector<int> station;
-    int position(int time)
-    {
-        return station[time % station.size()];
-    }
+    int position(int time) { return station[time % station.size()]; }
 } spaceShip[MAXM];
 
 int find(int x) { return x == h[x] ? x : h[x] = find(h[x]); }
 
 bool same(int a, int b) { return find(a) == find(b); }
 
-void join(int a, int b)
-{
+void join(int a, int b) {
     int fa = find(a), fb = find(b);
     h[fa] = fb;
 }
 
-bool check()
-{
+bool check() {
     for (int i = 0; i <= n + 2; i++) { h[i] = i; }
     for (int i = 1; i <= m; i++) {
         for (int j = 1; j < spaceShip[i].station.size(); j++) {
@@ -97,15 +86,13 @@ bool check()
     return same(0, t);
 }
 
-int getID(int i, int time)
-{
+int getID(int i, int time) {
     if (i == t) { return t; }
     return i + time * (n + 2) + 1;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, -1, sizeof(head));
     cin >> n >> m >> k;
     s = 0, t = n + 2;
@@ -126,7 +113,7 @@ int main()
     int res = 0;
     addEdge(s, getID(0, 0), INF);
     addEdge(getID(0, 0), s, 0);
-    for (int ans = 1; ; ans++) {
+    for (int ans = 1;; ans++) {
         for (int i = 0; i <= n; i++) {
             addEdge(getID(i, ans - 1), getID(i, ans), INF);
             addEdge(getID(i, ans), getID(i, ans - 1), 0);
@@ -142,8 +129,8 @@ int main()
             res += dfs(s, INF);
         }
         if (res < k) { continue; }
-        cout << ans << "\n"; 
+        cout << ans << "\n";
         break;
     }
-	return 0;
+    return 0;
 }

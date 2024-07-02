@@ -1,4 +1,5 @@
-// problem statement: https://leetcode.cn/problems/split-array-into-consecutive-subsequences/description/
+// problem statement:
+// https://leetcode.cn/problems/split-array-into-consecutive-subsequences/description/
 
 #include <bits/stdc++.h>
 
@@ -6,7 +7,7 @@ using namespace std;
 
 class Solution {
 public:
-    bool isPossible(vector<int>& nums) {
+    bool isPossible(vector<int> &nums) {
         unordered_map<int, int> cnt1;
         unordered_map<int, int> cnt2;
         for (int num : nums) { cnt1[num]++; }

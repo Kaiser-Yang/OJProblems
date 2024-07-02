@@ -5,8 +5,8 @@
 
 using namespace std;
 
-constexpr int MAXN = 1010;
-constexpr int MAXS = 1010;
+constexpr int MAXN   = 1010;
+constexpr int MAXS   = 1010;
 constexpr double EPS = 1e-6;
 
 int n, s, t, c, x;
@@ -22,19 +22,18 @@ struct Edge {
 
 vector<Edge> edge;
 
-void addEdge(int u, int v, double w)
-{
-    edge.push_back({u, v, w});
-}
+void addEdge(int u, int v, double w) { edge.push_back({u, v, w}); }
 
-bool bellmanFord(double res)
-{
+bool bellmanFord(double res) {
     for (int i = 0; i < s; i++) {
-        if (o[i] == 1) { edge[i].w = -log(k[i] - res); }
-        else { edge[i].w = log(k[i] + res) - EPS; }
+        if (o[i] == 1) {
+            edge[i].w = -log(k[i] - res);
+        } else {
+            edge[i].w = log(k[i] + res) - EPS;
+        }
     }
     fill(dis, dis + 1 + n, numeric_limits<double>::max() / 2);
-    dis[0] = 0;
+    dis[0]    = 0;
     bool flag = false;
     for (int i = 0; i <= n; i++) {
         flag = false;
@@ -43,7 +42,7 @@ bool bellmanFord(double res)
             double w = e.w;
             if (dis[v] > dis[u] + w + EPS) {
                 dis[v] = dis[u] + w;
-                flag = true;
+                flag   = true;
             }
         }
         if (!flag) { break; }
@@ -51,14 +50,16 @@ bool bellmanFord(double res)
     return flag;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n >> s >> t;
-    for (int i = 0; i < s; i++) { 
+    for (int i = 0; i < s; i++) {
         cin >> o[i] >> a[i] >> b[i] >> k[i];
-        if (o[i] == 1) { addEdge(a[i], b[i], -log(k[i])); }
-        else { addEdge(a[i], b[i], log(k[i]) - EPS); }
+        if (o[i] == 1) {
+            addEdge(a[i], b[i], -log(k[i]));
+        } else {
+            addEdge(a[i], b[i], log(k[i]) - EPS);
+        }
         if (o[i] == 1) { r = min(r, (double)k[i]); }
     }
     for (int i = 0; i < t; i++) {
@@ -76,10 +77,10 @@ int main()
         if (!bellmanFord(mid)) {
             r = mid - EPS;
         } else {
-            l = mid + EPS;
+            l   = mid + EPS;
             ans = mid;
         }
     }
     cout << fixed << setprecision(10) << ans << endl;
- 	return 0;
+    return 0;
 }

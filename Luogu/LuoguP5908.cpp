@@ -11,8 +11,7 @@ int dis[MAXN];
 
 vector<int> g[MAXN];
 
-void dfs(int u, int par)
-{
+void dfs(int u, int par) {
     dis[u] = dis[par] + 1;
     for (int v : g[u]) {
         if (v == par) { continue; }
@@ -20,9 +19,8 @@ void dfs(int u, int par)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> d;
     for (int i = 1; i < n; i++) {
         cin >> u >> v;
@@ -32,6 +30,6 @@ int main()
     memset(dis, 0x3f, sizeof(dis));
     dis[0] = -1;
     dfs(1, 0);
-    cout << count_if(dis + 2, dis + 1 + n, [] (auto val) { return val <= d; }) << endl;
-	return 0;
+    cout << count_if(dis + 2, dis + 1 + n, [](auto val) { return val <= d; }) << endl;
+    return 0;
 }

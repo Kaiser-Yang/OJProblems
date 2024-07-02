@@ -10,27 +10,16 @@ queue<pair<int, int>> q;
 int dx[] = {-1, -1, +1, +1};
 int dy[] = {-1, +1, +1, -1};
 
-bool bound(int x, int y)
-{
-    return x >= 0 && x <= n && y >= 0 && y <= m;
-}
+bool bound(int x, int y) { return x >= 0 && x <= n && y >= 0 && y <= m; }
 
-bool connected(int i, int x, int y)
-{
-    if (i == 0) {
-        return grid[x][y] == '\\';
-    }
-    if (i == 1) {
-        return grid[x][y + 1] == '/';
-    }
-    if (i == 2) {
-        return grid[x + 1][y + 1] == '\\';
-    }
+bool connected(int i, int x, int y) {
+    if (i == 0) { return grid[x][y] == '\\'; }
+    if (i == 1) { return grid[x][y + 1] == '/'; }
+    if (i == 2) { return grid[x + 1][y + 1] == '\\'; }
     return grid[x + 1][y] == '/';
 }
 
-void dfs(int x, int y)
-{
+void dfs(int x, int y) {
     for (int i = 0; i < 4; i++) {
         int nx = x + dx[i];
         int ny = y + dy[i];
@@ -41,8 +30,7 @@ void dfs(int x, int y)
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     memset(dis, -1, sizeof(dis));
     cin >> n >> m;

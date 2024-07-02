@@ -11,20 +11,15 @@ int N, M, ans;
 int grid[MAXN][MAXM];
 int l[MAXN][MAXM], r[MAXN][MAXM], u[MAXN][MAXM];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> N >> M;
     for (int i = 1; i <= N; i++) {
-        for (int j = 1; j <= M; j++) {
-            cin >> grid[i][j];
-        }
+        for (int j = 1; j <= M; j++) { cin >> grid[i][j]; }
     }
-    for (int j = 1; j <= M; j++) {
-        u[0][j] = 1;
-    }
+    for (int j = 1; j <= M; j++) { u[0][j] = 1; }
     for (int i = 1; i <= N; i++) {
-        l[i][0] = 1;
+        l[i][0]     = 1;
         r[i][M + 1] = M;
     }
     for (int i = 1; i <= N; i++) {
@@ -58,8 +53,8 @@ int main()
             }
             int len1 = i - u[i][j] + 1;
             int len2 = r[i][j] - l[i][j] + 1;
-            int len = min(len1, len2);
-            ans = max(ans, len);
+            int len  = min(len1, len2);
+            ans      = max(ans, len);
         }
     }
     cout << ans << endl;

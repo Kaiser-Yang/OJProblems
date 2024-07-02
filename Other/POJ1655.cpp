@@ -2,8 +2,8 @@
 // Tag: having been in my blog
 
 // NOTICE: POJ only supports C++ 98
-#include <vector>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
@@ -14,9 +14,8 @@ int siz[MAXN];
 
 vector<int> g[MAXN], centroid;
 
-void dfs(int u, int par)
-{
-    siz[u] = 1;
+void dfs(int u, int par) {
+    siz[u]         = 1;
     int maxSonSize = 0;
     for (int i = 0; i < g[u].size(); i++) {
         int v = g[u][i];
@@ -26,9 +25,11 @@ void dfs(int u, int par)
         maxSonSize = max(maxSonSize, siz[v]);
     }
     if (maxSonSize <= n / 2 && n - siz[u] <= n / 2) {
-        if (centroid.size() == 0) { ans = max(maxSonSize, n - siz[u]); }
-        else if (ans < max(maxSonSize, n - siz[u])) { return; }
-        else if (ans > max(maxSonSize, n - siz[u])) {
+        if (centroid.size() == 0) {
+            ans = max(maxSonSize, n - siz[u]);
+        } else if (ans < max(maxSonSize, n - siz[u])) {
+            return;
+        } else if (ans > max(maxSonSize, n - siz[u])) {
             ans = max(maxSonSize, n - siz[u]);
             centroid.pop_back();
         }
@@ -36,9 +37,8 @@ void dfs(int u, int par)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
         cin >> n;
@@ -50,10 +50,8 @@ int main()
         }
         centroid.clear();
         dfs(1, 0);
-        if (centroid.size() == 2 && centroid[1] < centroid[0]) {
-            swap(centroid[0], centroid[1]);
-        }
+        if (centroid.size() == 2 && centroid[1] < centroid[0]) { swap(centroid[0], centroid[1]); }
         cout << centroid[0] << " " << ans << endl;
     }
-	return 0;
+    return 0;
 }

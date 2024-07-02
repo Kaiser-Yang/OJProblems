@@ -12,9 +12,8 @@ int siz[MAXN], depth[MAXN];
 
 vector<int> g[MAXN], centroid;
 
-void dfs(int u, int par)
-{
-    siz[u] = 1;
+void dfs(int u, int par) {
+    siz[u]         = 1;
     int maxSonSize = 0;
     for (int v : g[u]) {
         if (v == par) { continue; }
@@ -22,16 +21,13 @@ void dfs(int u, int par)
         siz[u] += siz[v];
         maxSonSize = max(maxSonSize, siz[v]);
     }
-    if (maxSonSize <= n / 2 && n - siz[u] <= n / 2) {
-        centroid.push_back(u);
-    }
+    if (maxSonSize <= n / 2 && n - siz[u] <= n / 2) { centroid.push_back(u); }
 }
 
-void fathestNode(int u, int par)
-{
+void fathestNode(int u, int par) {
     depth[u] = depth[par] + 1;
     if (depth[u] > depth[fathest]) {
-        fathest = u;
+        fathest       = u;
         fathestParent = par;
     }
     for (int v : g[u]) {
@@ -40,13 +36,12 @@ void fathestNode(int u, int par)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
         cin >> n;
-        for_each(g, g + 1 + n, [] (auto &v) { v.clear(); });
+        for_each(g, g + 1 + n, [](auto &v) { v.clear(); });
         centroid.clear();
         for (int i = 1; i < n; i++) {
             cin >> u >> v;
@@ -65,5 +60,5 @@ int main()
         cout << fathest << " " << fathestParent << endl;
         cout << fathest << " " << centroid[1] << endl;
     }
-	return 0;
+    return 0;
 }

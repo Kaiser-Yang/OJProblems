@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 100 + 10;
 constexpr int MAXK = 10 + 2;
-constexpr int  INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -16,21 +16,18 @@ bool vis[MAXK * MAXN * MAXN];
 int dx[] = {1, -1, 0, 0};
 int dy[] = {0, 0, 1, -1};
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity, cost;
 } es[MAXN * MAXN * MAXK * 4 * 2];
 
-void addEdge(int u, int v, int capacity, int cost)
-{
+void addEdge(int u, int v, int capacity, int cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
 }
 
 int getID(int i, int j, int level) { return (i - 1) * n + j + level * n * n + 1; }
 
-bool spfa()
-{
+bool spfa() {
     auto &inq = vis;
     memset(dis, 0x3f, sizeof(dis));
     queue<int> q;
@@ -56,11 +53,10 @@ bool spfa()
     return dis[t] != INF;
 }
 
-int dfs(int u, int inFlow, pair<int, int> &ans)
-{
+int dfs(int u, int inFlow, pair<int, int> &ans) {
     if (u == t || inFlow == 0) { return inFlow; }
     int outFlow = 0;
-    vis[u] = true;
+    vis[u]      = true;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
         if (es[i].capacity == 0 || vis[v] || dis[v] != dis[u] + es[i].cost) { continue; }
@@ -77,8 +73,7 @@ int dfs(int u, int inFlow, pair<int, int> &ans)
     return outFlow;
 }
 
-pair<int, int> MCMFDinic()
-{
+pair<int, int> MCMFDinic() {
     pair<int, int> ans{0, 0};
     int flow = 0;
     while (spfa()) {
@@ -88,16 +83,13 @@ pair<int, int> MCMFDinic()
     return ans;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n >> k >> a >> b >> c;
     s = 0, t = 1;
     for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= n; j++) {
-            cin >> g[i][j];
-        }
+        for (int j = 1; j <= n; j++) { cin >> g[i][j]; }
     }
     addEdge(s, getID(1, 1, 0), 1, 0);
     addEdge(getID(1, 1, 0), s, 0, 0);
@@ -143,5 +135,5 @@ int main()
         }
     }
     cout << MCMFDinic().second << "\n";
-	return 0;
+    return 0;
 }

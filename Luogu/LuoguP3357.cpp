@@ -2,8 +2,8 @@
 
 #include <bits/stdc++.h>
 
-constexpr int MAXN = 510;
-constexpr long long INF  = 0x3f3f3f3f3f3f3f3f;
+constexpr int MAXN      = 510;
+constexpr long long INF = 0x3f3f3f3f3f3f3f3f;
 
 using namespace std;
 
@@ -16,32 +16,28 @@ int head[2 * MAXN], cur[2 * MAXN];
 long long dis[2 * MAXN];
 bool vis[2 * MAXN];
 
-struct Line { 
+struct Line {
     int left, right;
     long long len;
 } line[MAXN];
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity;
     long long cost;
 } es[MAXN * MAXN * 2];
 
-void addFlow(int u, int v, int capacity, long long cost)
-{
+void addFlow(int u, int v, int capacity, long long cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
     es[ecnt] = {u, head[v], 0, -cost};
-    head[v] = ecnt++;
+    head[v]  = ecnt++;
 }
 
-long long getLen(long long a, long long b, long long c, long long d)
-{
+long long getLen(long long a, long long b, long long c, long long d) {
     return (long long)sqrt((c - a) * (c - a) + (d - b) * (d - b));
 }
 
-bool spfa()
-{
+bool spfa() {
     memset(dis, 0x3f, sizeof(dis));
     auto &inq = vis;
     queue<int> q;
@@ -66,10 +62,9 @@ bool spfa()
     return dis[t] != INF;
 }
 
-int dfs(int u, int inFlow, pair<int, long long> &ans)
-{
+int dfs(int u, int inFlow, pair<int, long long> &ans) {
     if (u == t || inFlow == 0) { return inFlow; }
-    vis[u] = true;
+    vis[u]      = true;
     int outFlow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -87,8 +82,7 @@ int dfs(int u, int inFlow, pair<int, long long> &ans)
     return outFlow;
 }
 
-pair<int, long long> MCMFDinic()
-{
+pair<int, long long> MCMFDinic() {
     pair<int, long long> ans{0, 0};
     int flow = 0;
     while (spfa()) {
@@ -98,9 +92,8 @@ pair<int, long long> MCMFDinic()
     return ans;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n >> k;
     for (int i = 0; i < n; i++) {
@@ -108,21 +101,24 @@ int main()
         line[i].len = getLen(a, b, c, d);
         a *= 2;
         c *= 2;
-        if (a == c) { c++; }
-        else { a++; }
-        node[a] = 1;
-        node[c] = 1;
-        line[i].left = a;
+        if (a == c) {
+            c++;
+        } else {
+            a++;
+        }
+        node[a]       = 1;
+        node[c]       = 1;
+        line[i].left  = a;
         line[i].right = c;
     }
     for (const auto &item : node) { id[item.first] = ++idCnt; }
     for (int i = 0; i < n; i++) {
-        line[i].left = id[line[i].left];
+        line[i].left  = id[line[i].left];
         line[i].right = id[line[i].right];
     }
     s = 0, t = idCnt + 1;
     for (int i = 0; i <= idCnt; i++) { addFlow(i, i + 1, k, 0); }
     for (int i = 0; i < n; i++) { addFlow(line[i].left, line[i].right, 1, line[i].len); }
     cout << MCMFDinic().second << "\n";
-	return 0;
+    return 0;
 }

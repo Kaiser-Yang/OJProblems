@@ -14,27 +14,24 @@ bool ins[MAXN], vis[MAXM << 1];
 
 stack<int> s;
 
-struct Graph
-{
+struct Graph {
     int to, nex;
 } es[MAXM << 1];
 
-void addEdge(int u, int v)
-{
-    es[ecnt].to = v;
+void addEdge(int u, int v) {
+    es[ecnt].to  = v;
     es[ecnt].nex = head[u];
-    head[u] = ecnt++;
+    head[u]      = ecnt++;
 }
 
-void tarjan(int u)
-{
+void tarjan(int u) {
     dfn[u] = low[u] = ++cnt;
     s.push(u);
     ins[u] = true;
     for (int i = head[u]; i != -1; i = es[i].nex) {
         if (vis[i]) { continue; }
         vis[i] = vis[i ^ 1] = true;
-        int v = es[i].to;
+        int v               = es[i].to;
         if (!dfn[v]) {
             tarjan(v);
             low[u] = min(low[u], low[v]);
@@ -46,18 +43,17 @@ void tarjan(int u)
         colorCnt++;
         while (s.top() != u) {
             color[s.top()] = colorCnt;
-            ins[s.top()] = false;
+            ins[s.top()]   = false;
             s.pop();
         }
         color[s.top()] = colorCnt;
-        ins[s.top()] = false;
+        ins[s.top()]   = false;
         s.pop();
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n >> m;
     for (int i = 0; i < m; i++) {
@@ -73,6 +69,8 @@ int main()
             outDegree[color[u]]++;
         }
     }
-    cout << ((count_if(outDegree + 1, outDegree + 1 + n, [] (auto val) { return val == 1; }) + 1) >> 1) << endl;
-	return 0;
+    cout << ((count_if(outDegree + 1, outDegree + 1 + n, [](auto val) { return val == 1; }) + 1) >>
+             1)
+         << endl;
+    return 0;
 }

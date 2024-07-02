@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-const int MAX_TEXT_LEN = 1E6 + 10;
+const int MAX_TEXT_LEN    = 1E6 + 10;
 const int MAX_PATTERN_NUM = 150 + 10;
 
 using namespace std;
@@ -13,16 +13,12 @@ vector<string> pattern;
 
 template <size_t MAX_NODE_NUM, size_t MAX_ALPHABET_SIZE>
 struct ac_automaton {
-    ac_automaton() {
-        clear();
-    }
+    ac_automaton() { clear(); }
 
     void add_word(const string &word, const size_t &index) {
         size_t now = root;
         for (int i = 0; i < word.length(); i++) {
-            if (to[now][word[i] - 'a'] == 0) {
-                to[now][word[i] - 'a'] = ++node_num;
-            }
+            if (to[now][word[i] - 'a'] == 0) { to[now][word[i] - 'a'] = ++node_num; }
             now = to[now][word[i] - 'a'];
         }
         this->index[now] = index;
@@ -61,7 +57,7 @@ struct ac_automaton {
     }
 
     static constexpr size_t root = 1;
-    size_t node_num = 1;
+    size_t node_num              = 1;
     size_t fail[MAX_NODE_NUM];
     size_t to[MAX_NODE_NUM][MAX_ALPHABET_SIZE];
     size_t index[MAX_NODE_NUM];
@@ -78,20 +74,15 @@ bool vis[MAX_PATTERN_NUM * 70];
 void dfs(int u) {
     vis[u] = true;
     if (cnt[u] > 0) {
-        if (ans.count(cnt[u]) == 0) {
-            ans[cnt[u]] = vector<size_t>();
-        }
+        if (ans.count(cnt[u]) == 0) { ans[cnt[u]] = vector<size_t>(); }
         ans[cnt[u]].push_back(ac.index[u]);
     }
     for (int i = 0; i < 26; i++) {
-        if (ac.to[u][i] != 0 && !vis[ac.to[u][i]]) {
-            dfs(ac.to[u][i]);
-        }
+        if (ac.to[u][i] != 0 && !vis[ac.to[u][i]]) { dfs(ac.to[u][i]); }
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     while (cin >> pattern_num && pattern_num != 0) {
         pattern.resize(pattern_num);

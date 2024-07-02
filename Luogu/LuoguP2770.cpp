@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 100 + 10;
 constexpr int MAXM = MAXN * MAXN / 2;
-constexpr int  INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -18,19 +18,16 @@ bool vis[2 * MAXN];
 bool ok;
 vector<int> path;
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity, cost;
 } es[4 * MAXM + 2 * MAXN];
 
-void addEdge(int u, int v, int capacity, int cost)
-{
+void addEdge(int u, int v, int capacity, int cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
 }
 
-bool spfa()
-{
+bool spfa() {
     memset(dis, 0x3f, sizeof(dis));
     auto &inq = vis;
     queue<int> q;
@@ -55,10 +52,9 @@ bool spfa()
     return dis[t] != INF;
 }
 
-int dfs(int u, int inFlow, pair<int, int> &ans)
-{
+int dfs(int u, int inFlow, pair<int, int> &ans) {
     if (u == t || inFlow == 0) { return inFlow; }
-    vis[u] = true;
+    vis[u]      = true;
     int outFlow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -76,8 +72,7 @@ int dfs(int u, int inFlow, pair<int, int> &ans)
     return outFlow;
 }
 
-pair<int, int> MCMFDinic()
-{
+pair<int, int> MCMFDinic() {
     pair<int, int> ans{0, 0};
     int flow = 0;
     while (spfa()) {
@@ -87,8 +82,7 @@ pair<int, int> MCMFDinic()
     return ans;
 }
 
-void findPath(int u)
-{
+void findPath(int u) {
     path.push_back(u - n);
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -100,13 +94,15 @@ void findPath(int u)
     }
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, 0xff, sizeof(head));
     cin >> n >> m;
     s = 1, t = 2 * n;
-    for (int i = 1; i <= n; i++) { cin >> name[i]; id[name[i]] = i; }
+    for (int i = 1; i <= n; i++) {
+        cin >> name[i];
+        id[name[i]] = i;
+    }
     for (int i = 0; i < m; i++) {
         cin >> uString >> vString;
         int u = id[uString], v = id[vString];
@@ -115,7 +111,7 @@ int main()
         addEdge(u + n, v, 1, 0);
         addEdge(v, u + n, 0, 0);
     }
-    for (int i = 1; i <= n;i ++) {
+    for (int i = 1; i <= n; i++) {
         if (i != 1 && i != n) {
             addEdge(i, i + n, 1, 1);
             addEdge(i + n, i, 0, -1);
@@ -140,6 +136,8 @@ int main()
     } else if (ans.first == 1 && ok) {
         cout << "2\n";
         cout << name[1] << "\n" << name[n] << "\n" << name[1] << "\n";
-    } else { cout << "No Solution!\n"; }
-	return 0;
+    } else {
+        cout << "No Solution!\n";
+    }
+    return 0;
 }

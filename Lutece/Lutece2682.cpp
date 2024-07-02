@@ -5,8 +5,7 @@ using namespace std;
 int n, m;
 vector<int> a;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n;
     a.resize(n);

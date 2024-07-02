@@ -1,4 +1,5 @@
-// problem statement: https://leetcode.cn/problems/smallest-range-covering-elements-from-k-lists/description/
+// problem statement:
+// https://leetcode.cn/problems/smallest-range-covering-elements-from-k-lists/description/
 
 #include <bits/stdc++.h>
 
@@ -6,7 +7,7 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> smallestRange(vector<vector<int>>& nums) {
+    vector<int> smallestRange(vector<vector<int>> &nums) {
         int k = nums.size();
         vector<int> p(k);
         int maxVal = numeric_limits<int>::min();
@@ -22,7 +23,7 @@ public:
             minVal = item.first, minPos = item.second;
             if (ansLeft == -1 || ansRight - ansLeft > maxVal - minVal ||
                 (ansRight - ansLeft == maxVal - minVal && ansLeft > minVal)) {
-                ansLeft = minVal;
+                ansLeft  = minVal;
                 ansRight = maxVal;
             }
             p[minPos]++;

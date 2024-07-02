@@ -6,8 +6,7 @@ const long long mod = 276276276;
 
 long long n, ans = 1;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n;
     long long x = 1;

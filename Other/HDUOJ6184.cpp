@@ -11,22 +11,18 @@ constexpr int MAXM = 2e5 + 10;
 int n, m, ecnt, ans;
 int head[MAXN], u[MAXM], v[MAXM], degree[MAXN], cnt[MAXM], edgeId[MAXN];
 
-
-struct Graph
-{
+struct Graph {
     int to, nex;
 } es[MAXM];
 
-void addEdge(int u, int v)
-{
-    es[ecnt].to = v;
+void addEdge(int u, int v) {
+    es[ecnt].to  = v;
     es[ecnt].nex = head[u];
-    head[u] = ecnt++;
+    head[u]      = ecnt++;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     while (cin >> n >> m) {
         ecnt = 0;
         memset(head + 1, 0xff, sizeof(int) * n);
@@ -39,9 +35,10 @@ int main()
             degree[v[i]]++;
         }
         for (int i = 0; i < m; i++) {
-            if (degree[u[i]] > degree[v[i]] ||
-                (degree[u[i]] == degree[v[i]] && u[i] > v[i])) { swap(u[i], v[i]); }
-                addEdge(u[i], v[i]);
+            if (degree[u[i]] > degree[v[i]] || (degree[u[i]] == degree[v[i]] && u[i] > v[i])) {
+                swap(u[i], v[i]);
+            }
+            addEdge(u[i], v[i]);
         }
         for (int a = 1; a <= n; a++) {
             for (int i = head[a]; i != -1; i = es[i].nex) { edgeId[es[i].to] = i; }
@@ -62,5 +59,5 @@ int main()
         for (int i = 0; i < ecnt; i++) { ans += cnt[i] * (cnt[i] - 1) / 2; }
         cout << ans << endl;
     }
-	return 0;
+    return 0;
 }

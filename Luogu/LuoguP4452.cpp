@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 200 + 10;
 constexpr int MAXM = 200 + 10;
-constexpr int  INF = 0x3f3f3f3f;
+constexpr int INF  = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -13,19 +13,16 @@ int t[MAXN][MAXN], f[MAXN][MAXN], a[MAXM], b[MAXM], start[MAXM], end[MAXM], c[MA
 int head[MAXM << 1], cur[MAXM << 1], dis[MAXM << 1];
 bool vis[MAXM << 1];
 
-struct Graph
-{
+struct Graph {
     int to, nex, capacity, cost;
 } es[2 * MAXM * MAXM];
 
-void addEdge(int u, int v, int capacity, int cost)
-{
+void addEdge(int u, int v, int capacity, int cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u] = ecnt++;
+    head[u]  = ecnt++;
 }
 
-bool spfa()
-{
+bool spfa() {
     for (int i = 0; i <= sink; i++) { dis[i] = -INF; }
     auto &inq = vis;
     queue<int> q;
@@ -50,11 +47,10 @@ bool spfa()
     return dis[sink] != -INF;
 }
 
-int dfs(int u, int flow, pair<int, int> &ans)
-{
+int dfs(int u, int flow, pair<int, int> &ans) {
     if (u == sink || flow == 0) { return flow; }
     int res = 0;
-    vis[u] = true;
+    vis[u]  = true;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
         if (vis[v] || es[i].capacity == 0 || dis[v] != dis[u] + es[i].cost) { continue; }
@@ -71,8 +67,7 @@ int dfs(int u, int flow, pair<int, int> &ans)
     return res;
 }
 
-pair<int, int> MCMFDinic()
-{
+pair<int, int> MCMFDinic() {
     pair<int, int> ans{0, 0};
     int flow = 0;
     while (spfa()) {
@@ -82,20 +77,15 @@ pair<int, int> MCMFDinic()
     return ans;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     memset(head, -1, sizeof(head));
     cin >> n >> m >> k >> endTime;
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cin >> t[i][j];
-        }
+        for (int j = 0; j < n; j++) { cin >> t[i][j]; }
     }
     for (int i = 0; i < n; i++) {
-        for (int j = 0; j < n; j++) {
-            cin >> f[i][j];
-        }
+        for (int j = 0; j < n; j++) { cin >> f[i][j]; }
     }
     source = 2 * m + 5, sink = source + 2;
     for (int i = 0; i < m; i++) {
@@ -105,7 +95,9 @@ int main()
         if (::end[i] + t[b[i]][0] <= endTime) {
             addEdge(i + m, sink, INF, -f[b[i]][0]);
             addEdge(sink, i + m, 0, f[b[i]][0]);
-        } else { continue; }
+        } else {
+            continue;
+        }
         if (t[0][a[i]] <= start[i]) {
             addEdge(source, i, INF, -f[0][a[i]]);
             addEdge(i, source, 0, f[0][a[i]]);
@@ -124,5 +116,5 @@ int main()
     addEdge(source, source + 1, 0, 0);
     source++;
     cout << MCMFDinic().second << "\n";
-	return 0;
+    return 0;
 }

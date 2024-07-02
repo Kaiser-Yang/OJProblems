@@ -1,10 +1,10 @@
 // problem statement: http://poj.org/problem?id=2983
 // Tag: having been in my blog
 
+#include <cstring>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cstring>
 
 using namespace std;
 
@@ -15,23 +15,18 @@ int n, m, u, v, w;
 int dis[MAXN];
 string type;
 
-struct Edge
-{
+struct Edge {
     int u, v, w;
     Edge(int u, int v, int w) : u(u), v(v), w(w) {}
 };
 
 vector<Edge> edge;
 
-void addEdge(int u, int v, int w) 
-{
-    edge.push_back(Edge(u, v, w));
-}
+void addEdge(int u, int v, int w) { edge.push_back(Edge(u, v, w)); }
 
-bool bellmanFord()
-{
+bool bellmanFord() {
     memset(dis, 0x3f, sizeof(int) * (n + 1));
-    dis[0] = 0;
+    dis[0]    = 0;
     bool flag = false;
     for (int i = 0; i <= n; i++) {
         flag = false;
@@ -39,7 +34,7 @@ bool bellmanFord()
             int u = edge[j].u, v = edge[j].v, w = edge[j].w;
             if (dis[v] > dis[u] + w) {
                 dis[v] = dis[u] + w;
-                flag = true;
+                flag   = true;
             }
         }
         if (!flag) { break; }
@@ -47,9 +42,8 @@ bool bellmanFord()
     return flag;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     while (cin >> n >> m) {
         edge.clear();
         for (int i = 0; i < m; i++) {
@@ -59,12 +53,12 @@ int main()
                 addEdge(u, v, -w);
                 addEdge(v, u, w);
             } else {
-                cin >> u >> v;  
+                cin >> u >> v;
                 addEdge(u, v, -1);
             }
         }
         for (int i = 1; i <= n; i++) { addEdge(0, i, 0); }
         cout << (bellmanFord() ? "Unreliable" : "Reliable") << endl;
     }
-	return 0;
+    return 0;
 }
