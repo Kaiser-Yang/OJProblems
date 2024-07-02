@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-constexpr int MAXN= 1e5 + 10;
+constexpr int MAXN = 1e5 + 10;
 
 using namespace std;
 
@@ -16,7 +16,7 @@ int read() {
         if (ch == '-') { f = -1; }
     } while (ch < '0' || ch > '9');
     do {
-        x = x * 10 + ch - '0';
+        x  = x * 10 + ch - '0';
         ch = getchar();
     } while (ch >= '0' && ch <= '9');
     return x * f;
@@ -24,11 +24,8 @@ int read() {
 
 template <size_t MAXN, size_t LOG_MAXN>
 struct sparse_table {
-
     void init() {
-        for (int i = 1; i <= n; i++) {
-            max_value[i][0] = a[i];
-        }
+        for (int i = 1; i <= n; i++) { max_value[i][0] = a[i]; }
         for (int j = 1; j < LOG_MAXN; j++) {
             for (int i = 1; i + (1 << j) - 1 <= n; i++) {
                 max_value[i][j] = max(max_value[i][j - 1], max_value[i + (1 << (j - 1))][j - 1]);

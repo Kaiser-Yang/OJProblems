@@ -16,7 +16,7 @@ stack<int> s;
 
 void tarjan(int u) {
     dfn[u] = low[u] = ++cnt;
-    in_stack[u] = true;
+    in_stack[u]     = true;
     s.push(u);
     for (auto &&v : g[u]) {
         if (dfn[v] == 0) {
@@ -30,18 +30,18 @@ void tarjan(int u) {
         col++;
         while (s.top() != u) {
             if (w[s.top()] < min_w[col]) {
-                min_w[col] = w[s.top()];
+                min_w[col]       = w[s.top()];
                 min_w_index[col] = s.top();
             }
-            color[s.top()] = col;
+            color[s.top()]    = col;
             in_stack[s.top()] = false;
             s.pop();
         }
         if (w[u] < min_w[col]) {
-            min_w[col] = w[u];
+            min_w[col]       = w[u];
             min_w_index[col] = u;
         }
-        color[s.top()] = col;
+        color[s.top()]    = col;
         in_stack[s.top()] = false;
         s.pop();
     }
@@ -63,7 +63,7 @@ int main() {
     cin >> n >> m >> k;
     init();
     for (int i = 1; i <= n; i++) { cin >> w[i]; }
-    for (int i = 0; i < m ;i++) {
+    for (int i = 0; i < m; i++) {
         cin >> u >> v;
         g[u].push_back(v);
     }
@@ -84,4 +84,3 @@ int main() {
     cout << ans << '\n';
     return 0;
 }
-

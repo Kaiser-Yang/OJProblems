@@ -11,7 +11,7 @@ size_t k;
 using matrix = vector<vector<long long>>;
 matrix a;
 
-void operator*= (matrix &a, const matrix &b) {
+void operator*=(matrix &a, const matrix &b) {
     matrix res = matrix(a.size(), vector<long long>(b[0].size()));
     for (int i = 0; i < a.size(); i++) {
         for (int j = 0; j < b[0].size(); j++) {

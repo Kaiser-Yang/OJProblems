@@ -14,9 +14,7 @@ vector<int> g[MAXN];
 void dfs(int u, int m) {
     if (m == 0) { return; }
     for (auto &&v : g[u]) {
-        for (int j = 0; j < m; j++) {
-            dp[v][j] = dp[u][j];
-        }
+        for (int j = 0; j < m; j++) { dp[v][j] = dp[u][j]; }
         dfs(v, m - 1);
         for (int j = 1; j <= m; j++) { dp[u][j] = max(dp[u][j], dp[v][j - 1] + w[v]); }
     }
