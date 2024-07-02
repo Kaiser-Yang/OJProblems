@@ -43,7 +43,7 @@ void build(int u, int fa) {
 int lca(int a, int b) {
     if (depth[a] < depth[b]) swap(a, b);
     for (int i = 19; i >= 0; i--) {
-        if (depth[par[a][i]] >= depth[b]) a = par[a][i];
+        if (depth[par[a][i]] >= depth[b]) { a = par[a][i]; }
     }
     if (a == b) return a;
     for (int i = 19; i >= 0; i--) {
