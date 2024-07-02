@@ -10,33 +10,31 @@ constexpr int MAXN = 2510;
 int n, m, s, u, v, ans;
 int degree[MAXN];
 
-struct Edge
-{
+struct Edge {
     int u, v, w;
     bool operator<(const Edge &other) { return w < other.w; }
 };
 
 vector<Edge> edge;
 
-struct UFS
-{
+struct UFS {
     int h[MAXN];
 
-    void init(int n) { for (int i = 0; i <= n; i++) { h[i] = i; }}
+    void init(int n) {
+        for (int i = 0; i <= n; i++) { h[i] = i; }
+    }
 
     int find(int x) { return x == h[x] ? x : h[x] = find(h[x]); }
 
     bool same(int a, int b) { return find(a) == find(b); }
 
-    void join(int a, int b) 
-    {
+    void join(int a, int b) {
         int fa = find(a), fb = find(b);
         h[fa] = fb;
     }
-}ufs1, ufs2;
+} ufs1, ufs2;
 
-int kruscal()
-{
+int kruscal() {
     sort(edge.begin(), edge.end());
     int res = 0;
     for (int i = 0; i < edge.size(); i++) {
@@ -47,9 +45,8 @@ int kruscal()
     return res;
 }
 
-int main()
-{
-	ios::sync_with_stdio(false);
+int main() {
+    ios::sync_with_stdio(false);
     cin >> n >> m >> s;
     ufs1.init(n);
     for (int i = 0; i < m; i++) {
@@ -63,7 +60,7 @@ int main()
         degree[i]++;
         degree[s]++;
         int lastJ = -1;
-        int sum = 0;
+        int sum   = 0;
         ufs2.init(n);
         edge.resize(0);
         for (int j = 1; j <= n; j++) {
@@ -90,5 +87,5 @@ int main()
         degree[s]--;
     }
     cout << endl;
-	return 0;
+    return 0;
 }
