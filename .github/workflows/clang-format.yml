@@ -1,0 +1,35 @@
+name: clang-format
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  clang-format:
+    runs-on: ubuntu-latest
+    
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
+    steps:
+    - name: Checkout Repo
+      uses: actions/checkout@v4
+    
+    - name: Install clang-format
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y clang-format-14
+        sudo update-alternatives --install /usr/bin/clang-format clang-format /usr/bin/clang-format-14 100
+        clang-format --version
+
+    - name: Run clang-format
+      run: |
+        find . -type f \( -name "*.h" -o -name "*.cpp" \) -print0 | xargs -0 clang-format -i
+
+    - name: Auto Commit
+      uses: stefanzweifel/git-auto-commit-action@v5
+      with:
+        commit_message: "Apply clang-format"
