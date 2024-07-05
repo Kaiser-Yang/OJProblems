@@ -13,27 +13,25 @@ long long read() {
     char ch = 0;
     do {
         ch = getchar();
-        if(ch == '-') {
-            f = -1;
-        }
-    } while(ch < '0' || ch > '9');
+        if (ch == '-') { f = -1; }
+    } while (ch < '0' || ch > '9');
     do {
-        x = (x * 10 % MOD + ch - '0') % MOD;
+        x  = (x * 10 % MOD + ch - '0') % MOD;
         ch = getchar();
-    } while(ch >= '0' && ch <= '9');
+    } while (ch >= '0' && ch <= '9');
     return x * f;
 }
 
 long long ex_gcd(long long a, long long b, long long &x, long long &y) {
-    if(b == 0) {
+    if (b == 0) {
         x = 1;
         y = 0;
         return a;
     }
     long long g = ex_gcd(b, a % b, x, y);
     long long t = x;
-    x = y;
-    y = t - a / b * y;
+    x           = y;
+    y           = t - a / b * y;
     return g;
 }
 
