@@ -22,9 +22,9 @@ public:
                 dp[i + 1][state] = max(dp[i + 1][state], dp[i][state]);
                 for (int t = pos[now]; t > 0; t -= t & (-t)) {
                     if ((state & (t & (-t))) == 0) {
-                        int new_state = state | (t & (-t));
+                        int new_state        = state | (t & (-t));
                         dp[i + 1][new_state] = max(dp[i + 1][new_state], dp[i][state] + now);
-                        ans = max(ans, dp[i + 1][new_state]);
+                        ans                  = max(ans, dp[i + 1][new_state]);
                     }
                 }
             }

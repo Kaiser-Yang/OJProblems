@@ -23,7 +23,7 @@ private:
             if (tot >= cost.size()) { cost.resize(tot + 1, std::numeric_limits<int>::max()); }
             if (tot >= len.size()) { len.resize(tot + 1, 0); }
             cost[u] = min(cost[u], s_cost);
-            len[u] = s.size();
+            len[u]  = s.size();
         }
         void build() {
             fail.resize(tot + 1);
@@ -56,7 +56,7 @@ public:
         ac.build();
         int n = target.size();
         vector<int> dp(n + 1, std::numeric_limits<int>::max() / 2);
-        dp[0] = 0;
+        dp[0]   = 0;
         int cur = 0;
         for (int i = 1; i <= n; i++) {
             cur = ac.son[cur][target[i - 1] - 'a'];

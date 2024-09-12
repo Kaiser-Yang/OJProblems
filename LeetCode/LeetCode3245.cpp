@@ -50,8 +50,8 @@ public:
             }
             // seperate the old length into two parts
             int old_len = (nex - pre + n) % n;
-            int len1 = (now - pre + n) % n;
-            int len2 = (nex - now + n) % n;
+            int len1    = (now - pre + n) % n;
+            int len2    = (nex - now + n) % n;
             check_zero_update(n, old_len, len1, len2);
             t_cnt.add(old_len, -multiplier);
             t_cnt.add(len1, multiplier);
@@ -112,7 +112,7 @@ public:
 };
 
 int main() {
-    vector<int> colors = {0, 1, 1, 0, 1};
+    vector<int> colors          = {0, 1, 1, 0, 1};
     vector<vector<int>> queries = {{2, 1, 0}, {1, 4}};
     Solution().numberOfAlternatingGroups(colors, queries);
     return 0;

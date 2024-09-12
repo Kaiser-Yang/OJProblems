@@ -20,7 +20,7 @@ private:
 
 public:
     bool canReachCorner(int rect_x, int rect_y, vector<vector<int>> &circles) {
-        int n = circles.size();
+        int n               = circles.size();
         auto get_square_dis = [&](int x1, int y1, int x2, int y2) -> long long {
             return (long long)(x1 - x2) * (x1 - x2) + (long long)(y1 - y2) * (y1 - y2);
         };
@@ -44,32 +44,32 @@ public:
             int p1_x = 0, p1_y = 0, p2_x = 0, p2_y = 0, p_min = 0, p_max = 0;
             switch (j) {
                 case UP:
-                    h = abs(1LL * circles[i][1] - rect_y) * abs(1LL * circles[i][1] - rect_y);
+                    h    = abs(1LL * circles[i][1] - rect_y) * abs(1LL * circles[i][1] - rect_y);
                     p1_x = 0, p1_y = rect_y;
                     p2_x = rect_x, p2_y = rect_y;
                     p_min = min(p1_x, p2_x), p_max = max(p1_x, p2_x);
                     break;
                 case DOWN:
-                    h = abs(1LL * circles[i][1]) * abs(1LL * circles[i][1]);
+                    h    = abs(1LL * circles[i][1]) * abs(1LL * circles[i][1]);
                     p1_x = 0, p1_y = 0;
                     p2_x = rect_x, p2_y = 0;
                     p_min = min(p1_x, p2_x), p_max = max(p1_x, p2_x);
                     break;
                 case LEFT:
-                    h = abs(1LL * circles[i][0]) * abs(1LL * circles[i][0]);
+                    h    = abs(1LL * circles[i][0]) * abs(1LL * circles[i][0]);
                     p1_x = 0, p1_y = rect_y;
                     p2_x = 0, p2_y = 0;
                     p_min = min(p1_y, p2_y), p_max = max(p1_y, p2_y);
                     break;
                 case RIGHT:
-                    h = abs(1LL * circles[i][0] - rect_x) * abs(1LL * circles[i][0] - rect_x);
+                    h    = abs(1LL * circles[i][0] - rect_x) * abs(1LL * circles[i][0] - rect_x);
                     p1_x = rect_x, p1_y = rect_y;
                     p2_x = rect_x, p2_y = 0;
                     p_min = min(p1_y, p2_y), p_max = max(p1_y, p2_y);
                     break;
             }
-            l1 = get_square_dis(circles[i][0], circles[i][1], p1_x, p1_y);
-            l2 = get_square_dis(circles[i][0], circles[i][1], p2_x, p2_y);
+            l1                      = get_square_dis(circles[i][0], circles[i][1], p1_x, p1_y);
+            l2                      = get_square_dis(circles[i][0], circles[i][1], p2_x, p2_y);
             bool center_inside_rect = circles[i][0] >= 0 && circles[i][0] <= rect_x &&
                                       circles[i][1] >= 0 && circles[i][1] <= rect_y;
             if (circles[i][j / 2] >= p_min && circles[i][j / 2] <= p_max) {

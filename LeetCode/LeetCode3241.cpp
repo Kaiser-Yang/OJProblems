@@ -27,15 +27,15 @@ private:
         for (auto &&v : g[u]) {
             if (v == par) { continue; }
             int child_u = farthest_child[u][0] == v ? farthest_child[u][1] : farthest_child[u][0];
-            ans[v] = get_w(u);
+            ans[v]      = get_w(u);
             if (child_u != -1) { ans[v] += dis[child_u]; }
             int child_v = farthest_child[v][0];
             if (child_v != -1) { ans[v] = max(ans[v], dis[child_v]); }
-            int tmp_dis_u = dis[u];
-            int tmp_dis_v = dis[v];
+            int tmp_dis_u   = dis[u];
+            int tmp_dis_v   = dis[v];
             int tmp_child_0 = farthest_child[v][0];
             int tmp_child_1 = farthest_child[v][1];
-            dis[u] = get_w(u);
+            dis[u]          = get_w(u);
             if (child_u != -1) { dis[u] += dis[child_u]; }
             dis[v] = max(dis[v] - get_w(v), dis[u]);
             if (farthest_child[v][0] == -1 || dis[u] > dis[farthest_child[v][0]]) {
@@ -45,8 +45,8 @@ private:
                 farthest_child[v][1] = u;
             }
             dp(v, u);
-            dis[u] = tmp_dis_u;
-            dis[v] = tmp_dis_v;
+            dis[u]               = tmp_dis_u;
+            dis[v]               = tmp_dis_v;
             farthest_child[v][0] = tmp_child_0;
             farthest_child[v][1] = tmp_child_1;
         }

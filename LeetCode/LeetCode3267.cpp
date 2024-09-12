@@ -17,7 +17,7 @@ public:
         for (int i = 0; i < n; i++) {
             res.insert(to_string(nums[i]));
             string num_str = to_string(nums[i]);
-            int len = num_str.length();
+            int len        = num_str.length();
             for (int a = 0; a < len; a++) {
                 for (int b = a + 1; b < len; b++) {
                     swap(num_str[a], num_str[b]);
