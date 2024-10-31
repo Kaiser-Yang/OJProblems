@@ -1,7 +1,7 @@
 ---
 Language: Cpp
 BasedOnStyle: Google
-AlignConsecutiveAssignments: true
+AlignConsecutiveAssignments: false
 AlignConsecutiveDeclarations: false
 AlignConsecutiveMacros: true
 AllowAllParametersOfDeclarationOnNextLine: false
