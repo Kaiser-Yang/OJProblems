@@ -19,9 +19,9 @@ struct Graph {
 } es[MAXM << 1];
 
 void addEdge(int u, int v) {
-    es[ecnt].to  = v;
+    es[ecnt].to = v;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void tarjan(int u) {
@@ -31,7 +31,7 @@ void tarjan(int u) {
     for (int i = head[u]; i != -1; i = es[i].nex) {
         if (vis[i]) { continue; }
         vis[i] = vis[i ^ 1] = true;
-        int v               = es[i].to;
+        int v = es[i].to;
         if (!dfn[v]) {
             tarjan(v);
             low[u] = min(low[u], low[v]);
@@ -43,11 +43,11 @@ void tarjan(int u) {
         colorCnt++;
         while (s.top() != u) {
             color[s.top()] = colorCnt;
-            ins[s.top()]   = false;
+            ins[s.top()] = false;
             s.pop();
         }
         color[s.top()] = colorCnt;
-        ins[s.top()]   = false;
+        ins[s.top()] = false;
         s.pop();
     }
 }

@@ -15,10 +15,10 @@ struct addEdge {
 } es[MAXN << 1];
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
+    es[ecnt].to = v;
     es[ecnt].nex = head[u];
-    es[ecnt].w   = w;
-    head[u]      = ecnt++;
+    es[ecnt].w = w;
+    head[u] = ecnt++;
 }
 
 void fathestNode(int u, int par) {
@@ -40,7 +40,7 @@ void dfs(int u, int par) {
         dfs(v, u);
         if (maxPath[v] + es[i].w > maxPath[u]) {
             subMaxPath[u] = maxPath[u];
-            maxPath[u]    = maxPath[v] + es[i].w;
+            maxPath[u] = maxPath[v] + es[i].w;
         } else if (maxPath[v] + es[i].w > subMaxPath[u]) {
             subMaxPath[u] = maxPath[v] + es[i].w;
         }
@@ -59,7 +59,7 @@ int main() {
     }
     ans = 2 * (n - 1);
     fathestNode(1, 0);
-    node1        = fathest;
+    node1 = fathest;
     dis[fathest] = 0;
     fathestNode(node1, 0);
     node2 = fathest;

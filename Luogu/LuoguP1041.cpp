@@ -16,15 +16,15 @@ struct Edge {
 } es[MAXN * 2];
 
 void addEdge(int u, int v) {
-    es[ecnt].to  = v;
+    es[ecnt].to = v;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void getDepth(int u, int fa) {
     depth[u] = depth[fa] + 1;
-    par[u]   = fa;
-    siz[u]   = 1;
+    par[u] = fa;
+    siz[u] = 1;
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
         if (v == fa) { continue; }

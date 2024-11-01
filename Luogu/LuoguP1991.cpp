@@ -24,7 +24,7 @@ void prim() {
     vector<int> dis(p, numeric_limits<int>::max());
     vector<bool> vis(p, false);
     for (int i = 0; i < p; i++) { dis[i] = g[i][0]; }
-    vis[0]   = true;
+    vis[0] = true;
     int node = -1;
     for (int i = 1; i < p; i++) {
         node = -1;

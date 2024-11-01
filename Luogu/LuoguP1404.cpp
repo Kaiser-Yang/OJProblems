@@ -18,15 +18,15 @@ int main() {
         cin >> a[i];
         a[i] += a[i - 1];
     }
-    dp[m]  = 1.0 * a[m] / m;
+    dp[m] = 1.0 * a[m] / m;
     cnt[m] = m;
-    ans    = (long long)(dp[m] * 1000);
+    ans = (long long)(dp[m] * 1000);
     for (int i = m + 1; i <= n; i++) {
-        dp[i]  = 1.0 * (a[i] - a[i - m]) / m;
+        dp[i] = 1.0 * (a[i] - a[i - m]) / m;
         cnt[i] = m;
         if ((dp[i - 1] * cnt[i - 1] + a[i] - a[i - 1]) / (cnt[i - 1] + 1) > dp[i]) {
             cnt[i] = cnt[i - 1] + 1;
-            dp[i]  = (dp[i - 1] * cnt[i - 1] + a[i] - a[i - 1]) / cnt[i];
+            dp[i] = (dp[i - 1] * cnt[i - 1] + a[i] - a[i - 1]) / cnt[i];
         }
         ans = max(ans, (long long)(dp[i] * 1000));
     }

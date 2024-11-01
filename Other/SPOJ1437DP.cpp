@@ -15,7 +15,7 @@ pair<int, int> dfs(int u, int par) {
         auto temp = dfs(v, u);
         if (temp.first + 1 > maxPath) {
             subMaxPath = maxPath;
-            maxPath    = temp.first + 1;
+            maxPath = temp.first + 1;
         } else if (temp.first + 1 > subMaxPath) {
             subMaxPath = temp.first + 1;
         }

@@ -18,7 +18,7 @@ int main() {
     }
     long long ans1 = 1LL * (n - flag) * c;
     long long ans2 = n * 2;
-    long long g    = gcd(ans1, ans2);
+    long long g = gcd(ans1, ans2);
     cout << ans1 / g << "/" << ans2 / g << endl;
     return 0;
 }

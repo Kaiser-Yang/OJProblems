@@ -29,7 +29,7 @@ int lca(int a, int b) {
 }
 
 void dfs(int u, int fa) {
-    depth[u]  = depth[fa] + 1;
+    depth[u] = depth[fa] + 1;
     par[u][0] = fa;
     for (int j = 1; j < 20; j++) { par[u][j] = par[par[u][j - 1]][j - 1]; }
     for (auto &v : g[u]) {

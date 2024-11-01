@@ -33,7 +33,7 @@ void prim() {
             if (node == -1 || dis[i] < dis[node]) { node = i; }
         }
         vis[node] = true;
-        maxDis    = max(maxDis, dis[node]);
+        maxDis = max(maxDis, dis[node]);
         for (int i = 0; i < n; i++) { dis[i] = min(dis[i], g[node][i]); }
     }
 }

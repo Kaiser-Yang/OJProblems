@@ -22,10 +22,10 @@ struct Edge {
 } edge[MAXM];
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 int find(int x) { return x == h[x] ? x : h[x] = find(h[x]); }
@@ -38,12 +38,12 @@ void join(int a, int b) {
 }
 
 void dfs(int u, int par, int w) {
-    depth[u]          = depth[par] + 1;
-    parent[u][0]      = par;
-    maxValue[u][0]    = w;
+    depth[u] = depth[par] + 1;
+    parent[u][0] = par;
+    maxValue[u][0] = w;
     subMaxValue[u][0] = -1;
     for (int j = 1; j < 20; j++) {
-        parent[u][j]      = parent[parent[u][j - 1]][j - 1];
+        parent[u][j] = parent[parent[u][j - 1]][j - 1];
         subMaxValue[u][j] = max(subMaxValue[u][j - 1], subMaxValue[parent[u][j - 1]][j - 1]);
         if (maxValue[parent[u][j - 1]][j - 1] > maxValue[u][j - 1] &&
             maxValue[u][j - 1] > subMaxValue[u][j]) {
@@ -74,7 +74,7 @@ pair<int, int> query(int a, int b) {
             res2 = maxValue[b][j];
         }
         res1 = max(res1, maxValue[b][j]);
-        b    = parent[b][j];
+        b = parent[b][j];
     }
     if (a == b) { return {res1, res2}; }
     int temp = 0;
@@ -88,8 +88,8 @@ pair<int, int> query(int a, int b) {
             res2 = temp;
         }
         res1 = max({res1, temp});
-        a    = parent[a][j];
-        b    = parent[b][j];
+        a = parent[a][j];
+        b = parent[b][j];
     }
     res2 = max({res2, subMaxValue[a][0], subMaxValue[b][0]});
     temp = max(maxValue[a][0], maxValue[b][0]);

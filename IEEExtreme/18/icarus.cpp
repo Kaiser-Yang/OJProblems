@@ -35,21 +35,15 @@ int main() {
     if (l_cnt <= u_cnt) {
         cal_low_or_high('L');
         cout << n << " " << -high + 1 << " " << n << "\n";
-        for (int i = 1; i <= n; i++) {
-            cout << (i + 1 <= n ? i + 1 : 0) << " 0\n";
-        }
+        for (int i = 1; i <= n; i++) { cout << (i + 1 <= n ? i + 1 : 0) << " 0\n"; }
     } else if (r_cnt <= u_cnt) {
         cal_low_or_high('R');
         cout << n << " " << -high + 1 << " " << n << "\n";
-        for (int i = 1; i <= n; i++) {
-            cout << "0 " << (i + 1 <= n ? i + 1 : 0) << "\n";
-        }
+        for (int i = 1; i <= n; i++) { cout << "0 " << (i + 1 <= n ? i + 1 : 0) << "\n"; }
     } else {
         cal_low_or_high('L');
         cout << n << " " << n - low << " " << 1 << endl;
-        for (int i = 1; i <= n; i++) {
-            cout << (i + 1 <= n ? i + 1 : 0) << " 0\n";
-        }
+        for (int i = 1; i <= n; i++) { cout << (i + 1 <= n ? i + 1 : 0) << " 0\n"; }
     }
     return 0;
 }

@@ -5,7 +5,7 @@
 constexpr int MAXN = 10 + 2;
 constexpr int MAXM = 10 + 2;
 constexpr int MAXP = 10 + 2;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 using namespace std;
 

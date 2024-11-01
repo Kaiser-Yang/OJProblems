@@ -53,7 +53,7 @@ string multiply(string &a, string &b) {
     for (int i = 0; i < a.length(); i++) {
         if (res != "0") { res.push_back('0'); }
         string temp = multiply(b, a[i]);
-        res         = add(res, temp);
+        res = add(res, temp);
     }
     return res;
 }
@@ -61,7 +61,7 @@ string multiply(string &a, string &b) {
 int main() {
     ios::sync_with_stdio(false);
     cin >> n >> k;
-    n            = n.substr(max<int>(0, (int)n.length() - k), k);
+    n = n.substr(max<int>(0, (int)n.length() - k), k);
     string tempN = n;
     for (int i = 1; i <= k; i++) {
         string temp = n.substr(max<int>(0, (int)n.length() - i), i), first;
@@ -71,7 +71,7 @@ int main() {
             temp = multiply(temp, tempN);
             temp = temp.substr(max<int>(0, (int)temp.length() - i), i);
             if (temp == first) {
-                ans   = multiply(ans, j + '0');
+                ans = multiply(ans, j + '0');
                 lastJ = j;
                 break;
             }

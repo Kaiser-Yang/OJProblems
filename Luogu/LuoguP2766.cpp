@@ -1,7 +1,7 @@
 // problem statement: https://www.luogu.com.cn/problem/P2766
 
 constexpr int MAXN = 500 + 10;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 #include <bits/stdc++.h>
 
@@ -18,7 +18,7 @@ struct Graph {
 
 void addEdge(int u, int v, int capacity) {
     es[ecnt] = {v, head[u], capacity};
-    head[u]  = ecnt++;
+    head[u] = ecnt++;
 }
 
 bool bfs() {

@@ -21,8 +21,9 @@ int main() {
     long long ans = n + 1;
     for (int i = 0; i < m; i++) {
         cin >> direction >> coordinate;
-        if (direction == "L") { ans += n + 1; }
-        else {
+        if (direction == "L") {
+            ans += n + 1;
+        } else {
             int x = upper_bound(a_u.begin(), a_u.end(), coordinate) - a_u.begin();
             ans += n + 1 - x;
         }

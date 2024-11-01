@@ -6,7 +6,7 @@ using namespace std;
 
 constexpr int MAXN = 510;
 constexpr int MAXM = 510;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 int n, m;
 string grid[MAXN];

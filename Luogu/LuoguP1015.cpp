@@ -26,11 +26,11 @@ string add(string &a, string &b) {
 int main() {
     for (int i = 0; i <= 9; i++) {
         number[i + '0'] = i;
-        character[i]    = '0' + i;
+        character[i] = '0' + i;
     }
     for (int i = 10; i <= 16; i++) {
         number[i - 10 + 'A'] = i;
-        character[i]         = i - 10 + 'A';
+        character[i] = i - 10 + 'A';
     }
     ios::sync_with_stdio(false);
     cin >> n >> m;

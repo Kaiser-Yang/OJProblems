@@ -6,7 +6,7 @@ using namespace std;
 
 constexpr int MAXN = 1e5 + 10;
 constexpr int MAXM = 1e5 + 10;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 int n, m, q, u, v, node, l, ecnt;
 int head[MAXN], dis[MAXN][2];
@@ -16,9 +16,9 @@ struct Edge {
 } es[MAXM * 2];
 
 void addEdge(int u, int v) {
-    es[ecnt].to  = v;
+    es[ecnt].to = v;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void bfs() {

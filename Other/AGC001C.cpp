@@ -46,11 +46,11 @@ int main() {
         for (int i = 1; i < n; i++) {
             depth[v[i]] = -1;
             dfs(u[i], v[i]);
-            temp        = depth[u[i]];
+            temp = depth[u[i]];
             depth[u[i]] = -1;
             dfs(v[i], u[i]);
             depth[u[i]] = temp;
-            ans         = min(ans, count());
+            ans = min(ans, count());
         }
     }
     cout << ans << endl;

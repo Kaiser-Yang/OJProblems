@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 20 + 4;
 constexpr int MAXM = 20 + 4;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -23,7 +23,7 @@ struct Graph {
 
 void addEdge(int u, int v, int capacity, int cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u]  = ecnt++;
+    head[u] = ecnt++;
 }
 
 bool spfa() {
@@ -53,7 +53,7 @@ bool spfa() {
 
 int dfs(int u, int inFlow, pair<int, int> &ans) {
     if (u == t || inFlow == 0) { return inFlow; }
-    vis[u]      = true;
+    vis[u] = true;
     int outFlow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;

@@ -15,7 +15,7 @@ vector<int> g[MAXN];
 vector<pair<int, int>> subTreeSize;
 
 void findCentroid(int u, int par) {
-    siz[u]         = 1;
+    siz[u] = 1;
     int maxSonSize = 0;
     for (int v : g[u]) {
         if (v == par) { continue; }

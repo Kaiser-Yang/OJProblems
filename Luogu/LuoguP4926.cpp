@@ -5,8 +5,8 @@
 
 using namespace std;
 
-constexpr int MAXN   = 1010;
-constexpr int MAXS   = 1010;
+constexpr int MAXN = 1010;
+constexpr int MAXS = 1010;
 constexpr double EPS = 1e-6;
 
 int n, s, t, c, x;
@@ -33,7 +33,7 @@ bool bellmanFord(double res) {
         }
     }
     fill(dis, dis + 1 + n, numeric_limits<double>::max() / 2);
-    dis[0]    = 0;
+    dis[0] = 0;
     bool flag = false;
     for (int i = 0; i <= n; i++) {
         flag = false;
@@ -42,7 +42,7 @@ bool bellmanFord(double res) {
             double w = e.w;
             if (dis[v] > dis[u] + w + EPS) {
                 dis[v] = dis[u] + w;
-                flag   = true;
+                flag = true;
             }
         }
         if (!flag) { break; }
@@ -77,7 +77,7 @@ int main() {
         if (!bellmanFord(mid)) {
             r = mid - EPS;
         } else {
-            l   = mid + EPS;
+            l = mid + EPS;
             ans = mid;
         }
     }

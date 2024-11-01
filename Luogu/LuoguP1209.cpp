@@ -33,7 +33,7 @@ int main() {
             if (nex == section.end()) { break; }
             if (temp == -1 || nex->first - it->second < temp) {
                 temp = nex->first - it->second;
-                pos  = it;
+                pos = it;
             }
         }
         auto nex = ++pos, nexNex = ++pos;

@@ -24,11 +24,11 @@ public:
         vector<int> dp(n * m + 1), maxRow(n + 1), maxColumn(m + 1), subMaxRow(n + 1),
             subMaxColumn(m + 1);
         for (int i = 1; i < a.size(); i++) {
-            val1  = a[maxRow[a[i].x]].val == a[i].val ? dp[subMaxRow[a[i].x]] : dp[maxRow[a[i].x]];
-            val2  = a[maxColumn[a[i].y]].val == a[i].val ? dp[subMaxColumn[a[i].y]] :
-                                                           dp[maxColumn[a[i].y]];
+            val1 = a[maxRow[a[i].x]].val == a[i].val ? dp[subMaxRow[a[i].x]] : dp[maxRow[a[i].x]];
+            val2 = a[maxColumn[a[i].y]].val == a[i].val ? dp[subMaxColumn[a[i].y]] :
+                                                          dp[maxColumn[a[i].y]];
             dp[i] = 1 + max(val1, val2);
-            ans   = max(ans, dp[i]);
+            ans = max(ans, dp[i]);
             if (dp[i] > dp[maxRow[a[i].x]]) {
                 if (a[maxRow[a[i].x]].val != a[i].val) { subMaxRow[a[i].x] = maxRow[a[i].x]; }
                 maxRow[a[i].x] = i;

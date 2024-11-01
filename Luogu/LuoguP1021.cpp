@@ -37,7 +37,7 @@ void dfs(int depth, int lastValue, int maxValue) {
     }
     for (int i = lastValue + 1; i <= maxValue + 1; i++) {
         value[depth] = i;
-        int x        = getMaxValue(depth, i);
+        int x = getMaxValue(depth, i);
         if (x > maxValue) { dfs(depth + 1, i, x); }
     }
 }

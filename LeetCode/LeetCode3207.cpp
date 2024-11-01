@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    long long maximumPoints(vector<int>& enemyEnergies, int currentEnergy) {
+    long long maximumPoints(vector<int> &enemyEnergies, int currentEnergy) {
         sort(enemyEnergies.begin(), enemyEnergies.end());
         long long ans = 0;
         long long sum = accumulate(enemyEnergies.begin(), enemyEnergies.end(), 0LL);

@@ -11,7 +11,7 @@ void pre_kmp(const string &pattern, vector<int> &border) {
     size_t n = pattern.length();
     border.resize(n);
     border[0] = -1;
-    int j     = -1;
+    int j = -1;
     for (size_t i = 1; i < n; i++) {
         while (j >= 0 && pattern[i] != pattern[j + 1]) { j = border[j]; }
         if (pattern[i] == pattern[j + 1]) { j++; }

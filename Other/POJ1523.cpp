@@ -20,7 +20,7 @@ vector<pair<int, int> > edge;
 
 void tarjan(int u, int par) {
     dfn[u] = low[u] = ++cnt;
-    int son         = 0;
+    int son = 0;
     for (int v = 1; v <= n; v++) {
         if (!g[u][v]) { continue; }
         if (dfn[v] == 0) {
@@ -57,7 +57,7 @@ int main() {
             g[u][v] = g[v][u] = true;
         }
         cutNodeCnt = 0;
-        cnt        = 0;
+        cnt = 0;
         tarjan(1, 0);
         kase++;
         cout << "Network #" << kase << endl;

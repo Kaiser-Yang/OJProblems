@@ -22,7 +22,7 @@ bool same(int a, int b) { return find(a) == find(b); }
 void join(int a, int b) {
     int fa = find(a);
     int fb = find(b);
-    h[fa]  = fb;
+    h[fa] = fb;
 }
 
 int main() {

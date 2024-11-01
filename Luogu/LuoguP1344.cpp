@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 35;
 constexpr int MAXM = 1e3 + 10;
-constexpr int INF  = std::numeric_limits<int>::max();
+constexpr int INF = std::numeric_limits<int>::max();
 
 using namespace std;
 
@@ -16,10 +16,10 @@ struct Graph {
 } es[MAXM << 1];
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to       = v;
+    es[ecnt].to = v;
     es[ecnt].capacity = w;
-    es[ecnt].nex      = head[u];
-    head[u]           = ecnt++;
+    es[ecnt].nex = head[u];
+    head[u] = ecnt++;
 }
 
 bool bfs() {
@@ -79,10 +79,10 @@ int main() {
     cout << dinic() << " ";
     for (int i = 0; i < ecnt; i += 2) {
         if (es[i].capacity > 0) {
-            es[i].capacity     = INF;
+            es[i].capacity = INF;
             es[i ^ 1].capacity = 0;
         } else {
-            es[i].capacity     = 1;
+            es[i].capacity = 1;
             es[i ^ 1].capacity = 0;
         }
     }

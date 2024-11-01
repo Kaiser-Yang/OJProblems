@@ -24,17 +24,17 @@ struct Edge {
 vector<Edge> edge;
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void addEdgeReverse(int u, int v, int w) {
-    reverseEs[reverseEcnt].to  = v;
-    reverseEs[reverseEcnt].w   = w;
+    reverseEs[reverseEcnt].to = v;
+    reverseEs[reverseEcnt].w = w;
     reverseEs[reverseEcnt].nex = reverseHead[u];
-    reverseHead[u]             = reverseEcnt++;
+    reverseHead[u] = reverseEcnt++;
 }
 
 void tarjan(int u) {
@@ -54,11 +54,11 @@ void tarjan(int u) {
         colorCnt++;
         while (s.top() != u) {
             color[s.top()] = colorCnt;
-            ins[s.top()]   = false;
+            ins[s.top()] = false;
             s.pop();
         }
         color[s.top()] = colorCnt;
-        ins[s.top()]   = false;
+        ins[s.top()] = false;
         s.pop();
     }
 }

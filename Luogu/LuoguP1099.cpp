@@ -17,10 +17,10 @@ struct addEdge {
 } es[MAXN << 1];
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
+    es[ecnt].to = v;
     es[ecnt].nex = head[u];
-    es[ecnt].w   = w;
-    head[u]      = ecnt++;
+    es[ecnt].w = w;
+    head[u] = ecnt++;
 }
 
 void fathestNode(int u, int par) {
@@ -37,7 +37,7 @@ void fathestNode(int u, int par) {
 void bfs(int s, int *dis) {
     queue<int> q;
     q.push(s);
-    dis[s]  = 0;
+    dis[s] = 0;
     int res = 0;
     while (!q.empty()) {
         int u = q.front();
@@ -57,8 +57,8 @@ void bfs() {
     // get the diameter end nodes: node1 and node2
     dis[fathest] = -1;  // because the weight of one edge can be zero.
     fathestNode(1, 0);
-    node1        = fathest;
-    fathest      = 0;
+    node1 = fathest;
+    fathest = 0;
     dis[fathest] = -1;
     fathestNode(node1, 0);
     node2 = fathest;

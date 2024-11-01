@@ -24,11 +24,11 @@ string add(string &a, string &b) {
     res.resize(m + 1, 0);
     for (int i = 0; i < n; i++) {
         res[i + 1] = (res[i] + a[i] - '0' + b[i] - '0') / 10;
-        res[i]     = (res[i] + a[i] - '0' + b[i] - '0') % 10;
+        res[i] = (res[i] + a[i] - '0' + b[i] - '0') % 10;
     }
     for (int i = n; i < m; i++) {
         res[i + 1] = (res[i] + b[i] - '0') / 10;
-        res[i]     = (res[i] + b[i] - '0') % 10;
+        res[i] = (res[i] + b[i] - '0') % 10;
     }
     for (int i = 0; i < res.length(); i++) { res[i] += '0'; }
     while (res.length() > 1 && res.back() == '0') { res.pop_back(); }
@@ -45,7 +45,7 @@ string multiply(string &a, char b) {
     res.resize(a.length() + 1, 0);
     for (int i = 0; i < a.length(); i++) {
         res[i + 1] = (res[i] + (a[i] - '0') * (b - '0')) / 10;
-        res[i]     = (res[i] + (a[i] - '0') * (b - '0')) % 10;
+        res[i] = (res[i] + (a[i] - '0') * (b - '0')) % 10;
     }
     for (int i = 0; i < res.length(); i++) { res[i] += '0'; }
     while (res.length() > 1 && res.back() == '0') { res.pop_back(); }
@@ -55,7 +55,7 @@ string multiply(string &a, char b) {
 }
 
 string multiply(string &a, string &b) {
-    string res   = "0";
+    string res = "0";
     bool swapped = false;
     if (a.length() > b.length()) {
         swap(a, b);
@@ -95,7 +95,7 @@ int main() {
         for (int i = kk; i < n; i++) {
             for (int j = kk - 1; j < i; j++) {
                 string newNumber = number.substr(j + 1, i - j);
-                string temp      = multiply(dp[j][kk - 1], newNumber);
+                string temp = multiply(dp[j][kk - 1], newNumber);
                 if (cmp(dp[i][kk], temp) < 0) { dp[i][kk] = temp; }
             }
         }

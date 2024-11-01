@@ -38,7 +38,7 @@ int main() {
         seasoned[i] = true;
         k--;
     }
-    seasoned[0]     = seasoned[n];
+    seasoned[0] = seasoned[n];
     seasoned[n + 1] = seasoned[1];
     for (int i = 1; i <= n; i++) {
         if (love[i]) {

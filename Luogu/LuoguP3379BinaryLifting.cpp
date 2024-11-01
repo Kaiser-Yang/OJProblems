@@ -14,7 +14,7 @@ vector<int> g[MAXN];  // tree
 
 void dfs(int u, int par) {
     parent[u][0] = par;
-    depth[u]     = depth[par] + 1;
+    depth[u] = depth[par] + 1;
     for (int j = 1; j <= 20; j++) { parent[u][j] = parent[parent[u][j - 1]][j - 1]; }
     for (int v : g[u]) {
         if (v == par) { continue; }

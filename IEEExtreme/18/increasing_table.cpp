@@ -30,8 +30,11 @@ int main() {
     // val[i].second is true if the i-th element must be chosen
     vector<pair<int, bool>> val;
     for (auto &&ele : s) {
-        if (ele == 1 || a.count(ele)) { val.push_back({ele, true}); }
-        else { val.push_back({ele, false}); }
+        if (ele == 1 || a.count(ele)) {
+            val.push_back({ele, true});
+        } else {
+            val.push_back({ele, false});
+        }
     }
     if (val.size() < n || val[0].first != 1) {
         cout << 0 << endl;

@@ -79,7 +79,7 @@ public:
             i = j;
         }
         int cnt2 = count_if(cnt, cnt + 3, [](int val) { return val > 0; });
-        n        = count_if(deleted.begin(), deleted.end(), [](bool item) { return !item; });
+        n = count_if(deleted.begin(), deleted.end(), [](bool item) { return !item; });
         if (n >= 6 && n <= 20) { return ans + max(cnt1, 3 - cnt2); }
         if (n <= 5) { return 6 - n + max(0, 3 - cnt2 - (6 - n)); }
         return -1;

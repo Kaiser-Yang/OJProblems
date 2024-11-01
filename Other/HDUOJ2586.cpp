@@ -15,15 +15,15 @@ struct Edge {
 } es[MAXN << 1];
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void dfs(int u, int par) {
     parent[u][0] = par;
-    depth[u]     = depth[par] + 1;
+    depth[u] = depth[par] + 1;
     for (int j = 1; j < 20; j++) { parent[u][j] = parent[parent[u][j - 1]][j - 1]; }
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -61,7 +61,7 @@ int main() {
             addEdge(v, u, w);
         }
         depth[0] = -1;
-        dis[1]   = 0;
+        dis[1] = 0;
         dfs(1, 0);
         int lca = 0;
         for (int i = 0; i < m; i++) {

@@ -16,9 +16,9 @@ struct Graph {
 } es[MAXM];
 
 void addEdge(int u, int v) {
-    es[ecnt].to  = v;
+    es[ecnt].to = v;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 int main() {

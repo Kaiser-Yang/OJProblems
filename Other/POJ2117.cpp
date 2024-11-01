@@ -16,7 +16,7 @@ vector<int> g[MAXN];
 
 void tarjan(int u, int par) {
     dfn[u] = low[u] = ++cnt;
-    int son         = 0;  // how many sons cannot go to ancestors who are older than their father.
+    int son = 0;  // how many sons cannot go to ancestors who are older than their father.
     for (int i = 0; i < g[u].size(); i++) {
         int v = g[u][i];
         if (dfn[v] == 0) {

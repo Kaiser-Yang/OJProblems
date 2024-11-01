@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 constexpr int MAXM = 100 + 10;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 using namespace std;
 

@@ -23,10 +23,10 @@ struct Graph {
 int find(int x) { return x == h[x] ? x : h[x] = find(h[x]); }
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void dijkstra() {
@@ -52,12 +52,12 @@ void dijkstra() {
 }
 
 void dfs(int u, int par) {
-    depth[u]     = depth[par] + 1;
+    depth[u] = depth[par] + 1;
     parent[u][0] = par;
-    value[u][0]  = min(val[u], val[par]);
+    value[u][0] = min(val[u], val[par]);
     for (int j = 1; j <= 20; j++) {
         parent[u][j] = parent[parent[u][j - 1]][j - 1];
-        value[u][j]  = min(value[u][j - 1], value[parent[u][j - 1]][j - 1]);
+        value[u][j] = min(value[u][j - 1], value[parent[u][j - 1]][j - 1]);
     }
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;

@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 const int MAX_PATTERN_NUM = 1e6 + 10;
-const int MAX_TEXT_LEN    = 1e6 + 10;
+const int MAX_TEXT_LEN = 1e6 + 10;
 
 using namespace std;
 
@@ -26,7 +26,7 @@ struct ac_automaton {
                 now = to[now][x];
             } else {
                 to[now][x] = ++node_num;
-                now        = node_num;
+                now = node_num;
             }
         }
         word_num[now]++;
@@ -59,7 +59,7 @@ struct ac_automaton {
     size_t to[MAX_NODE_NUM][MAX_ALPHABET_SIZE];
     size_t fail[MAX_NODE_NUM];
     int word_num[MAX_NODE_NUM];
-    size_t node_num              = 1;
+    size_t node_num = 1;
     constexpr static size_t root = 1;
 };
 

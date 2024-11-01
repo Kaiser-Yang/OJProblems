@@ -16,10 +16,10 @@ struct Edge {
 } es[MAXM * 10];
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 // TODO update wrong codes

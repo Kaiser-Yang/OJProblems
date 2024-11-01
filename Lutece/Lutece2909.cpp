@@ -12,7 +12,7 @@ int main() {
     for (int i = 0; i < m; i++) { cin >> len[i]; }
     int x = 0;
     for (int i = 0; i < m; i++) { x += len[i]; }
-    x       = n - x - m + 1;
+    x = n - x - m + 1;
     int pos = 0;
     for (int i = 0; i < m; i++) {
         int left = pos, right = pos + min(x, len[i]) - 1;
@@ -20,7 +20,7 @@ int main() {
             cout << "?";
             n--;
         }
-        left  = pos + min(x, len[i]);
+        left = pos + min(x, len[i]);
         right = pos + len[i] - 1;
         for (int j = left; j <= right && n > 0; j++) {
             cout << "1";

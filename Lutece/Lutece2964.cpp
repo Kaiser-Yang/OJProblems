@@ -7,7 +7,7 @@ vector<vector<long long>> a;
 long long determint(vector<vector<long long>> &x) {
     if (x.size() == 1) { return x[0][0]; }
     long long flag = 1;
-    long long res  = 0;
+    long long res = 0;
     for (int i = 0; i < x.size(); i++) {
         vector<vector<long long>> temp;
         temp.resize(x.size() - 1);

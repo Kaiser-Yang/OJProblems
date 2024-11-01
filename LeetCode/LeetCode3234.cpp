@@ -1,4 +1,5 @@
-// problem statement: https://leetcode.cn/problems/count-the-number-of-substrings-with-dominant-ones/
+// problem statement:
+// https://leetcode.cn/problems/count-the-number-of-substrings-with-dominant-ones/
 
 #include <bits/stdc++.h>
 

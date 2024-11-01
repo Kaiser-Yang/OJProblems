@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
 public:
     int maximumSwap(int num) {
-        string s   = to_string(num);
+        string s = to_string(num);
         int maxIdx = -1, left = -1, right = -1;
         ;
         for (int i = s.length() - 1; i >= 0; i--) {

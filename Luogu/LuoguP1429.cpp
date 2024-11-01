@@ -19,7 +19,7 @@ double closestDistance(int l, int r) {
         return min(getDis(dot[l], dot[l + 1]),
                    min(getDis(dot[l], dot[r]), getDis(dot[l + 1], dot[r])));
     } else {
-        int mid    = l + r >> 1;
+        int mid = l + r >> 1;
         double dis = min(closestDistance(l, mid), closestDistance(mid + 1, r));
         vector<Dot> res;
         res.push_back(dot[mid]);

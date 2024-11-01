@@ -24,9 +24,9 @@ long long closestDistance(int l, int r) {
         return min(getDisSquare(dot[l], dot[l + 1]),
                    min(getDisSquare(dot[l], dot[r]), getDisSquare(dot[l + 1], dot[r])));
     } else {
-        int mid          = (l + r) >> 1;
+        int mid = (l + r) >> 1;
         int tempMidFirst = dot[mid].first;
-        long long dis    = min(closestDistance(l, mid), closestDistance(mid + 1, r));
+        long long dis = min(closestDistance(l, mid), closestDistance(mid + 1, r));
         int i = l, j = mid + 1, k = l;
         while (i <= mid || j <= r) {
             if (j > r || (i <= mid && dot[i].second < dot[j].second)) {
@@ -44,7 +44,7 @@ long long closestDistance(int l, int r) {
         for (int i = 0; i < res.size(); i++) {
             for (int j = i + 1; j < res.size(); j++) {
                 if (res[j].second - res[i].second >= tempDis) { break; }
-                dis     = min(dis, getDisSquare(res[i], res[j]));
+                dis = min(dis, getDisSquare(res[i], res[j]));
                 tempDis = sqrt(dis) + 1;
             }
         }

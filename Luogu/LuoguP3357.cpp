@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-constexpr int MAXN      = 510;
+constexpr int MAXN = 510;
 constexpr long long INF = 0x3f3f3f3f3f3f3f3f;
 
 using namespace std;
@@ -28,9 +28,9 @@ struct Graph {
 
 void addFlow(int u, int v, int capacity, long long cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u]  = ecnt++;
+    head[u] = ecnt++;
     es[ecnt] = {u, head[v], 0, -cost};
-    head[v]  = ecnt++;
+    head[v] = ecnt++;
 }
 
 long long getLen(long long a, long long b, long long c, long long d) {
@@ -64,7 +64,7 @@ bool spfa() {
 
 int dfs(int u, int inFlow, pair<int, long long> &ans) {
     if (u == t || inFlow == 0) { return inFlow; }
-    vis[u]      = true;
+    vis[u] = true;
     int outFlow = 0;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -106,14 +106,14 @@ int main() {
         } else {
             a++;
         }
-        node[a]       = 1;
-        node[c]       = 1;
-        line[i].left  = a;
+        node[a] = 1;
+        node[c] = 1;
+        line[i].left = a;
         line[i].right = c;
     }
     for (const auto &item : node) { id[item.first] = ++idCnt; }
     for (int i = 0; i < n; i++) {
-        line[i].left  = id[line[i].left];
+        line[i].left = id[line[i].left];
         line[i].right = id[line[i].right];
     }
     s = 0, t = idCnt + 1;

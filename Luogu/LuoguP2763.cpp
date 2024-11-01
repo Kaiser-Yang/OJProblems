@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 1e3 + 10;
 constexpr int MAXK = 20 + 5;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -18,10 +18,10 @@ struct Graph {
 } es[2 * MAXN * MAXK];
 
 void addEdge(int u, int v, int capacity) {
-    es[ecnt].to       = v;
+    es[ecnt].to = v;
     es[ecnt].capacity = capacity;
-    es[ecnt].nex      = head[u];
-    head[u]           = ecnt++;
+    es[ecnt].nex = head[u];
+    head[u] = ecnt++;
 }
 
 bool bfs() {

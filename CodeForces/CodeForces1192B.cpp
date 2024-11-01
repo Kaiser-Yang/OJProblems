@@ -28,10 +28,10 @@ struct TreeNode {
     long long maxDepth = 0;  // max left <= a <= right (dis[a])
     long long minDepth =     // min left <= a <= right (dis[a])
         numeric_limits<long long>::max();
-    long long ans      = 0;  // max left <= l <= a <= r <= right (dis[l] + dis[r] - 2dis[a])
+    long long ans = 0;       // max left <= l <= a <= r <= right (dis[l] + dis[r] - 2dis[a])
     long long maxRight = 0;  // max left <= a <= r <= right (dis[a] - 2dis[r])
-    long long maxLeft  = 0;  // max left <= r <= a <= right (dis[a] - 2dis[r])
-    long long lazy     = 0;
+    long long maxLeft = 0;   // max left <= r <= a <= right (dis[a] - 2dis[r])
+    long long lazy = 0;
 } tr[MAXN << 3];
 
 int lc(int id) { return id << 1; }
@@ -40,10 +40,10 @@ int rc(int id) { return id << 1 | 1; }
 
 void pushup(int id) {
     int lc = ::lc(id), rc = ::rc(id);
-    tr[id].ans      = max({tr[lc].ans,
-                           tr[rc].ans,
-                           tr[lc].maxRight + tr[rc].maxDepth,
-                           tr[lc].maxDepth + tr[rc].maxLeft});
+    tr[id].ans = max({tr[lc].ans,
+                      tr[rc].ans,
+                      tr[lc].maxRight + tr[rc].maxDepth,
+                      tr[lc].maxDepth + tr[rc].maxLeft});
     tr[id].minDepth = min(tr[lc].minDepth, tr[rc].minDepth);
     tr[id].maxDepth = max(tr[lc].maxDepth, tr[rc].maxDepth);
     tr[id].maxRight =
@@ -52,7 +52,7 @@ void pushup(int id) {
 }
 
 void build(int id, int l, int r) {
-    tr[id].left  = l;
+    tr[id].left = l;
     tr[id].right = r;
     if (l == r) {
         tr[id].maxDepth = tr[id].minDepth = dis[nodeId[l]];
@@ -93,9 +93,9 @@ void update(int id, int l, int r, long long delta) {
 }
 
 void dfs(int u, int par) {
-    parent[u]     = par;
+    parent[u] = par;
     nodeId[++cnt] = u;
-    in[u]         = cnt;
+    in[u] = cnt;
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
         if (v == par) { continue; }
@@ -107,10 +107,10 @@ void dfs(int u, int par) {
 }
 
 void addEdge(int u, int v, long long w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 int main() {
@@ -126,8 +126,8 @@ int main() {
     build(1, 1, cnt);
     while (q--) {
         cin >> d >> e;
-        d               = (d % (n - 1) + last % (n - 1)) % (n - 1) + 1;
-        e               = (e % w[0] + last % w[0]) % w[0];
+        d = (d % (n - 1) + last % (n - 1)) % (n - 1) + 1;
+        e = (e % w[0] + last % w[0]) % w[0];
         long long delta = e - w[d];
         if (parent[u[d]] == v[d]) { update(1, in[u[d]], out[u[d]], delta); }
         if (parent[v[d]] == u[d]) { update(1, in[v[d]], out[v[d]], delta); }

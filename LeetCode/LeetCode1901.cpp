@@ -20,7 +20,7 @@ public:
             int p = -1, val = -1;
             for (int j = 0; j < mat[mid].size(); j++) {
                 if (p == -1 || val < mat[mid][j]) {
-                    p   = j;
+                    p = j;
                     val = mat[mid][j];
                 }
             }

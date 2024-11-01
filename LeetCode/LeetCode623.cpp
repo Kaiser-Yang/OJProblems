@@ -23,7 +23,7 @@ public:
             minVal = item.first, minPos = item.second;
             if (ansLeft == -1 || ansRight - ansLeft > maxVal - minVal ||
                 (ansRight - ansLeft == maxVal - minVal && ansLeft > minVal)) {
-                ansLeft  = minVal;
+                ansLeft = minVal;
                 ansRight = maxVal;
             }
             p[minPos]++;

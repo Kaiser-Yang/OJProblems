@@ -15,7 +15,7 @@ void addEdge(int u, int v) { g[u].push_back(v); }
 
 void fathestNode(int u, int par) {
     parent[u] = par;
-    depth[u]  = depth[par] + 1;
+    depth[u] = depth[par] + 1;
     if (depth[u] > depth[fathest]) { fathest = u; }
     for (int v : g[u]) {
         if (v == par) { continue; }
@@ -94,12 +94,12 @@ int main() {
         degree[v]++;
     }
     fathestNode(1, 0);
-    node1   = fathest;
+    node1 = fathest;
     fathest = 0;
     fathestNode(node1, 0);
-    node2    = fathest;
+    node2 = fathest;
     diameter = depth[node2] - 1;
-    int now  = node2;
+    int now = node2;
     do { onDiameter[now] = true; } while ((now = parent[now]) != 0);
     bfs();  // get the dis1[i]: distance between node1 and i;
             // 		  dis2[i]; distance between node2 and i;

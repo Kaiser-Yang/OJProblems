@@ -8,7 +8,7 @@ class Solution {
 public:
     int monotoneIncreasingDigits(int n) {
         string num = to_string(n);
-        int pos    = -1;
+        int pos = -1;
         for (int i = 0; i + 1 < num.length(); i++) {
             if (num[i] > num[i + 1]) {
                 pos = i;
@@ -19,7 +19,7 @@ public:
         if (stoi(string(num.size(), '1')) > n) { return stoi(string(num.size() - 1, '9')); }
         string ans;
         for (int i = 0; i < num.length(); i++) {
-            char ch    = num[i];
+            char ch = num[i];
             char limit = '0';
             if (!ans.empty()) {
                 limit = ans.back();

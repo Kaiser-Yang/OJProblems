@@ -58,7 +58,7 @@ int main() {
         if (delta[i].first >= 2451545) { break; }
         pos = i;
     }
-    Date now      = {-4713, 1, 1};
+    Date now = {-4713, 1, 1};
     long long cnt = 0;
     for (int i = 1; i <= pos; i++) {
         while (cnt < delta[i].first) {
@@ -67,7 +67,7 @@ int main() {
         }
         ans[delta[i].second] = now;
     }
-    now     = {2000, 1, 1};
+    now = {2000, 1, 1};
     int len = 0;
     while (now.year < 2400) {
         temp[len++] = now;

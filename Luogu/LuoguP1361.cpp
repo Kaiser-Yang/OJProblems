@@ -4,7 +4,7 @@
 
 constexpr int MAXN = 1e3 + 10;
 constexpr int MAXM = 1e3 + 10;
-constexpr int INF  = std::numeric_limits<int>::max();
+constexpr int INF = std::numeric_limits<int>::max();
 
 using namespace std;
 
@@ -17,7 +17,7 @@ struct Graph {
 
 void addEdge(int u, int v, int w) {
     es[ecnt] = {v, head[u], w};
-    head[u]  = ecnt++;
+    head[u] = ecnt++;
 }
 
 bool bfs() {

@@ -26,7 +26,7 @@ int main() {
         int mid = l + ((r - l) >> 1);
         if (check(mid)) {
             ans = mid;
-            l   = mid + 1;
+            l = mid + 1;
         } else {
             r = mid - 1;
         }

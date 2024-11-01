@@ -1,6 +1,8 @@
-// problem statement: https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-ii/
+// problem statement:
+// https://leetcode.cn/problems/final-array-state-after-k-multiplication-operations-ii/
 
 #include <bits/stdc++.h>
+
 #include <algorithm>
 
 using namespace std;
@@ -34,7 +36,8 @@ public:
         }
         sort(tmp.begin(), tmp.end());
         for (int i = 0; i < tmp.size(); i++) {
-            tmp[i].first = tmp[i].first % MOD * quick_pow(multiplier, k / tmp.size() + (i < k % tmp.size())) % MOD;
+            tmp[i].first = tmp[i].first % MOD *
+                           quick_pow(multiplier, k / tmp.size() + (i < k % tmp.size())) % MOD;
         }
         for (int i = 0; i < tmp.size(); i++) { nums[tmp[i].second] = tmp[i].first; }
         return nums;

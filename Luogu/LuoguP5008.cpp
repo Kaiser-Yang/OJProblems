@@ -16,7 +16,7 @@ stack<int> s;
 
 void tarjan(int u) {
     dfn[u] = low[u] = ++cnt;
-    in_stack[u]     = true;
+    in_stack[u] = true;
     s.push(u);
     for (auto &&v : g[u]) {
         if (dfn[v] == 0) {
@@ -30,18 +30,18 @@ void tarjan(int u) {
         col++;
         while (s.top() != u) {
             if (w[s.top()] < min_w[col]) {
-                min_w[col]       = w[s.top()];
+                min_w[col] = w[s.top()];
                 min_w_index[col] = s.top();
             }
-            color[s.top()]    = col;
+            color[s.top()] = col;
             in_stack[s.top()] = false;
             s.pop();
         }
         if (w[u] < min_w[col]) {
-            min_w[col]       = w[u];
+            min_w[col] = w[u];
             min_w_index[col] = u;
         }
-        color[s.top()]    = col;
+        color[s.top()] = col;
         in_stack[s.top()] = false;
         s.pop();
     }

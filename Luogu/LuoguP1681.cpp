@@ -48,8 +48,8 @@ int main() {
             }
             int len1 = i - u[i][j] + 1;
             int len2 = r[i][j] - l[i][j] + 1;
-            int len  = min(len1, len2);
-            ans      = max(ans, len);
+            int len = min(len1, len2);
+            ans = max(ans, len);
         }
     }
     cout << ans << endl;

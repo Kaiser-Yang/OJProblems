@@ -15,7 +15,7 @@ vector<int> g[MAXN];
 
 void tarjan(int u, int par) {
     dfn[u] = low[u] = ++cnt;
-    int son         = 0;
+    int son = 0;
     for (int v : g[u]) {
         if (dfn[v] == 0) {
             son++;
