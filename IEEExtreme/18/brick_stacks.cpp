@@ -2,8 +2,6 @@
 
 #include <bits/stdc++.h>
 
-#include <queue>
-
 using namespace std;
 
 constexpr int MAXN = 1e6 + 10;
