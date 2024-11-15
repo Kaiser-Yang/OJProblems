@@ -16,7 +16,7 @@ int main() {
         cout << "0\n0\n";
         return 0;
     }
-    int len   = 0;
+    int len = 0;
     dp[++len] = a[0];
     for (int i = 1; i < n; i++) {
         if (a[i] <= dp[len]) {
@@ -26,7 +26,7 @@ int main() {
         }
     }
     cout << len << endl;
-    len       = 0;
+    len = 0;
     dp[++len] = a[0];
     for (int i = 1; i < n; i++) {
         if (a[i] > dp[len]) {

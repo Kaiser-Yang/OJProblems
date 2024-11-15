@@ -8,7 +8,7 @@
 using namespace std;
 
 const int MAXN = 110;
-const int INF  = 0x3f3f3f3f;
+const int INF = 0x3f3f3f3f;
 
 int T, n, m, u, v, w, ans;
 bool uniqueMST;
@@ -42,7 +42,7 @@ int main() {
             cin >> u >> v >> w;
             edge.push_back(Edge(u, v, w));
         }
-        ans       = 0;
+        ans = 0;
         uniqueMST = true;
         sort(edge.begin(), edge.end());
         // cnt is the number of added edges;

@@ -18,9 +18,9 @@ struct Graph {
 } es[MAXM << 1];
 
 void addEdge(int u, int v) {
-    es[ecnt].to  = v;
+    es[ecnt].to = v;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void tarjan(int u, int par) {
@@ -75,7 +75,7 @@ int main() {
         memset(dfn + 1, 0x00, sizeof(int) * n);
         memset(low + 1, 0x00, sizeof(int) * n);
         tarjan(1, 0);
-        cnt  = 0;
+        cnt = 0;
         ans1 = 0;
         ans2 = 1;
         memset(vis + 1, 0x00, sizeof(int) * n);

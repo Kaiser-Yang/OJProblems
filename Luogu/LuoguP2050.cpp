@@ -2,10 +2,10 @@
 
 #include <bits/stdc++.h>
 
-constexpr int MAXN      = 40 + 5;
-constexpr int MAXM      = 100 + 5;
+constexpr int MAXN = 40 + 5;
+constexpr int MAXM = 100 + 5;
 constexpr int MAX_TOT_P = 800 + 10;
-constexpr int INF       = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -22,7 +22,7 @@ struct Graph {
 
 void addEdge(int u, int v, int capacity, int cost) {
     es[ecnt] = {v, head[u], capacity, cost};
-    head[u]  = ecnt++;
+    head[u] = ecnt++;
 }
 
 bool spfa() {
@@ -53,7 +53,7 @@ bool spfa() {
 int dfs(int u, int inFlow, pair<int, int> &ans) {
     if (u == t || inFlow == 0) { return inFlow; }
     int outFlow = 0;
-    vis[u]      = true;
+    vis[u] = true;
     for (int &i = cur[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
         if (vis[v] || es[i].capacity == 0 || dis[v] != dis[u] + es[i].cost) { continue; }

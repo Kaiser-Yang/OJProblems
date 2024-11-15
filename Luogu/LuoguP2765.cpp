@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 constexpr int MAXANS = 2010;
-constexpr int INF    = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 using namespace std;
 
@@ -19,10 +19,10 @@ struct Graph {
 } es[MAXANS * MAXANS * 2];
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to       = v;
+    es[ecnt].to = v;
     es[ecnt].capacity = w;
-    es[ecnt].nex      = head[u];
-    head[u]           = ecnt++;
+    es[ecnt].nex = head[u];
+    head[u] = ecnt++;
 }
 
 bool bfs() {

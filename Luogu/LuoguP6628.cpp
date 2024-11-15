@@ -60,7 +60,7 @@ int main() {
         degree[i]++;
         degree[s]++;
         int lastJ = -1;
-        int sum   = 0;
+        int sum = 0;
         ufs2.init(n);
         edge.resize(0);
         for (int j = 1; j <= n; j++) {

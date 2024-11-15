@@ -21,8 +21,8 @@ int main() {
     for (int rest = 0; rest < 7; rest++) {
         l = find_if(a.begin(), a.end(), [rest](int x) { return x == rest; }) - a.begin();
         if (l == n + 1) { continue; }
-        r   = find_if(a.rbegin(), a.rend(), [rest](int x) { return x == rest; }) - a.rbegin();
-        r   = n - r;
+        r = find_if(a.rbegin(), a.rend(), [rest](int x) { return x == rest; }) - a.rbegin();
+        r = n - r;
         ans = max(ans, r - l);
     }
     cout << ans << "\n";

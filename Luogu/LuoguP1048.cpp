@@ -4,7 +4,7 @@
 
 using namespace std;
 
-constexpr int MAXM          = 101;
+constexpr int MAXM = 101;
 constexpr int MAX_COST_TIME = 101;
 
 int T, M;

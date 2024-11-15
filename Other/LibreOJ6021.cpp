@@ -7,7 +7,7 @@ using namespace std;
 
 constexpr int MAXN = 7e4 + 10;
 constexpr int MAXM = 1e5 + 10;
-constexpr int MOD  = 1e9 + 7;
+constexpr int MOD = 1e9 + 7;
 
 int n, m, cnt, ans, q, u, v;
 int h[MAXN << 1], in[MAXN << 1], nodeId[MAXN << 2], depth[MAXN << 1], val[MAXN << 1], lg[MAXN << 2],
@@ -29,9 +29,9 @@ int rnd() { return A = (A * B + C) % P; }
 
 void dfs(int u, int par) {
     // cout << u << " " << par << " " << val[u] << endl;
-    depth[u]      = depth[par] + 1;
+    depth[u] = depth[par] + 1;
     nodeId[++cnt] = u;
-    in[u]         = cnt;
+    in[u] = cnt;
     for (int v : g[u]) {
         if (v == par) { continue; }
         dfs(v, u);

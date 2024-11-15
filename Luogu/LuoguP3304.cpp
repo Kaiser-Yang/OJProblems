@@ -29,10 +29,10 @@ void fathestNode(int u, int par) {
 }
 
 void addEdge(int u, int v, long long w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void bfs(int s, long long *dis) {
@@ -72,13 +72,13 @@ int main() {
         addEdge(u, v, w);
         addEdge(v, u, w);
     }
-    fathest          = 1;
+    fathest = 1;
     pathLen[fathest] = 0;
     fathestNode(1, 0);
-    node1            = fathest;
+    node1 = fathest;
     pathLen[fathest] = 0;
     fathestNode(node1, 0);
-    node2    = fathest;
+    node2 = fathest;
     diameter = pathLen[node2];
     bfs();
     int now = node2;

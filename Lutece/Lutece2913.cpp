@@ -35,7 +35,7 @@ void inputMatrix(int m, int n, Matrix<T> &res) {
 
 template <typename T>
 long long different(Matrix<T> &a, Matrix<T> &b) {
-    auto delta    = a - b;
+    auto delta = a - b;
     long long sum = 0;
     for (int i = 0; i < delta.m; i++) {
         long long now = 0;

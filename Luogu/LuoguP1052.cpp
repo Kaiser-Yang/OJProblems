@@ -14,7 +14,7 @@ int stonePos[MAXM];
 int main() {
     cin >> L >> S >> T >> M;
     for (int i = 1; i <= M; i++) { cin >> stonePos[i]; }
-    stonePos[0]     = 0;
+    stonePos[0] = 0;
     stonePos[M + 1] = L;
     sort(stonePos + 1, stonePos + 1 + M);
     int pos = 0;

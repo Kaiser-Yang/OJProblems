@@ -4,8 +4,8 @@
 
 using namespace std;
 
-constexpr int MAXR              = 110;
-constexpr int MAXC              = 110;
+constexpr int MAXR = 110;
+constexpr int MAXC = 110;
 constexpr int MAX_DIRECTION_NUM = 4;
 
 int r, c, ans;

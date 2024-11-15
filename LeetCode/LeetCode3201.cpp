@@ -6,11 +6,14 @@ using namespace std;
 
 class Solution {
 public:
-    int maximumLength(vector<int>& nums) {
+    int maximumLength(vector<int> &nums) {
         int ans = 0, cnt = 0;
         for (auto &&num : nums) {
-            if (num % 2 == 0) { ans++; }
-            else { cnt++; }
+            if (num % 2 == 0) {
+                ans++;
+            } else {
+                cnt++;
+            }
         }
         ans = max(ans, cnt);
         int last = 0;

@@ -4,7 +4,7 @@
 #include <bits/stdc++.h>
 
 constexpr int MAXN = 210;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 using namespace std;
 

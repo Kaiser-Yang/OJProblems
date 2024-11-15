@@ -9,7 +9,7 @@ using namespace std;
 int n, kingLeft, kingRight;
 
 struct BigNumber {
-    int BASE  = 1e4;
+    int BASE = 1e4;
     int WIDTH = 4;
     vector<int> num;
 
@@ -48,7 +48,7 @@ struct BigNumber {
         BigNumber res{*this};
         int now = 0;
         for (int i = num.size() - 1; i >= 0; i--) {
-            now        = now * BASE + num[i];
+            now = now * BASE + num[i];
             res.num[i] = now / other;
             now %= other;
         }

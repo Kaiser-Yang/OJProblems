@@ -27,14 +27,14 @@ bool same(int a, int b) { return find(a) == find(b); }
 void join(int a, int b) {
     int fa = find(a);
     int fb = find(b);
-    h[fa]  = fb;
+    h[fa] = fb;
 }
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 int query(int a, int b) {
@@ -43,14 +43,14 @@ int query(int a, int b) {
     for (int j = 19; j >= 0; j--) {
         if (depth[parent[b][j]] < depth[a]) { continue; }
         res = min(res, value[b][j]);
-        b   = parent[b][j];
+        b = parent[b][j];
     }
     if (a == b) { return res; }
     for (int j = 19; j >= 0; j--) {
         if (parent[a][j] == parent[b][j]) { continue; }
         res = min({res, value[a][j], value[b][j]});
-        a   = parent[a][j];
-        b   = parent[b][j];
+        a = parent[a][j];
+        b = parent[b][j];
     }
     res = min({res, value[a][0], value[b][0]});
     return res;
@@ -58,11 +58,11 @@ int query(int a, int b) {
 
 void dfs(int u, int par, int w) {
     parent[u][0] = par;
-    value[u][0]  = w;
-    depth[u]     = depth[par] + 1;
+    value[u][0] = w;
+    depth[u] = depth[par] + 1;
     for (int j = 1; j < 20; j++) {
         parent[u][j] = parent[parent[u][j - 1]][j - 1];
-        value[u][j]  = min(value[u][j - 1], value[parent[u][j - 1]][j - 1]);
+        value[u][j] = min(value[u][j - 1], value[parent[u][j - 1]][j - 1]);
     }
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;

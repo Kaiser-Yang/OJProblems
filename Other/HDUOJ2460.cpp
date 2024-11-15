@@ -17,15 +17,15 @@ struct Graph {
 } es[MAXM << 1];
 
 void addEdge(int u, int v) {
-    es[ecnt].to  = v;
+    es[ecnt].to = v;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void tarjan(const int &u, const int &par, const int &fromEdgeNumber) {
     dfn[u] = low[u] = ++cnt;
-    parent[u]       = par;
-    depth[u]        = depth[par] + 1;
+    parent[u] = par;
+    depth[u] = depth[par] + 1;
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
         if (dfn[v] == 0) {
@@ -47,14 +47,14 @@ int query(int a, int b) {
     while (depth[b] > depth[a]) {
         res += bridge[b];
         bridge[b] = false;
-        b         = parent[b];
+        b = parent[b];
     }
     if (a == b) { return res; }
     while (parent[a] != parent[b]) {
         res += bridge[a] + bridge[b];
         bridge[a] = bridge[b] = false;
-        a                     = parent[a];
-        b                     = parent[b];
+        a = parent[a];
+        b = parent[b];
     }
     res += bridge[a] + bridge[b];
     bridge[a] = bridge[b] = false;
@@ -65,8 +65,8 @@ int main() {
     ios::sync_with_stdio(false);
     while (cin >> n >> m) {
         if (n == 0 && m == 0) { break; }
-        ecnt      = 0;
-        cnt       = 0;
+        ecnt = 0;
+        cnt = 0;
         totBridge = 0;
         memset(dfn + 1, 0x00, sizeof(int) * n);
         memset(low + 1, 0x00, sizeof(int) * n);

@@ -15,10 +15,10 @@ struct edge {
 } es[MAXN << 1];
 
 void add_edge(int u, int v, int w) {
-    es[ecnt].to   = v;
-    es[ecnt].w    = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].next = head[u];
-    head[u]       = ecnt++;
+    head[u] = ecnt++;
 }
 
 struct carriage {
@@ -32,9 +32,9 @@ void build(int u, int fa) {
     for (int i = head[u]; ~i; i = es[i].next) {
         int v = es[i].to;
         if (v == fa) continue;
-        dis[v]    = dis[u] + es[i].w;
+        dis[v] = dis[u] + es[i].w;
         par[v][0] = u;
-        depth[v]  = depth[u] + 1;
+        depth[v] = depth[u] + 1;
         for (int j = 1; j < 20; j++) { par[v][j] = par[par[v][j - 1]][j - 1]; }
         build(v, u);
     }
@@ -104,7 +104,7 @@ int main() {
         cin >> car[i].u >> car[i].v;
         car[i].lca = lca(car[i].u, car[i].v);
         car[i].dis = get_dis(car[i].u, car[i].v, car[i].lca);
-        r          = max(r, car[i].dis);
+        r = max(r, car[i].dis);
     }
     while (l <= r) {
         int mid = l + ((r - l) >> 1);

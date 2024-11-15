@@ -16,7 +16,7 @@ pair<int, int> dfs(int u, int par) {
         auto temp = dfs(v, u);
         if (temp.second + 1 > res.second) {
             res.second = temp.second + 1;
-            res.first  = temp.first;
+            res.first = temp.first;
         }
     }
     return res;

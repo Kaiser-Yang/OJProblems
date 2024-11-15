@@ -4,7 +4,7 @@
 
 using namespace std;
 
-const long long INF    = 0x3f3f3f3f3f3f3f3fLL;
+const long long INF = 0x3f3f3f3f3f3f3f3fLL;
 const int MAX_NODE_NUM = 510;
 
 int n, m;
@@ -19,12 +19,12 @@ void bfs(int startNode) {
     memset(augmented, 0, sizeof(augmented));
     memset(parent, 0, sizeof(parent));
     memset(slack, 0x3f, sizeof(slack));
-    int u    = 0;
+    int u = 0;
     match[u] = startNode;
     do {
-        leftNode     = match[u];
+        leftNode = match[u];
         augmented[u] = true;
-        delta        = INF;
+        delta = INF;
         for (int rightNode = 1; rightNode <= m; rightNode++) {
             if (augmented[rightNode]) { continue; }
             if (slack[rightNode] >
@@ -34,7 +34,7 @@ void bfs(int startNode) {
                 parent[rightNode] = u;
             }
             if (slack[rightNode] < delta) {
-                delta    = slack[rightNode];
+                delta = slack[rightNode];
                 nextNode = rightNode;
             }
         }
@@ -50,7 +50,7 @@ void bfs(int startNode) {
     } while (match[u] != 0);
     while (u != 0) {
         match[u] = match[parent[u]];
-        u        = parent[u];
+        u = parent[u];
     }
 }
 

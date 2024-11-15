@@ -8,7 +8,7 @@
 using namespace std;
 
 const int MAXN = 510;
-const int INF  = 0x3f3f3f3f;
+const int INF = 0x3f3f3f3f;
 
 int T, m1, m2, n, u, v, w;
 int d[MAXN];
@@ -23,7 +23,7 @@ vector<Edge> g[MAXN];
 // return if has negative circle
 bool bellmanFord() {
     memset(d, 0x3f, sizeof(int) * (n + 1));
-    d[0]      = 0;
+    d[0] = 0;
     bool flag = false;
     for (int i = 0; i <= n; i++) {
         flag = false;

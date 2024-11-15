@@ -20,10 +20,10 @@ struct Graph {
 } es[MAXM << 1];
 
 void addEdge(int u, int v, long long w) {
-    es[ecnt].to       = v;
+    es[ecnt].to = v;
     es[ecnt].capacity = w;
-    es[ecnt].nex      = head[u];
-    head[u]           = ecnt++;
+    es[ecnt].nex = head[u];
+    head[u] = ecnt++;
 }
 
 bool bfs() {
@@ -67,7 +67,7 @@ bool push(int u) {
         if (v != s && v != t && ex[v] != 0 && !inBucket[v]) {
             bucket[height[v]].push(v);
             inBucket[v] = true;
-            maxHeight   = max(maxHeight, height[v]);
+            maxHeight = max(maxHeight, height[v]);
         }
         if (ex[u] == 0) { return false; }
     }

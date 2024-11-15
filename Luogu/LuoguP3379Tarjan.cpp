@@ -18,16 +18,16 @@ struct QueryEdge {
 } queryEdge[MAXM << 1];
 
 void addQueryEdge(int u, int v) {
-    queryEdge[ecnt].to   = v;
+    queryEdge[ecnt].to = v;
     queryEdge[ecnt].from = u;
-    queryEdge[ecnt].nex  = queryHead[u];
-    queryHead[u]         = ecnt++;
+    queryEdge[ecnt].nex = queryHead[u];
+    queryHead[u] = ecnt++;
 }
 
 int find(int x) { return x == parent[x] ? x : parent[x] = find(parent[x]); }
 
 void tarjan(int u) {
-    visit[u]  = true;
+    visit[u] = true;
     parent[u] = u;
     for (int v : g[u]) {
         if (visit[v]) { continue; }

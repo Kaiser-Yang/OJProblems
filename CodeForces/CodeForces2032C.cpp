@@ -12,11 +12,9 @@ int a[MAXN];
 int main() {
     ios::sync_with_stdio(false);
     cin >> T;
-    while(T--) {
+    while (T--) {
         cin >> n;
-        for (int i = 1; i <= n; i++) {
-            cin >> a[i];
-        }
+        for (int i = 1; i <= n; i++) { cin >> a[i]; }
         sort(a + 1, a + 1 + n);
         int l = 1, r = 3, ans = n - 2;
         while (r <= n) {

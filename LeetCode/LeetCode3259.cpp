@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    long long maxEnergyBoost(vector<int>& energyDrinkA, vector<int>& energyDrinkB) {
+    long long maxEnergyBoost(vector<int> &energyDrinkA, vector<int> &energyDrinkB) {
         int n = energyDrinkA.size();
         vector<long long> dp[2] = {vector<long long>(n, 0), vector<long long>(n, 0)};
         dp[0][0] = energyDrinkA[0];

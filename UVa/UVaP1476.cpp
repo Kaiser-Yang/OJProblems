@@ -2,7 +2,7 @@
 
 #include <bits/stdc++.h>
 
-const double eps   = 1e-9;
+const double eps = 1e-9;
 constexpr int MAXN = 1e4 + 10;
 
 using namespace std;
@@ -25,7 +25,7 @@ int main() {
         for (int i = 0; i < n; i++) { cin >> a[i] >> b[i] >> c[i]; }
         l = 0, r = 1000;
         while (r > l + eps) {
-            mid  = (l + r) / 2;
+            mid = (l + r) / 2;
             lmid = mid - eps;
             rmid = mid + eps;
             if (f(lmid) > f(rmid)) {

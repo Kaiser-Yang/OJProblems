@@ -45,9 +45,7 @@ int main() {
             int cnt = item.second[0];
             int las = item.second[0] + len - 1;
             for (int i = 1; i < item.second.size(); i++) {
-                if (las < item.second[i]) {
-                    cnt += item.second[i] - las;
-                }
+                if (las < item.second[i]) { cnt += item.second[i] - las; }
                 las = item.second[i] + len - 1;
             }
             cnt += n - las;
@@ -58,4 +56,3 @@ int main() {
     for (int i = 1; i <= n; i++) { cout << res[i] << (i == n ? "\n" : " "); }
     return 0;
 }
-

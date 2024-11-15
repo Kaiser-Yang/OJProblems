@@ -23,7 +23,7 @@ int main() {
         r[i] = i + 1;
     }
     l[n + 1] = n;
-    r[0]     = 1;
+    r[0] = 1;
     memset(canPlanted, 1, sizeof(canPlanted));
     for (int i = 0; i < k; i++) {
         while (!q.empty() && !canPlanted[q.top().second]) { q.pop(); }
@@ -34,10 +34,10 @@ int main() {
         ans += top.first;
         top.first = a[top.second] = a[l[top.second]] + a[r[top.second]] - a[top.second];
         canPlanted[l[top.second]] = canPlanted[r[top.second]] = false;
-        l[top.second]                                         = l[l[top.second]];
-        r[top.second]                                         = r[r[top.second]];
-        l[r[top.second]]                                      = top.second;
-        r[l[top.second]]                                      = top.second;
+        l[top.second] = l[l[top.second]];
+        r[top.second] = r[r[top.second]];
+        l[r[top.second]] = top.second;
+        r[l[top.second]] = top.second;
         q.push(top);
     }
     cout << ans << endl;

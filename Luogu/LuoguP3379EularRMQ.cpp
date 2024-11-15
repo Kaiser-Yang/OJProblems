@@ -16,13 +16,13 @@ vector<int> g[MAXN];  // tree
 
 void dfs(int u, int depth) {
     nodeId[++cnt] = u;
-    ::depth[cnt]  = depth;
-    in[u]         = cnt;
+    ::depth[cnt] = depth;
+    in[u] = cnt;
     for (int v : g[u]) {
         if (in[v]) { continue; }
         dfs(v, depth + 1);
         nodeId[++cnt] = u;
-        ::depth[cnt]  = depth;
+        ::depth[cnt] = depth;
     }
 }
 
@@ -32,10 +32,10 @@ void sparseTableInit() {
     for (int j = 1; j <= lg[2 * n - 1]; j++) {
         for (int i = 1; i + (1 << j) - 1 <= 2 * n - 1; i++) {
             if (st[i][j - 1] < st[i + (1 << (j - 1))][j - 1]) {
-                st[i][j]   = st[i][j - 1];
+                st[i][j] = st[i][j - 1];
                 stId[i][j] = stId[i][j - 1];
             } else {
-                st[i][j]   = st[i + (1 << (j - 1))][j - 1];
+                st[i][j] = st[i + (1 << (j - 1))][j - 1];
                 stId[i][j] = stId[i + (1 << (j - 1))][j - 1];
             }
         }

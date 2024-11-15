@@ -12,7 +12,7 @@ int main() {
     cin >> number;
     if (number.front() == '-') {
         negative = true;
-        number   = number.substr(1);
+        number = number.substr(1);
     }
     while (number.length() > 1 && number.back() == '0') { number.pop_back(); }
     reverse(number.begin(), number.end());

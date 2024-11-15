@@ -5,9 +5,9 @@ using namespace std;
 string s, t;
 
 void getNext(const string &s, vector<int> &next) {
-    int n   = s.length();
+    int n = s.length();
     next[0] = -1;
-    int j   = -1;
+    int j = -1;
     for (int i = 1; i < n; i++) {
         while (j != -1 && s[i] != s[j + 1]) { j = next[j]; }
         if (s[j + 1] == s[i]) { j++; }

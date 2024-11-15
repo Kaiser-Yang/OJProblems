@@ -35,11 +35,11 @@ void tarjan(int u) {
         colorCnt++;
         while (s.top() != u) {
             color[s.top()] = colorCnt;
-            ins[s.top()]   = false;
+            ins[s.top()] = false;
             s.pop();
         }
         color[s.top()] = colorCnt;
-        ins[s.top()]   = false;
+        ins[s.top()] = false;
         s.pop();
     }
 }

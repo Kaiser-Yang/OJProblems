@@ -6,8 +6,9 @@ using namespace std;
 
 class Solution {
 public:
-    int minimumArea(vector<vector<int>>& grid) {
-        int l = numeric_limits<int>::max(), r = numeric_limits<int>::min(), u = numeric_limits<int>::max(), d = numeric_limits<int>::min();
+    int minimumArea(vector<vector<int>> &grid) {
+        int l = numeric_limits<int>::max(), r = numeric_limits<int>::min(),
+            u = numeric_limits<int>::max(), d = numeric_limits<int>::min();
         for (int i = 0; i < grid.size(); i++) {
             for (int j = 0; j < grid[i].size(); j++) {
                 if (grid[i][j] == 0) { continue; }

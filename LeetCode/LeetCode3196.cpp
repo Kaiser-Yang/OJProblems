@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    long long maximumTotalCost(vector<int>& nums) {
+    long long maximumTotalCost(vector<int> &nums) {
         int n = nums.size();
         vector<vector<long long>> dp(n, vector<long long>(2));
         dp[0][0] = nums[0];

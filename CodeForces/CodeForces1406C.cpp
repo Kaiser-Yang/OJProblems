@@ -13,7 +13,7 @@ int siz[MAXN], depth[MAXN];
 vector<int> g[MAXN], centroid;
 
 void dfs(int u, int par) {
-    siz[u]         = 1;
+    siz[u] = 1;
     int maxSonSize = 0;
     for (int v : g[u]) {
         if (v == par) { continue; }
@@ -27,7 +27,7 @@ void dfs(int u, int par) {
 void fathestNode(int u, int par) {
     depth[u] = depth[par] + 1;
     if (depth[u] > depth[fathest]) {
-        fathest       = u;
+        fathest = u;
         fathestParent = par;
     }
     for (int v : g[u]) {

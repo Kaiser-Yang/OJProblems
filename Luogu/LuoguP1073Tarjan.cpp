@@ -32,14 +32,14 @@ void tarjan(int u) {
     if (dfn[u] == low[u]) {
         colorCnt++;
         while (s.top() != u) {
-            color[s.top()]     = colorCnt;
-            ins[s.top()]       = false;
+            color[s.top()] = colorCnt;
+            ins[s.top()] = false;
             minPrice[colorCnt] = min(minPrice[colorCnt], price[s.top()]);
             maxPrice[colorCnt] = max(maxPrice[colorCnt], price[s.top()]);
             s.pop();
         }
-        color[s.top()]     = colorCnt;
-        ins[s.top()]       = false;
+        color[s.top()] = colorCnt;
+        ins[s.top()] = false;
         minPrice[colorCnt] = min(minPrice[colorCnt], price[s.top()]);
         maxPrice[colorCnt] = max(maxPrice[colorCnt], price[s.top()]);
         s.pop();
@@ -54,7 +54,7 @@ void bfs() {
         q.pop();
         for (int v : dag[u]) {
             minPrice[v] = min(minPrice[v], minPrice[u]);
-            dp[v]       = max(dp[v], max(dp[u], maxPrice[v] - minPrice[v]));
+            dp[v] = max(dp[v], max(dp[u], maxPrice[v] - minPrice[v]));
             if ((--inDegree[v]) == 0) { q.push(v); }
         }
     }

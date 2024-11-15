@@ -30,7 +30,7 @@ int main() {
         double fl = f(l), fr = f(r);
         if (fl * fr <= 0) {
             while (cmp(l, r) < 0) {
-                double mid  = (l + r) / 2;
+                double mid = (l + r) / 2;
                 double fmid = f(mid);
                 if (fl * fmid <= 0) {
                     r = mid;

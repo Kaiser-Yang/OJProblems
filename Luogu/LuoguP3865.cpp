@@ -16,7 +16,7 @@ int read() {
         if (ch == '-') { f = -1; }
     } while (ch < '0' || ch > '9');
     do {
-        x  = x * 10 + ch - '0';
+        x = x * 10 + ch - '0';
         ch = getchar();
     } while (ch >= '0' && ch <= '9');
     return x * f;

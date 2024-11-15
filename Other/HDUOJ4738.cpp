@@ -15,10 +15,10 @@ struct Graph {
 } es[MAXN * MAXN * 2];
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void tarjan(int u, int lastEdgeNumber) {
@@ -41,9 +41,9 @@ int main() {
     while (cin >> n >> m) {
         if (n == 0 && m == 0) { break; }
         ecnt = 0;
-        cnt  = 0;
-        siz  = 0;  // the scc size from node 1.
-        ans  = numeric_limits<int>::max();
+        cnt = 0;
+        siz = 0;  // the scc size from node 1.
+        ans = numeric_limits<int>::max();
         memset(dfn + 1, 0, sizeof(int) * n);
         memset(low + 1, 0, sizeof(int) * n);
         memset(head + 1, -1, sizeof(int) * n);

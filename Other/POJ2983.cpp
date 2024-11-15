@@ -26,7 +26,7 @@ void addEdge(int u, int v, int w) { edge.push_back(Edge(u, v, w)); }
 
 bool bellmanFord() {
     memset(dis, 0x3f, sizeof(int) * (n + 1));
-    dis[0]    = 0;
+    dis[0] = 0;
     bool flag = false;
     for (int i = 0; i <= n; i++) {
         flag = false;
@@ -34,7 +34,7 @@ bool bellmanFord() {
             int u = edge[j].u, v = edge[j].v, w = edge[j].w;
             if (dis[v] > dis[u] + w) {
                 dis[v] = dis[u] + w;
-                flag   = true;
+                flag = true;
             }
         }
         if (!flag) { break; }

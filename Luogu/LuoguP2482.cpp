@@ -9,14 +9,14 @@ struct Card {
     int targetID = -1;
     bool valid;
     enum CARD_TYPE {
-        PEACH        = 1,
-        KILL         = 2,
-        DODGE        = 4,
-        FIGHT        = 8,
-        ARROW        = 16,
-        INVASION     = 32,
+        PEACH = 1,
+        KILL = 2,
+        DODGE = 4,
+        FIGHT = 8,
+        ARROW = 16,
+        INVASION = 32,
         INVALIDATION = 64,
-        CROSSBOW     = 128
+        CROSSBOW = 128
     } type;
     explicit Card() : roleID(-1), valid(false) {}
     explicit Card(int roleID, int targetID, CARD_TYPE type)
@@ -81,7 +81,7 @@ enum GAME_RESULT { UNFINISHED, MAIN_WIN, REBEL_WIN };
 
 GAME_RESULT checkGameState() {
     bool mainPigAlive = false;
-    int rebelPigNum   = 0;
+    int rebelPigNum = 0;
     for (auto &&role : allRole) {
         if (role.hp <= 0) { continue; }
         if (role.type == Role::MAIN) {
@@ -140,11 +140,11 @@ void updateAllRoleAttitude(const Card &nowCard, const Card &lastCard) {
     if (nowCard.roleID == 0) {
         return;
     } else if (lastCard.roleID == -1 && nowCard.type & (Card::FIGHT | Card::KILL)) {
-        allRole[nowCard.roleID].attitude[nowCard.roleID]   = Role::GOOD;
+        allRole[nowCard.roleID].attitude[nowCard.roleID] = Role::GOOD;
         allRole[nowCard.targetID].attitude[nowCard.roleID] = Role::BAD;
         allRole[nowCard.roleID].attitude[nowCard.targetID] = Role::BAD;
     } else if (lastCard.roleID != -1 && lastCard.type != Card::INVALIDATION) {
-        allRole[nowCard.roleID].attitude[nowCard.roleID]    = Role::GOOD;
+        allRole[nowCard.roleID].attitude[nowCard.roleID] = Role::GOOD;
         allRole[lastCard.targetID].attitude[nowCard.roleID] = Role::GOOD;
         allRole[nowCard.roleID].attitude[lastCard.targetID] = Role::GOOD;
         if (lastCard.type == Card::FIGHT) {
@@ -152,7 +152,7 @@ void updateAllRoleAttitude(const Card &nowCard, const Card &lastCard) {
             allRole[lastCard.roleID].attitude[nowCard.roleID] = Role::BAD;
         }
     } else if (nowCard.type == Card::INVALIDATION) {
-        allRole[nowCard.roleID].attitude[nowCard.roleID]  = Role::GOOD;
+        allRole[nowCard.roleID].attitude[nowCard.roleID] = Role::GOOD;
         allRole[lastCard.roleID].attitude[nowCard.roleID] = Role::BAD;
         allRole[nowCard.roleID].attitude[lastCard.roleID] = Role::BAD;
     }
@@ -256,7 +256,7 @@ void Role::getCardFromPile(int num) {
 }
 
 int Role::waitInvalidationFinish(Card lastCard) {
-    int res              = 0;
+    int res = 0;
     bool hasINVALIDATION = false;
     do {
         Card tempCard{};
@@ -313,7 +313,7 @@ Card Role::tryPlayInvalidation(const Card &lastCard) {
 bool Role::tryPlayPeachWhenDead() {
     for (auto &&card : handCard) {
         if (!card.valid || card.type != Card::PEACH) { continue; }
-        card.valid    = false;
+        card.valid = false;
         card.targetID = id;
         hp++;
         // cout << id << " played peach when dead.\n";
@@ -410,15 +410,15 @@ Card Role::tryPlayCard(const Card &lastCard) {
         if (!iter->valid) { continue; }
         if (isMyTurn && iter->type == Card::PEACH && hp < 4) {
             hp++;
-            iter->valid    = false;
+            iter->valid = false;
             iter->targetID = id;
             // cout << id << " played peach.\n";
             // cout << *this << endl;
             return *iter;
         }
         if (isMyTurn && iter->type == Card::CROSSBOW) {
-            hasWeapon      = true;
-            iter->valid    = false;
+            hasWeapon = true;
+            iter->valid = false;
             iter->targetID = id;
             // cout << id << " played crossbow.\n";
             // cout << *this << endl;
@@ -426,7 +426,7 @@ Card Role::tryPlayCard(const Card &lastCard) {
         }
         if (iter->type == Card::KILL) {
             if (!isMyTurn && lastCard.type == Card::INVASION) {
-                iter->valid    = false;
+                iter->valid = false;
                 iter->targetID = lastCard.roleID;
                 // cout << id << " played kill to invasion.\n";
                 // cout << *this << endl;
@@ -434,7 +434,7 @@ Card Role::tryPlayCard(const Card &lastCard) {
             }
             if (!isMyTurn && lastCard.type == Card::FIGHT) {
                 if (type == LOYAL && lastCard.roleID == 0) { return Card{}; }
-                iter->valid    = false;
+                iter->valid = false;
                 iter->targetID = lastCard.roleID;
                 // cout << id << " played kill to fight.\n";
                 // cout << *this << endl;
@@ -450,7 +450,7 @@ Card Role::tryPlayCard(const Card &lastCard) {
             int targetID = findFirstAliveBadGuyWithinOneDistance();
             if (targetID == -1) { continue; }
             killTime++;
-            iter->valid    = false;
+            iter->valid = false;
             iter->targetID = targetID;
             // cout << id << " played kill to " << iter->targetID << "\n";
             // cout << *this << endl;
@@ -467,7 +467,7 @@ Card Role::tryPlayCard(const Card &lastCard) {
         }
         if (!isMyTurn && iter->type == Card::DODGE &&
             (lastCard.type & (Card::ARROW | Card::KILL))) {
-            iter->valid    = false;
+            iter->valid = false;
             iter->targetID = lastCard.roleID;
             // cout << id << " played dodge to kill or arrow.\n";
             // cout << *this << endl;
@@ -476,7 +476,7 @@ Card Role::tryPlayCard(const Card &lastCard) {
         if (isMyTurn && iter->type == Card::FIGHT) {
             int targetID = findFirstAliveBadGuy();
             if (targetID == -1) { continue; }
-            iter->valid    = false;
+            iter->valid = false;
             iter->targetID = targetID;
             // cout << id << " played fight to " << iter->targetID << "\n";
             // cout << *this << endl;

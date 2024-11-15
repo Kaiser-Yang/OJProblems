@@ -7,7 +7,7 @@ using namespace std;
 
 constexpr int MAXN = 1e5 + 10;
 constexpr int MAXM = 2e5 + 10;
-constexpr int MOD  = 1e9 + 7;
+constexpr int MOD = 1e9 + 7;
 
 int T, n, m, u, v, ecnt, newEcnt, newEcnt1;
 int cnt1[MAXN], cnt2[MAXN], head[MAXN], newHead[MAXN], newHead1[MAXN], degree[MAXN];
@@ -20,9 +20,9 @@ struct Graph {
 } g[MAXM << 1], newG[MAXM], newG1[MAXM];
 
 void addEdge(int u, int v, Graph *es, int &ecnt, int *head) {
-    es[ecnt].to  = v;
+    es[ecnt].to = v;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 constexpr long long quickPow(long long a, long long b, long long MOD) {
@@ -35,7 +35,7 @@ constexpr long long quickPow(long long a, long long b, long long MOD) {
     return res;
 }
 
-constexpr int POWER2  = quickPow(2, MOD - 2, MOD);
+constexpr int POWER2 = quickPow(2, MOD - 2, MOD);
 constexpr int POWER24 = quickPow(24, MOD - 2, MOD);
 
 // One centroid with four nodes.
@@ -45,7 +45,7 @@ long long solve0() {
         if (degree[u] < 4) { continue; }
         long long temp = 1;
         for (int j = 0; j < 4; j++) { temp = temp * (degree[u] - j) % MOD; }
-        temp   = temp * POWER24 % MOD;
+        temp = temp * POWER24 % MOD;
         ans[0] = (ans[0] + temp) % MOD;
     }
     return ans[0];
@@ -73,7 +73,7 @@ long long solve1() {
         for (int i = newHead[a]; i != -1; i = newG[i].nex) {
             int b = newG[i].to;
             for (int j = newHead[b]; j != -1; j = newG[j].nex) {
-                int c  = newG[j].to;
+                int c = newG[j].to;
                 ans[1] = (ans[1] + 1LL * cnt1[c] * (cnt1[c] - 1) / 2 % MOD +
                           1LL * cnt1[c] * cnt2[c] % MOD) %
                          MOD;
@@ -85,7 +85,7 @@ long long solve1() {
             for (int j = newHead[b]; j != -1; j = newG[j].nex) {
                 int c = newG[j].to;
                 if (c == a) { continue; }
-                ans[1]  = (ans[1] + (1LL * cnt2[c] * (cnt2[c] - 1) / 2) % MOD * POWER2 % MOD) % MOD;
+                ans[1] = (ans[1] + (1LL * cnt2[c] * (cnt2[c] - 1) / 2) % MOD * POWER2 % MOD) % MOD;
                 cnt2[c] = 0;
             }
         }
@@ -98,7 +98,7 @@ long long solve2() {
     ans[2] = cnt = 0;
     for (int a = 1; a <= n; a++) {
         for (int i = newHead[a]; i != -1; i = newG[i].nex) {
-            int b  = newG[i].to;
+            int b = newG[i].to;
             vis[b] = true;
         }
         for (int i = newHead[a]; i != -1; i = newG[i].nex) {
@@ -106,12 +106,12 @@ long long solve2() {
             for (int j = newHead[b]; j != -1; j = newG[j].nex) {
                 int c = newG[j].to;
                 if (!vis[c]) { continue; }
-                cnt    = (cnt + 1) % MOD;
+                cnt = (cnt + 1) % MOD;
                 ans[2] = (ans[2] + degree[a] + degree[b] + degree[c] - 6) % MOD;
             }
         }
         for (int i = newHead[a]; i != -1; i = newG[i].nex) {
-            int b  = newG[i].to;
+            int b = newG[i].to;
             vis[b] = false;
         }
     }
@@ -129,7 +129,7 @@ long long solve3() {
                 MOD;
         }
     }
-    ans[3]        = ans[3] - 2 * ans[2] % MOD;
+    ans[3] = ans[3] - 2 * ans[2] % MOD;
     return ans[3] = (ans[3] % MOD + MOD) % MOD;
 }
 
@@ -139,12 +139,12 @@ long long solve4() {
     for (int a = 1; a <= n; a++) {
         long long temp = 0;
         for (int i = head[a]; i != -1; i = g[i].nex) {
-            int b  = g[i].to;
+            int b = g[i].to;
             ans[4] = (ans[4] + temp * (degree[b] - 1) % MOD) % MOD;
-            temp   = (temp + degree[b] - 1) % MOD;
+            temp = (temp + degree[b] - 1) % MOD;
         }
     }
-    ans[4]        = (ans[4] - 2 * ans[2] - 4 * ans[1] - 3 * cnt);
+    ans[4] = (ans[4] - 2 * ans[2] - 4 * ans[1] - 3 * cnt);
     return ans[4] = (ans[4] % MOD + MOD) % MOD;
 }
 

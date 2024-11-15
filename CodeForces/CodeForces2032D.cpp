@@ -14,8 +14,7 @@ bool path_contain_root(int a, int b) {
     return res == 1;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
@@ -33,7 +32,7 @@ int main()
         set<int> tentacle;
         for (int i = 2; i <= tentacle_cnt; i++) { tentacle.insert(i); }
         tentacle.insert(now++);
-        while(now < n) {
+        while (now < n) {
             if (path_contain_root(now, *tentacle.begin())) {
                 tentacle.erase(tentacle.begin());
             } else {

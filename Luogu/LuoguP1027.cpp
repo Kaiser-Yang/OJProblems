@@ -4,7 +4,7 @@
 
 using namespace std;
 
-constexpr int MAXS     = 110;
+constexpr int MAXS = 110;
 constexpr int MAX_NODE = 400 + 1;
 
 int T, S, t, A, B, price;

@@ -4,7 +4,7 @@
 
 using namespace std;
 
-constexpr int MAXK     = 20;
+constexpr int MAXK = 20;
 constexpr int MAXN_BIT = 31;
 
 int k;

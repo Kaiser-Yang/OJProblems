@@ -15,7 +15,7 @@ int siz[MAXN];
 vector<int> g[MAXN], centroid;
 
 void dfs(int u, int par) {
-    siz[u]         = 1;
+    siz[u] = 1;
     int maxSonSize = 0;
     for (int i = 0; i < g[u].size(); i++) {
         int v = g[u][i];

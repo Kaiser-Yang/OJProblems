@@ -32,19 +32,19 @@ void join(int a, int b) {
 }
 
 void addEdge(int u, int v, int w) {
-    es[ecnt].to  = v;
-    es[ecnt].w   = w;
+    es[ecnt].to = v;
+    es[ecnt].w = w;
     es[ecnt].nex = head[u];
-    head[u]      = ecnt++;
+    head[u] = ecnt++;
 }
 
 void dfs(int u, int par, int w) {
-    depth[u]     = depth[par] + 1;
+    depth[u] = depth[par] + 1;
     parent[u][0] = par;
-    ::w[u][0]    = w;
+    ::w[u][0] = w;
     for (int j = 1; j < 20; j++) {
         parent[u][j] = parent[parent[u][j - 1]][j - 1];
-        ::w[u][j]    = max(::w[u][j - 1], ::w[parent[u][j - 1]][j - 1]);
+        ::w[u][j] = max(::w[u][j - 1], ::w[parent[u][j - 1]][j - 1]);
     }
     for (int i = head[u]; i != -1; i = es[i].nex) {
         int v = es[i].to;
@@ -59,14 +59,14 @@ int queryMaxEdge(int a, int b) {
     for (int j = 19; j >= 0; j--) {
         if (depth[parent[b][j]] < depth[a]) { continue; }
         res = max(res, w[b][j]);
-        b   = parent[b][j];
+        b = parent[b][j];
     }
     if (a == b) { return res; }
     for (int j = 19; j >= 0; j--) {
         if (parent[a][j] == parent[b][j]) { continue; }
         res = max({res, w[a][j], w[b][j]});
-        a   = parent[a][j];
-        b   = parent[b][j];
+        a = parent[a][j];
+        b = parent[b][j];
     }
     res = max({res, w[a][0], w[b][0]});
     return res;

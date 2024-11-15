@@ -19,10 +19,10 @@ int dfs(int turn) {
             ok = false;
             if (turn == 1) {
                 grid[i][j] = 'O';
-                res        = max(res, dfs(!turn));
+                res = max(res, dfs(!turn));
             } else {
                 grid[i][j] = 'X';
-                res        = min(res, dfs(!turn));
+                res = min(res, dfs(!turn));
             }
             grid[i][j] = '.';
         }

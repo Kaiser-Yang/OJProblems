@@ -3,7 +3,7 @@
 #include <bits/stdc++.h>
 
 constexpr size_t MAX_PATTERN_NUM = 2e5 + 10;
-constexpr size_t MAX_TEXT_LEN    = 2e6 + 10;
+constexpr size_t MAX_TEXT_LEN = 2e6 + 10;
 
 using namespace std;
 
@@ -52,7 +52,7 @@ struct ac_automaton {
         }
     }
 
-    size_t node_num              = 1;
+    size_t node_num = 1;
     static constexpr size_t root = 1;
     size_t to[MAX_NODE_NUM][MAX_ALPHABET_SIZE];
     size_t fail[MAX_NODE_NUM];

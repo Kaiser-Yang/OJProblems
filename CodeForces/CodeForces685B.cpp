@@ -13,7 +13,7 @@ int centroid[MAXN], parent[MAXN], siz[MAXN], maxSonSize[MAXN];
 vector<int> g[MAXN];
 
 void dfs(int u) {
-    siz[u]        = 1;
+    siz[u] = 1;
     maxSonSize[u] = 0;
     for (int v : g[u]) {
         dfs(v);
@@ -22,7 +22,7 @@ void dfs(int u) {
     }
     centroid[u] = u;
     for (int v : g[u]) {
-        int node        = centroid[v];
+        int node = centroid[v];
         int newCentroid = centroid[v];
         while (parent[node] != u) {
             node = parent[node];

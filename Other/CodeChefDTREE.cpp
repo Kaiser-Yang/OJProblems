@@ -14,7 +14,7 @@ bool onDiameter[MAXN];
 
 void fathestNode(int u, int par) {
     parent[u] = par;
-    depth[u]  = depth[par] + 1;
+    depth[u] = depth[par] + 1;
     if (depth[u] > depth[fathest]) { fathest = u; }
     for (int v : g[u]) {
         if (v == par) { continue; }
@@ -28,11 +28,11 @@ void dfs(int u, int par) {
         dfs(v, u);
         if (maxPath[v] + 1 > maxPath[u]) {
             subMaxPath[u] = maxPath[u];
-            maxPath[u]    = maxPath[v] + 1;
+            maxPath[u] = maxPath[v] + 1;
         } else if (maxPath[v] + 1 > subMaxPath[u]) {
             subMaxPath[u] = maxPath[v] + 1;
         }
-        ans[u]      = max(ans[u], diameter[v]);
+        ans[u] = max(ans[u], diameter[v]);
         diameter[u] = max(diameter[u], diameter[v]);
     }
     diameter[u] = max(diameter[u], maxPath[u] + subMaxPath[u]);

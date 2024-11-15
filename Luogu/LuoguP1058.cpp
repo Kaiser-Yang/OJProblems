@@ -35,8 +35,8 @@ int main() {
                     for (int b = 0; b < strlen(cuboid[a]); b++) {
                         if ((a == 0 && b < 2) || (a == 1 && b < 1)) { continue; }
                         ans[x + 5 - a][y + b] = cuboid[a][b];
-                        maxN                  = max(maxN, 5 - a + x);
-                        maxM                  = max(maxM, y + b);
+                        maxN = max(maxN, 5 - a + x);
+                        maxM = max(maxM, y + b);
                     }
                 }
             }

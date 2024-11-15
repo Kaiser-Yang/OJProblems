@@ -6,7 +6,7 @@ int T;
 vector<string> grid;
 
 int numberNotInPosition() {
-    int res                     = 0;
+    int res = 0;
     static const char *result[] = {"11111", "01111", "00*11", "00001", "00000"};
     for (int i = 0; i < 5; i++) {
         for (int j = 0; j < 5; j++) {

@@ -6,7 +6,7 @@
 using namespace std;
 
 constexpr int MAXN = 110;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 int n, m, u, v, w, ans = INF;
 int dp[MAXN][MAXN], g[MAXN][MAXN];

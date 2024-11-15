@@ -33,7 +33,7 @@ void updateDp(int u, int par) {
     // the totPeople - siz[u] means that all the other nodes
     // which are node in the sub-tree u need trapass the path between u and par.
     dp[u] = dp[par] - siz[u] + totPeople - siz[u];
-    ans   = min(ans, dp[u]);
+    ans = min(ans, dp[u]);
 }
 
 void treeDP(int u) {

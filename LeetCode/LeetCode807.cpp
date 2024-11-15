@@ -11,7 +11,7 @@ public:
         vector<int> maxColumn(n), maxRow(n);
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
-                maxRow[i]    = max(maxRow[i], grid[i][j]);
+                maxRow[i] = max(maxRow[i], grid[i][j]);
                 maxColumn[j] = max(maxColumn[j], grid[i][j]);
             }
         }

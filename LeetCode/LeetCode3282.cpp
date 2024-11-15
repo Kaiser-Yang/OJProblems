@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    long long findMaximumScore(vector<int>& nums) {
+    long long findMaximumScore(vector<int> &nums) {
         vector<pair<int, int>> res;
         res.push_back({nums[0], 0});
         for (int i = 1; i < nums.size(); i++) {

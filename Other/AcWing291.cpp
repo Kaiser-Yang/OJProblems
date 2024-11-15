@@ -18,7 +18,7 @@ int main() {
             status[s].clear();
             for (int ns = 0; ns < (1 << n); ns++) {
                 valid = true;
-                cnt   = 0;
+                cnt = 0;
                 for (int j = 0; j < n; j++) {
                     if (((1 << j) & s) && ((1 << j) & ns)) {
                         valid = false;

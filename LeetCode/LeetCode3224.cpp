@@ -6,7 +6,7 @@ using namespace std;
 
 class Solution {
 public:
-    int minChanges(vector<int>& nums, int k) {
+    int minChanges(vector<int> &nums, int k) {
         int n = nums.size();
         vector<int> max_x(n / 2), cnt(k + 1);
         for (int i = 0; i < n / 2; i++) {

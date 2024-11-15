@@ -17,7 +17,7 @@ int bfs(int s, int *dis, bool updateParent = false) {
     queue<int> q;
     q.push(s);
     int fathest = s;
-    dis[s]      = 0;
+    dis[s] = 0;
     while (!q.empty()) {
         int u = q.front();
         q.pop();
@@ -75,7 +75,7 @@ int main() {
             if (check(mid)) {
                 ans1 = ans1Temp;
                 ans2 = ans2Temp;
-                r    = mid - 1;
+                r = mid - 1;
             } else {
                 l = mid + 1;
             }

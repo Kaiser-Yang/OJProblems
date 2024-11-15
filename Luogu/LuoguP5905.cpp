@@ -5,7 +5,7 @@
 
 using namespace std;
 
-constexpr int MAXN      = 3e3 + 10;
+constexpr int MAXN = 3e3 + 10;
 constexpr long long INF = 0x3f3f3f3f3f3f3f3fLL;
 
 int n, m, u, v, w;
@@ -20,7 +20,7 @@ vector<Edge> g[MAXN];
 // return if has negative circle
 bool bellmanFord() {
     memset(d, 0x3f, sizeof(d));
-    d[0]      = 0;
+    d[0] = 0;
     bool flag = false;
     for (int i = 0; i <= n; i++) {
         flag = false;

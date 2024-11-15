@@ -62,7 +62,7 @@ int main() {
     for (int i = 1; i <= n; i++) { sort(g[i].begin(), g[i].end()); }
     for (int i = 1; i <= n; i++) {
         for (int j = 0; j < g[i].size(); j++) {
-            int v               = g[i][j].to;
+            int v = g[i][j].to;
             g[i][j].reverseEdge = reverseEdgeCnt[v]++;
         }
     }

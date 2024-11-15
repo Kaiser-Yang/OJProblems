@@ -6,8 +6,7 @@ using namespace std;
 
 int T, n, m, u, v;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
@@ -42,7 +41,7 @@ int main()
         for (int i = 1; i <= n; i++) {
             if (g[i].size() == 0) {
                 one_node.push_back(i);
-            } else if (*g[i].begin() > i){
+            } else if (*g[i].begin() > i) {
                 two_nodes.emplace_back(i, *g[i].begin());
             }
         }
@@ -53,14 +52,10 @@ int main()
                 ans.emplace_back(i, u, v);
                 u = i;
             }
-            for (auto [a, b] : two_nodes) {
-                ans.emplace_back(a, b, u);
-            }
+            for (auto [a, b] : two_nodes) { ans.emplace_back(a, b, u); }
         }
         cout << ans.size() << '\n';
-        for (auto &&[a, b, c] : ans) {
-            cout << a << ' ' << b << ' ' << c << '\n';
-        }
+        for (auto &&[a, b, c] : ans) { cout << a << ' ' << b << ' ' << c << '\n'; }
     }
     return 0;
 }

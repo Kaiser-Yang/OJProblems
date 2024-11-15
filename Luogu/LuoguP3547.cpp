@@ -7,7 +7,7 @@ using namespace std;
 
 constexpr int MAXN = 1e5 + 10;
 constexpr int MAXM = 1e5 + 10;
-constexpr int INF  = 0x3f3f3f3f;
+constexpr int INF = 0x3f3f3f3f;
 
 int n, m, k, a, b, u, v;
 int ans[MAXN], dis[MAXN];
@@ -23,10 +23,10 @@ struct Graph {
     }
 
     void addEdge(int u, int v) {
-        to[ecnt]     = v;
-        nex[ecnt]    = head[u];
+        to[ecnt] = v;
+        nex[ecnt] = head[u];
         pre[head[u]] = ecnt;
-        head[u]      = ecnt++;
+        head[u] = ecnt++;
     }
 
     void delEdge(int u, int i) {
@@ -75,7 +75,7 @@ int main() {
         int u = q.front();
         q.pop();
         for (int i = g.head[u]; i != 0; i = g.nex[i]) {
-            int v  = g.to[i];
+            int v = g.to[i];
             vis[v] = true;
         }
         for (int i = g.head[u]; i != 0; i = g.nex[i]) {
@@ -89,7 +89,7 @@ int main() {
             }
         }
         for (int i = g.head[u]; i != 0; i = g.nex[i]) {
-            int v  = g.to[i];
+            int v = g.to[i];
             vis[v] = false;
         }
     }

@@ -26,7 +26,7 @@ array<FLAG_TYPE, MAXN> cityFlag;
 array<pair<int, int>, MAXN> cityWinTime;
 
 void outputTime(int x) {
-    int hour   = x / 60;
+    int hour = x / 60;
     int minute = x % 60;
     cout << setw(3) << setfill('0') << hour << ":" << setw(2) << setfill('0') << minute;
 }

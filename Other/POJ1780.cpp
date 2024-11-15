@@ -27,16 +27,16 @@ Node s[MAXN * 100];
 
 void hierholzer(int startNode, int index) {
     int tp = 0, u = 0, w = 0, v = 0, newW = 0;
-    s[tp].first  = startNode;
+    s[tp].first = startNode;
     s[tp].second = 0;
     tp++;
     while (tp) {
         u = s[tp - 1].first, w = s[tp - 1].second;
         if (cnt[u] < len[u]) {
-            v    = (u * 10 + g[u][cnt[u]]) % tenPow[index];
+            v = (u * 10 + g[u][cnt[u]]) % tenPow[index];
             newW = g[u][cnt[u]];
             cnt[u]++;
-            s[tp].first  = v;
+            s[tp].first = v;
             s[tp].second = newW;
             tp++;
         } else {
@@ -47,7 +47,7 @@ void hierholzer(int startNode, int index) {
 }
 
 int main() {
-    n      = 10;
+    n = 10;
     ans[0] = "9876543210";
     for (int i = 1; i < 6; i++) {
         for (int j = 0; j < n; j++) {

@@ -40,7 +40,7 @@ int main() {
     for (int i = 1; i <= n - 2; i++) {
         for (int j = 1; i + j + 1 <= n; j++) {
             int k = n - i - j;
-            ans   = min(ans, getAns(i, j, k));
+            ans = min(ans, getAns(i, j, k));
         }
     }
     cout << ans << endl;

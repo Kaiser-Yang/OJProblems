@@ -50,12 +50,12 @@ void dfs(int depth) {
     for (int i = 0; i < k; i++) {
         Rectangle temp = rect[i];
         if (rect[i].arranged) {
-            rect[i].leftRange  = min(rect[i].leftRange, dot[depth].first);
+            rect[i].leftRange = min(rect[i].leftRange, dot[depth].first);
             rect[i].rightRange = max(rect[i].rightRange, dot[depth].first);
-            rect[i].upRange    = max(rect[i].upRange, dot[depth].second);
-            rect[i].downRange  = min(rect[i].downRange, dot[depth].second);
+            rect[i].upRange = max(rect[i].upRange, dot[depth].second);
+            rect[i].downRange = min(rect[i].downRange, dot[depth].second);
         } else {
-            rect[i].arranged  = true;
+            rect[i].arranged = true;
             rect[i].leftRange = rect[i].rightRange = dot[depth].first;
             rect[i].upRange = rect[i].downRange = dot[depth].second;
         }

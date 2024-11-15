@@ -35,7 +35,7 @@ int main() {
     for (int i = 1; i <= n; i++) { cin >> c[i] >> u[i]; }
     for (int i = 0; i < p; i++) {
         cin >> x >> y >> z;
-        w[x][y]         = z;
+        w[x][y] = z;
         connected[x][y] = true;
         inDegree[y]++;
         outDegree[x]++;
