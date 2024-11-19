@@ -11,9 +11,7 @@ void guess(int i, int val) {
     cout.flush();
     int res;
     cin >> res;
-    if (res != 1) {
-        exit(-1);
-    }
+    if (res != 1) { exit(-1); }
 }
 
 int query(const string &str) {

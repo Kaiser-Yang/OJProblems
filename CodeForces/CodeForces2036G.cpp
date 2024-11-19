@@ -26,8 +26,7 @@ int bit_size(long long x) {
     return cnt;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {

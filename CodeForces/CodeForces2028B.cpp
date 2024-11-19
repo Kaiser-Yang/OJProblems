@@ -13,9 +13,11 @@ int main() {
     while (T--) {
         cin >> n >> b >> c;
         if (b == 0 && c == 0) {
-            if (n == 1) { cout << "0\n"; }
-            else if (n == 2) { cout << "1\n"; }
-            else {
+            if (n == 1) {
+                cout << "0\n";
+            } else if (n == 2) {
+                cout << "1\n";
+            } else {
                 cout << "-1\n";
             }
         } else if (b == 0) {

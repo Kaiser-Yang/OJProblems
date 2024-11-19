@@ -12,26 +12,16 @@ int a[MAXN], b[MAXN], sum[MAXN];
 int main() {
     ios::sync_with_stdio(0);
     cin >> n >> k;
-    for (int i = 0; i < n; i++) {
-        cin >> a[i];
-    }
-    for (int i = 0; i < n; i++) {
-        cin >> b[i];
-    }
-    for (int i = n - 1; i >= 0; i--) {
-        sum[i] = sum[i + 1] + a[i] / b[i];
-    }
+    for (int i = 0; i < n; i++) { cin >> a[i]; }
+    for (int i = 0; i < n; i++) { cin >> b[i]; }
+    for (int i = n - 1; i >= 0; i--) { sum[i] = sum[i + 1] + a[i] / b[i]; }
     if (sum[0] < k) {
-        for (int i = 0; i < n; i++) {
-            cout << 0 << (i == n - 1 ? '\n' : ' ');
-        }
+        for (int i = 0; i < n; i++) { cout << 0 << (i == n - 1 ? '\n' : ' '); }
         return 0;
     }
     for (int i = 0; i < n; i++) {
         cout << max(0, k - sum[i + 1]) << (i == n - 1 ? '\n' : ' ');
-        if (k > sum[i + 1]) {
-            k -= k - sum[i + 1];
-        }
+        if (k > sum[i + 1]) { k -= k - sum[i + 1]; }
     }
     return 0;
 }

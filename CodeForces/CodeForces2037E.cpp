@@ -29,7 +29,9 @@ int main() {
                 ans.push_back('0');
             } else if (now_res != last_res) {
                 if (!found_first) {
-                    for (int i = 0; i < (r - l + 1 - 2 - (now_res - 1)); i++) { ans.push_back('1'); }
+                    for (int i = 0; i < (r - l + 1 - 2 - (now_res - 1)); i++) {
+                        ans.push_back('1');
+                    }
                     for (int i = 0; i < now_res - 1; i++) { ans.push_back('0'); }
                     ans.push_back('0');
                     ans.push_back('1');

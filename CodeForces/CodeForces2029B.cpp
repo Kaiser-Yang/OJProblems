@@ -14,8 +14,11 @@ int main() {
         cin >> n >> a >> b;
         int cnt1 = 0, cnt0 = 0;
         for (int i = 0; i < a.size(); i++) {
-            if (a[i] == '0') { cnt0++; }
-            else { cnt1++; }
+            if (a[i] == '0') {
+                cnt0++;
+            } else {
+                cnt1++;
+            }
         }
         bool ok = true;
         for (int i = 0; i < b.size(); i++) {

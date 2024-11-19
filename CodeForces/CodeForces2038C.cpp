@@ -28,8 +28,9 @@ int main() {
                 tmp -= 2;
             }
         }
-        if (number.size() < 4) { cout << "NO\n"; }
-        else {
+        if (number.size() < 4) {
+            cout << "NO\n";
+        } else {
             cout << "YES\n";
             cout << number[0] << ' ' << number[1] << ' ';
             cout << number[0] << ' ' << number.back() << ' ';

@@ -25,13 +25,16 @@ int main() {
             } else {
                 x--;
             }
-            if (x == a && y == b) { done = true; break; }
+            if (x == a && y == b) {
+                done = true;
+                break;
+            }
         }
         if (done) {
             cout << "YES\n";
             continue;
         }
-        if (x == 0 && y == 0) { 
+        if (x == 0 && y == 0) {
             cout << "NO\n";
             continue;
         }
@@ -48,17 +51,17 @@ int main() {
             }
             if (x == 0 && a - dx != 0) { continue; }
             if (y == 0 && b - dy != 0) { continue; }
-            if (x == 0 && abs(b - dy) % abs(y) == 0 && (b - dy) / y > 0) {
-                done = true;
-            }
-            if (y == 0 && abs(a - dx) % abs(x) == 0 && (a - dx) / x > 0)  {
-                done = true;
-            }
-            if (x != 0 && y != 0 && abs(a - dx) % abs(x) == 0 && abs(b - dy) % abs(y) == 0 && (a - dx) / x == (b - dy) / y && (a - dx) / x > 0) {
+            if (x == 0 && abs(b - dy) % abs(y) == 0 && (b - dy) / y > 0) { done = true; }
+            if (y == 0 && abs(a - dx) % abs(x) == 0 && (a - dx) / x > 0) { done = true; }
+            if (x != 0 && y != 0 && abs(a - dx) % abs(x) == 0 && abs(b - dy) % abs(y) == 0 &&
+                (a - dx) / x == (b - dy) / y && (a - dx) / x > 0) {
                 done = true;
             }
         }
-        if (done) { cout << "YES\n"; continue; }
+        if (done) {
+            cout << "YES\n";
+            continue;
+        }
         cout << "NO\n";
     }
     return 0;

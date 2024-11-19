@@ -17,9 +17,7 @@ int main() {
             cnt[a[i]]++;
         }
         int ans = 0;
-        for (auto [x, y] : cnt) {
-            ans += y / 2;
-        }
+        for (auto [x, y] : cnt) { ans += y / 2; }
         cout << ans << '\n';
         cnt.clear();
     }

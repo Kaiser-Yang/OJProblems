@@ -7,7 +7,8 @@ using namespace std;
 constexpr int MAXN = 1e5 + 5;
 
 int T, n, m, k;
-int h[MAXN], x[MAXN];;
+int h[MAXN], x[MAXN];
+;
 
 bool check(int res) {
     if (res == 0) { return false; }
@@ -25,9 +26,7 @@ bool check(int res) {
     int cnt = 0;
     for (auto [_, val] : v) {
         cnt += val;
-        if (cnt >= k) {
-            return true;
-        }
+        if (cnt >= k) { return true; }
     }
     return false;
 }
@@ -35,11 +34,9 @@ bool check(int res) {
 int main() {
     ios::sync_with_stdio(0);
     cin >> T;
-    while(T--) {
+    while (T--) {
         cin >> n >> m >> k;
-        for (int i = 0; i < n; i++) {
-            cin >> h[i];
-        }
+        for (int i = 0; i < n; i++) { cin >> h[i]; }
         for (int i = 0; i < n; i++) { cin >> x[i]; }
         int l = 0, r = 1e9, ans = -1;
         while (l <= r) {

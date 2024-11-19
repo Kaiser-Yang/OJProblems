@@ -10,9 +10,7 @@ int T, n;
 int a[MAXN], b[MAXN];
 
 bool check(int res) {
-    for (int i = 0; i < n; i++) {
-        b[i] = a[i] - res;
-    }
+    for (int i = 0; i < n; i++) { b[i] = a[i] - res; }
     while (true) {
         bool finish = true;
         for (int i = 0; i < n; i++) {

@@ -22,12 +22,8 @@ int main() {
     cin >> T;
     while (T--) {
         cin >> n >> m >> L;
-        for (int i = 1; i <= n; i++) {
-            cin >> hurdle[i].l >> hurdle[i].r;
-        }
-        for (int i = 1; i <= m; i++) {
-            cin >> power_up[i].x >> power_up[i].v;
-        }
+        for (int i = 1; i <= n; i++) { cin >> hurdle[i].l >> hurdle[i].r; }
+        for (int i = 1; i <= m; i++) { cin >> power_up[i].x >> power_up[i].v; }
         bool ok = true;
         int power = 1, ans = 0, power_up_idx = 1;
         int las = 0;

@@ -18,9 +18,7 @@ void get_prime_factors(int x, vector<int> &prime_factor) {
     while (x > 1) {
         prime_factor.push_back(smallest_prime_factor[x]);
         int tmp = smallest_prime_factor[x];
-        while (x % tmp == 0) {
-            x /= tmp;
-        }
+        while (x % tmp == 0) { x /= tmp; }
     }
 }
 
@@ -74,9 +72,7 @@ int main() {
     for (int i = 1; i <= n; i++) {
         get_divisor(a[i], divisor);
         if (i == 1) {
-            for (int d : divisor) {
-                dp[abs(d)] = 1;
-            }
+            for (int d : divisor) { dp[abs(d)] = 1; }
             continue;
         }
         ans = 0;
@@ -87,9 +83,7 @@ int main() {
                 ans = (ans - dp[-d] + MOD) % MOD;
             }
         }
-        for (int d : divisor) {
-            dp[abs(d)] = (dp[abs(d)] + ans) % MOD;
-        }
+        for (int d : divisor) { dp[abs(d)] = (dp[abs(d)] + ans) % MOD; }
     }
     cout << ans << '\n';
     return 0;
