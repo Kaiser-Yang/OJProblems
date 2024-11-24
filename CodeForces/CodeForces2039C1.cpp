@@ -25,17 +25,13 @@ int main() {
         int x_bit_cnt = bit_count(x);
         for (long long y = 1; y <= min((1LL << x_bit_cnt) - 1, m); y++) {
             if (y == x) { continue; }
-            if (x % (x ^ y) == 0 || y % (x ^ y) == 0) {
-                ans++;
-            }
+            if (x % (x ^ y) == 0 || y % (x ^ y) == 0) { ans++; }
         }
         if ((m >> x_bit_cnt) > 0) {
             long long tmp = (m >> x_bit_cnt);
             for (long long y = (tmp << x_bit_cnt); y <= m; y++) {
                 if (x == y) { continue; }
-                if (x % (x ^ y) == 0 || y % (x ^ y) == 0) {
-                    ans++;
-                }
+                if (x % (x ^ y) == 0 || y % (x ^ y) == 0) { ans++; }
             }
         }
         cout << ans << '\n';

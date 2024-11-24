@@ -53,9 +53,7 @@ void bfs() {
     }
     int ans = numeric_limits<int>::max() / 2;
     for (int i = 0; i < 4; i++) {
-        for (int j = 0; j < 4; j++) {
-            ans = min(ans, dis[ex][ey][i][j]);
-        }
+        for (int j = 0; j < 4; j++) { ans = min(ans, dis[ex][ey][i][j]); }
     }
     cout << (ans == numeric_limits<int>::max() / 2 ? -1 : ans) << endl;
 }

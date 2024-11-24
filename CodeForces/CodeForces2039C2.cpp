@@ -47,12 +47,8 @@ int main() {
             }
             if (!found) {
                 res.pop_back();
-                for (auto &&r : res) {
-                    ans += cnt[(x - r) % x];
-                }
-                for (long long y = (1 << x_bit_cnt) + res.size() * (1 << x_bit_cnt);
-                     y <= m;
-                     y++) {
+                for (auto &&r : res) { ans += cnt[(x - r) % x]; }
+                for (long long y = (1 << x_bit_cnt) + res.size() * (1 << x_bit_cnt); y <= m; y++) {
                     if ((x ^ y) % x == 0 || (x ^ y) % y == 0) { ans++; }
                 }
             } else {
@@ -62,9 +58,7 @@ int main() {
                 int last_part_len = (m >> x_bit_cnt) % res.size();
                 if (last_part_len == 0) { last_part_len = res.size(); }
                 last_part_len--;
-                for (int i = 0; i < last_part_len; i++) {
-                    ans += cnt[(x - res[i]) % x];
-                }
+                for (int i = 0; i < last_part_len; i++) { ans += cnt[(x - res[i]) % x]; }
                 for (long long y = (m >> x_bit_cnt << x_bit_cnt); y <= m; y++) {
                     if ((x ^ y) % x == 0 || (x ^ y) % y == 0) { ans++; }
                 }

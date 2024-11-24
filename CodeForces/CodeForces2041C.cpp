@@ -14,9 +14,7 @@ int main() {
     cin >> n;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < n; j++) {
-            for (int k = 0; k < n; k++) {
-                cin >> a[i][j][k];
-            }
+            for (int k = 0; k < n; k++) { cin >> a[i][j][k]; }
         }
     }
     memset(dp, 0x3f, sizeof(dp));
@@ -29,7 +27,8 @@ int main() {
                 if (i & (1 << x)) { continue; }
                 for (int y = 0; y < n; y++) {
                     if (j & (1 << y)) { continue; }
-                    dp[i | (1 << x)][j | (1 << y)] = min(dp[i | (1 << x)][j | (1 << y)], dp[i][j] + a[x][y][cnt_i]);
+                    dp[i | (1 << x)][j | (1 << y)] =
+                        min(dp[i | (1 << x)][j | (1 << y)], dp[i][j] + a[x][y][cnt_i]);
                 }
             }
         }

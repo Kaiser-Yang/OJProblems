@@ -25,23 +25,16 @@ int main() {
     while (T--) {
         cin >> n >> m;
         vector<int> a(m + 1);
-        for (int i = 1; i <= m; i++) {
-            cin >> a[i];
-        }
+        for (int i = 1; i <= m; i++) { cin >> a[i]; }
         bool fail = false;
         for (int i = 1; i <= n; i++) {
-            if (m <= cnt[i]) {
-                fail = true;
-            }
+            if (m <= cnt[i]) { fail = true; }
         }
         if (fail) {
             cout << "-1\n";
         } else {
-            for (int i = 1; i <= n; i++) {
-                cout << a[m - cnt[i]] << " \n"[i == n];
-            }
+            for (int i = 1; i <= n; i++) { cout << a[m - cnt[i]] << " \n"[i == n]; }
         }
     }
     return 0;
 }
-

@@ -11,9 +11,7 @@ int main() {
     cin >> T;
     while (T--) {
         cin >> n;
-        for (int i = 0; i < n; i++) {
-            cout << i * 2 + 1 << ' ';
-        }
+        for (int i = 0; i < n; i++) { cout << i * 2 + 1 << ' '; }
         cout << '\n';
     }
     return 0;
