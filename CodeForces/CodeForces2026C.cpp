@@ -23,7 +23,7 @@ int main() {
         long long ans = 1LL * (1 + n) * n / 2;
         for (int i = n - 1; i >= 0; i--) {
             if (cnt1.empty()) { break; }
-            if (str[i] == '0') { 
+            if (str[i] == '0') {
                 if (!cnt0.empty() && cnt0.back() == i) { cnt0.pop_back(); }
                 continue;
             }

@@ -11,7 +11,8 @@ long long a[MAXN], b[MAXN];
 
 pair<int, int> get_block_idx(long long x) {
     int reverse_idx = ceil((-1 + sqrt(1 + 8LL * ((1LL + n) * n / 2 - x + 1))) / 2);
-    return {n - reverse_idx + 1, (1LL + reverse_idx) * reverse_idx / 2 - ((1LL + n) * n / 2 - x + 1) + 1};
+    return {n - reverse_idx + 1,
+            (1LL + reverse_idx) * reverse_idx / 2 - ((1LL + n) * n / 2 - x + 1) + 1};
 }
 
 long long query(long long l, long long r) {

@@ -6,8 +6,7 @@ using namespace std;
 
 int t, x, y, k;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> t;
     while (t--) {

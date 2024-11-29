@@ -14,20 +14,15 @@ struct Requirement {
     int idx, value;
 };
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> m >> n >> q;
     vector<vector<int>> a(n + 1, vector<int>(m + 1));
     for (int j = 1; j <= m; j++) {
-        for (int i = 1; i <= n; i++) {
-            cin >> a[i][j];
-        }
+        for (int i = 1; i <= n; i++) { cin >> a[i][j]; }
     }
     for (int i = 1; i <= n; i++) {
-        for (int j = 1; j <= m; j++) {
-            a[i][j] |= a[i][j - 1];
-        }
+        for (int j = 1; j <= m; j++) { a[i][j] |= a[i][j - 1]; }
     }
     while (q--) {
         cin >> requirement_num;
@@ -42,16 +37,16 @@ int main()
             }
         }
         int left = 1, right = m;
-        for (auto && req: requirement) {
-            if (left > right) {
-                break;
-            }
+        for (auto &&req : requirement) {
+            if (left > right) { break; }
             if (req.type == Requirement::LESS) {
-                auto iter = lower_bound(a[req.idx].begin() + left, a[req.idx].begin() + right + 1, req.value);
+                auto iter = lower_bound(
+                    a[req.idx].begin() + left, a[req.idx].begin() + right + 1, req.value);
                 iter--;
                 right = min(right, (int)(iter - a[req.idx].begin()));
             } else {
-                auto iter = upper_bound(a[req.idx].begin() + left, a[req.idx].begin() + right + 1, req.value);
+                auto iter = upper_bound(
+                    a[req.idx].begin() + left, a[req.idx].begin() + right + 1, req.value);
                 if (iter == a[req.idx].begin() + right + 1) {
                     right = 0;
                     break;
