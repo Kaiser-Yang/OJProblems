@@ -1,4 +1,4 @@
-// problem statement: https://codeforces.com/problemset/problem/2036/G
+// problem statement: https://codeforces.com/contest/2036/problem/G
 
 #include <bits/stdc++.h>
 
@@ -32,7 +32,6 @@ int main() {
     while (T--) {
         cin >> n;
         int cnt = bit_size(n) - 1;
-        // cout << cnt << endl;
         for (long long i = 1LL << cnt; i > 0; i >>= 1) {
             long long res = query(a | i, a | (i * 2 - 1));
             if (res != 0) { a |= i; }

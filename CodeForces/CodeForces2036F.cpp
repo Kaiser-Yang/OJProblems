@@ -1,4 +1,4 @@
-// problem statement: https://codeforces.com/problemset/problem/2036/F
+// problem statement: https://codeforces.com/contest/2036/problem/F
 
 #include <bits/stdc++.h>
 
