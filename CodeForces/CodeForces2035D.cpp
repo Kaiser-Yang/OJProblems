@@ -42,12 +42,13 @@ int main() {
                     break;
                 }
             }
-            if (cnt > 0) { pos.emplace_back(a, cnt); }
-            else {  sum += a; }
-            long long ans = sum;
-            for (auto [x, y] : pos) {
-                ans += x * quick_pow(2, y, MOD) % MOD;
+            if (cnt > 0) {
+                pos.emplace_back(a, cnt);
+            } else {
+                sum += a;
             }
+            long long ans = sum;
+            for (auto [x, y] : pos) { ans += x * quick_pow(2, y, MOD) % MOD; }
             cout << ans % MOD << " \n"[i == n];
         }
     }

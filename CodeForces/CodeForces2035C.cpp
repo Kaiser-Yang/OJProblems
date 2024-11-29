@@ -16,7 +16,8 @@ int main() {
             if (n & (1 << i)) { len = i; }
         }
         vector<int> a;
-        int last = -1, last_but_one = -1, last_but_two = -1, last_but_three = -1, last_but_four = -1;
+        int last = -1, last_but_one = -1, last_but_two = -1, last_but_three = -1,
+            last_but_four = -1;
         if (n % 2 == 0) {
             last = n;
             last_but_one = (~n) & ((1 << len) - 1);

@@ -6,13 +6,12 @@ using namespace std;
 
 int T, n, m, r, c;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
         cin >> n >> m >> r >> c;
-        cout << 1LL * (n - r) * (m - 1)  + 1LL * (n - r) * m + m - c << '\n';
+        cout << 1LL * (n - r) * (m - 1) + 1LL * (n - r) * m + m - c << '\n';
     }
     return 0;
 }
