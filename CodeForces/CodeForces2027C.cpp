@@ -40,11 +40,12 @@ int main() {
         vis.clear();
         g.clear();
         g.resize(2 * n);
-        for (int i = 1; i < n; i++) {
-            add_edge(a[i] + i, a[i] + i + i);
+        for (int i = 1; i < n; i++) { add_edge(a[i] + i, a[i] + i + i); }
+        if (id.count(n) == 0) {
+            cout << n << '\n';
+        } else {
+            cout << dfs(id[n]) << '\n';
         }
-        if (id.count(n) == 0) { cout << n << '\n'; }
-        else { cout << dfs(id[n]) << '\n'; }
     }
     return 0;
 }

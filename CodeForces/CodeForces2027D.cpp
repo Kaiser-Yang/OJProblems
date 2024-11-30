@@ -44,7 +44,7 @@ int main() {
                 if (l < i && dp[i][j - 1] > dp[l][j] + m - j) {
                     dp[i][j] = dp[l][j] + m - j;
                     f[i][j] = sum % MOD;
-                } else if (l < i && dp[i][j - 1] == dp[l][j] + m -j) {
+                } else if (l < i && dp[i][j - 1] == dp[l][j] + m - j) {
                     dp[i][j] = dp[i][j - 1];
                     f[i][j] = ((i == n ? 0 : f[i][j - 1]) + sum) % MOD;
                 } else {
