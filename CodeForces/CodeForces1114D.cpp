@@ -16,7 +16,8 @@ int main() {
     for (int len = 2; len <= n; len++) {
         for (int l = 1; l + len - 1 <= n; l++) {
             int r = l + len - 1;
-            dp[l][r] = min({dp[l][r], dp[l + 1][r] + (a[l] != a[l + 1]), dp[l][r - 1] + (a[r] != a[r - 1])});
+            dp[l][r] = min(
+                {dp[l][r], dp[l + 1][r] + (a[l] != a[l + 1]), dp[l][r - 1] + (a[r] != a[r - 1])});
             if (a[l] == a[r]) { dp[l][r] = min(dp[l][r], dp[l + 1][r - 1] + 1); }
         }
     }

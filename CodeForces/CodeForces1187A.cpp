@@ -11,9 +11,13 @@ int main() {
     cin >> T;
     while (T--) {
         cin >> n >> s >> t;
-        if (s == n && t == n) { cout << "1\n"; }
-        else if (s + t == n) { cout << max(s, t) + 1 << '\n'; }
-        else { cout << n - min(s, t) + 1 << '\n'; }
+        if (s == n && t == n) {
+            cout << "1\n";
+        } else if (s + t == n) {
+            cout << max(s, t) + 1 << '\n';
+        } else {
+            cout << n - min(s, t) + 1 << '\n';
+        }
     }
     return 0;
 }

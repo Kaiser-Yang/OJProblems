@@ -18,15 +18,13 @@ int main() {
         cnt[a[i].first]++;
     }
     long long sum = 0;
-    for (auto& p : a) {
-        sum += p.first;
-    }
+    for (auto &p : a) { sum += p.first; }
     sort(a.begin(), a.end());
     for (int i = 0; i < n - m * k; i++) {
         cnt[a[i].first]--;
         sum -= a[i].first;
     }
-    sort(a.begin(), a.end(), [](const pair<int, int>& x, const pair<int, int>& y) {
+    sort(a.begin(), a.end(), [](const pair<int, int> &x, const pair<int, int> &y) {
         return x.second < y.second;
     });
     cout << sum << '\n';

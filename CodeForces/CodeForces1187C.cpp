@@ -22,9 +22,7 @@ int main() {
     ans[0] = n;
     for (int i = 0; i < m; i++) {
         if (limit[i].type == 0) { break; }
-        for (int j = limit[i].l; j <= limit[i].r - 1; j++) {
-            ans[j] = 0;
-        }
+        for (int j = limit[i].l; j <= limit[i].r - 1; j++) { ans[j] = 0; }
     }
     for (int i = m - 1; i >= 0; i--) {
         if (limit[i].type == 1) { break; }
