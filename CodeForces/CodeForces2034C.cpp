@@ -23,8 +23,8 @@ char get_reverse_dir(char dir) {
     return '?';
 }
 
-int dx[] = { -1, 1, 0, 0 };
-int dy[] = { 0, 0, -1, 1 };
+int dx[] = {-1, 1, 0, 0};
+int dy[] = {0, 0, -1, 1};
 
 enum { UNVISITED, VISITING, TRAPPED, EXIT };
 vector<vector<int>> state;

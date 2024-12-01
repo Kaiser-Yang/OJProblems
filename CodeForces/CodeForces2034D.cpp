@@ -25,7 +25,8 @@ int main() {
             while (!pos[0].empty() && *pos[0].rbegin() + 1 <= len0) {
                 pos[0].erase(*pos[0].rbegin());
             }
-            while (pos[1].size() > 1 && len0 < *pos[1].rbegin() + 1 && *pos[1].rbegin() + 1 <= len0 + len1) {
+            while (pos[1].size() > 1 && len0 < *pos[1].rbegin() + 1 &&
+                   *pos[1].rbegin() + 1 <= len0 + len1) {
                 pos[1].erase(*pos[1].rbegin());
             }
             while (!pos[2].empty() && len0 + len1 < *pos[2].rbegin() + 1) {
