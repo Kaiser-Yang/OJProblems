@@ -10,9 +10,7 @@ string s;
 vector<int> cnt;
 
 struct Comparator {
-    bool operator()(int a, int b) {
-        return cnt[a] < cnt[b];
-    }
+    bool operator()(int a, int b) { return cnt[a] < cnt[b]; }
 };
 
 int main() {
@@ -34,9 +32,7 @@ int main() {
             if (i != n - 1) { cnt[i] += cnt[i + 1]; }
         }
         priority_queue<int, vector<int>, Comparator> q;
-        for (int i = 1; i < n; i++) {
-            q.push(i);
-        }
+        for (int i = 1; i < n; i++) { q.push(i); }
         while (!q.empty()) {
             int i = q.top();
             q.pop();
@@ -48,9 +44,7 @@ int main() {
                     ans--;
                     now += cnt[i];
                 } else {
-                    if (now < k) {
-                        ans = -1;
-                    }
+                    if (now < k) { ans = -1; }
                     break;
                 }
             }
