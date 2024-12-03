@@ -7,8 +7,7 @@ using namespace std;
 int T, n;
 vector<int> a;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
@@ -20,9 +19,7 @@ int main()
         for (int i = 0; i < n; i++) {
             sum += a[i];
             long long s_root = sqrt(sum);
-            if (s_root * s_root == sum && s_root % 2 == 1) {
-                ans++;
-            }
+            if (s_root * s_root == sum && s_root % 2 == 1) { ans++; }
         }
         cout << ans << endl;
     }

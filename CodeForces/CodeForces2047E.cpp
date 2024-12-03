@@ -84,9 +84,7 @@ int main() {
         for (int i = 0; i < y.size(); i++) { id_y[y[i]] = i + 1; }
         sort(coordinate.begin(), coordinate.end());
         discrete.resize(n);
-        for (int i = 0; i < n; i++) {
-            discrete[i] = id_y[coordinate[i].second];
-        }
+        for (int i = 0; i < n; i++) { discrete[i] = id_y[coordinate[i].second]; }
         int l = 0, r = n / 4;
         while (l <= r) {
             int mid = l + (r - l) / 2;

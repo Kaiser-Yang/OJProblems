@@ -28,9 +28,7 @@ int main() {
             }
         }
         int max_rest = rest[0];
-        for (int i = 1; i < rest.size(); i++) {
-            max_rest = max(max_rest, rest[i]);
-        }
+        for (int i = 1; i < rest.size(); i++) { max_rest = max(max_rest, rest[i]); }
         ans += max_rest;
         cout << ans << '\n';
     }
