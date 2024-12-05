@@ -7,8 +7,7 @@ using namespace std;
 string a, b;
 vector<int> cnt;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> a >> b;
     cnt.resize(a.size());
@@ -21,7 +20,7 @@ int main()
     }
     int ans = 0, c = 0;
     for (int i = 0; i < b.size(); i++) {
-        if (b[i] =='0') { c++; }
+        if (b[i] == '0') { c++; }
     }
     for (int l = 0; l + b.size() <= a.size(); l++) {
         int r = l + b.size() - 1;

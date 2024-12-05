@@ -6,8 +6,7 @@ using namespace std;
 
 int n, m, k;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> n >> m >> k;
     cout << (m >= n && k >= n ? "YES" : "NO") << endl;
