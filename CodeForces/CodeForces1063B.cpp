@@ -1,14 +1,12 @@
+// problem statement: https://codeforces.com/contest/1063/problem/B
+
 #include <bits/stdc++.h>
 
 using namespace std;
 
-constexpr int MAXN = 2010;
-constexpr int MAXM = 2010;
-
-int n, m, sx, sy, limitLeft, limitRight, ans;
-string grid[MAXN];
-
-int dis[MAXN][MAXM];
+int n, m, sx, sy, limit_left, limit_right, ans;
+vector<string> grid;
+vector<vector<int>> dis;
 
 enum DIRECTION {
     UP,
@@ -23,7 +21,7 @@ int dy[] = {0, 0, -1, 1};
 bool bound(int x, int y) { return x >= 0 && x < n && y >= 0 && y < m; }
 
 void bfs() {
-    memset(dis, 0x3f, sizeof(dis));
+    dis.resize(n, vector<int>(m, numeric_limits<int>::max() / 2));
     using Node = pair<int, int>;
     deque<Node> q;
     q.push_front({sx, sy});
@@ -49,13 +47,14 @@ void bfs() {
 
 int main() {
     ios::sync_with_stdio(false);
-    cin >> n >> m >> sx >> sy >> limitLeft >> limitRight;
+    cin >> n >> m >> sx >> sy >> limit_left >> limit_right;
     sx--, sy--;
+    grid.resize(n);
     for (int i = 0; i < n; i++) { cin >> grid[i]; }
     bfs();
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
-            if (dis[i][j] <= limitLeft && dis[i][j] + j - sy <= limitRight) { ans++; }
+            if (dis[i][j] <= limit_left && dis[i][j] + j - sy <= limit_right) { ans++; }
         }
     }
     cout << ans << endl;
