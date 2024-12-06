@@ -7,8 +7,7 @@ using namespace std;
 int T;
 string s;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
