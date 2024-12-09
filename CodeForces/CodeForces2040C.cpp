@@ -18,16 +18,14 @@ int main() {
             vector<int> ans(n);
             int head = 0, tail = n - 1;
             for (int i = 1; i <= n; i++) {
-                if (n - i - 1 > 40 || n - i - 1 <= 40 && 1LL << (n - i - 1) >= k)  {
+                if (n - i - 1 > 40 || n - i - 1 <= 40 && 1LL << (n - i - 1) >= k) {
                     ans[head++] = i;
                 } else {
                     ans[tail--] = i;
                     k -= 1LL << (n - i - 1);
                 }
             }
-            for (int i = 0; i < n; i++) {
-                cout << ans[i] << " \n"[i == n - 1];
-            }
+            for (int i = 0; i < n; i++) { cout << ans[i] << " \n"[i == n - 1]; }
         }
     }
     return 0;

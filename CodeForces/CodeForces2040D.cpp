@@ -41,9 +41,7 @@ int main() {
         ans.resize(n + 1);
         cur = 1;
         dfs(1, 0);
-        for (int i = 1; i <= n; i++) {
-            cout << ans[i] << " \n"[i == n];
-        }
+        for (int i = 1; i <= n; i++) { cout << ans[i] << " \n"[i == n]; }
     }
     return 0;
 }

@@ -7,8 +7,7 @@ using namespace std;
 int T, n, k;
 vector<int> a;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
