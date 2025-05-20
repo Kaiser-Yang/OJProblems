@@ -57,7 +57,6 @@ int main() {
         cout << "NO\n";
         return 0;
     }
-    cout << "YES"
-         << "\n";
+    cout << "YES" << "\n";
     return 0;
 }

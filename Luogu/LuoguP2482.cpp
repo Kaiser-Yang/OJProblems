@@ -240,8 +240,7 @@ void Role::startMyTurn() {
     // cout << id << " started turn.\n";
     // cout << *this << endl;
     Card emptyCard{};
-    while (tryPlayCard(emptyCard).roleID != -1)
-        ;
+    while (tryPlayCard(emptyCard).roleID != -1);
     // cout << id << " finished turn.\n";
     // cout << *this << endl << endl;
 }

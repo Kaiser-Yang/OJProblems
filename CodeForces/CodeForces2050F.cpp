@@ -30,8 +30,7 @@ int main() {
             int l, r;
             cin >> l >> r;
             if (l == r) {
-                cout << "0"
-                     << " \n"[q == 0];
+                cout << "0" << " \n"[q == 0];
                 continue;
             }
             l++;

@@ -120,8 +120,7 @@ bool moveFighter() {
     bool res = false;
     if (cityBlueFighter[0].size() >= 2) {
         outputTime(nowTime);
-        cout << " red headquarter was taken"
-             << "\n";
+        cout << " red headquarter was taken" << "\n";
         res = true;
     }
     for (int i = 1; i <= cityNum; i++) {
@@ -146,8 +145,7 @@ bool moveFighter() {
     }
     if (cityRedFighter[cityNum + 1].size() >= 2) {
         outputTime(nowTime);
-        cout << " blue headquarter was taken"
-             << "\n";
+        cout << " blue headquarter was taken" << "\n";
         res = true;
     }
 
