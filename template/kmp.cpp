@@ -2,7 +2,7 @@
 
 using namespace std;
 
-vector<int> get_next(const string &word, bool user_origin_next = true) {
+vector<int> get_next(const string &word, bool use_origin_next = true) {
     assert(word.length() > 0);
     vector<int> next(word.length());
     size_t i = 1, j = 0;
@@ -10,7 +10,7 @@ vector<int> get_next(const string &word, bool user_origin_next = true) {
         if (word[i] == word[j]) {
             i++;
             j++;
-            if (user_origin_next || i == word.length() || word[i] != word[j]) {
+            if (use_origin_next || i == word.length() || word[i] != word[j]) {
                 next[i - 1] = j;
             } else {
                 next[i - 1] = next[j - 1];
