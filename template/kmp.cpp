@@ -10,6 +10,7 @@ vector<int> get_next(const string &word, bool use_origin_next = true) {
         if (word[i] == word[j]) {
             i++;
             j++;
+            // Use i == word.length() to ensure word[i] is not out of bounds
             if (use_origin_next || i == word.length() || word[i] != word[j]) {
                 next[i - 1] = j;
             } else {
