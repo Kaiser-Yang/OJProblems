@@ -1,4 +1,6 @@
-using u64 = unsigned long long;
+#include <cstdint>
+
+using u64 = uint64_t;
 
 class miller_rabin {
 public:
