@@ -3,6 +3,7 @@
 #include <limits>
 #include <vector>
 
+using i64 = int64_t;
 using u64 = uint64_t;
 
 class combination {
@@ -40,7 +41,7 @@ public:
     // initialize the factorial and inverse factorial arrays
     // required before calling 'c' and 'p'
     template <typename T1>
-    void init(T1 n, u64 mod = std::numeric_limits<u64>::max()) {
+    void init(T1 n, u64 mod) {
         fact = factorial(n + 1, mod);
         fact_inv = inverse(fact, mod);
         combination::mod = mod;
@@ -48,17 +49,19 @@ public:
     }
 
     // return the combination of n choose m modulo mod
-    template <typename T>
-    static u64 c(T n, T m) {
-        return p(n, m) * fact_inv[m] % mod;
+    template <typename T, typename R = i64>
+    static R c(T n, T m) {
+        // We use i64 as the default return type to avoid underflow of unsigned types.
+        return R(p(n, m) * fact_inv[m] % mod);
     }
 
     // return the permutation of n P m modulo mod
-    template <typename T>
-    static u64 p(T n, T m) {
+    template <typename T, typename R = i64>
+    static R p(T n, T m) {
         assert(initialized);
         assert(n >= m);
-        return fact[n] * fact_inv[n - m] % mod;
+        // We use i64 as the default return type to avoid underflow of unsigned types.
+        return R(fact[n] * fact_inv[n - m] % mod);
     }
 
 private:

@@ -1,7 +1,3 @@
-#include <cstdint>
-
-using u64 = uint64_t;
-
 class miller_rabin {
 public:
     template <typename T>
@@ -20,7 +16,7 @@ public:
             auto x = quick_pow(a, d, n);
             if (x == 1 || x == n - 1) { continue; }
             bool ok = false;
-            for (short r = 1; r < s; r++) {
+            for (int r = 1; r < s; r++) {
                 x = multiply(x, x, n);
                 if (x == n - 1) {
                     ok = true;
@@ -57,6 +53,6 @@ private:
         return res;
     }
 
-    static const u64 test[7];
+    static const int test[7];
 };
-constexpr u64 miller_rabin::test[7] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
+constexpr int miller_rabin::test[7] = {2, 325, 9375, 28178, 450775, 9780504, 1795265022};
