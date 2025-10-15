@@ -110,7 +110,6 @@ public:
         return true;
     }
 
-
 private:
     static const int miller_rabin_test[7];
 };

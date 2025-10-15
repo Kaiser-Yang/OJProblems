@@ -1,6 +1,6 @@
+#include <cstdint>
 #include <iostream>
 #include <vector>
-#include <cstdint>
 
 using u64 = uint64_t;
 using i64 = int64_t;
