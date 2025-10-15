@@ -1,7 +1,7 @@
 #include <cassert>
 #include <vector>
 
-template<typename T>
+template <typename T>
 std::vector<int> get_next(const T &word) {
     assert(word.size() > 0);
     std::vector<int> next(word.size() + 1);
@@ -23,7 +23,7 @@ std::vector<int> get_next(const T &word) {
 }
 
 // Return the match position, zero-indexed
-template<typename T>
+template <typename T>
 std::vector<int> kmp(const T &text, const T &word) {
     std::vector<int> res;
     auto &&next = get_next(word);

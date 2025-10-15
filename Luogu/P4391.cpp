@@ -1,15 +1,15 @@
 // problem statement: https://www.luogu.com.cn/problem/P4391
 
 #include <cassert>
-#include <vector>
 #include <cstdint>
 #include <iostream>
 #include <string>
+#include <vector>
 
 using i64 = int64_t;
 using u64 = uint64_t;
 
-template<typename T>
+template <typename T>
 std::vector<int> get_next(const T &word) {
     assert(word.size() > 0);
     std::vector<int> next(word.size() + 1);
