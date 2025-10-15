@@ -1,58 +1,46 @@
-#include <bits/stdc++.h>
+#include <cassert>
+#include <vector>
 
-using namespace std;
-
-vector<int> get_next(const string &word, bool use_origin_next = true) {
-    assert(word.length() > 0);
-    vector<int> next(word.length());
-    size_t i = 1, j = 0;
-    while (i < word.length()) {
+template<typename T>
+std::vector<int> get_next(const T &word) {
+    assert(word.size() > 0);
+    std::vector<int> next(word.size() + 1);
+    next[0] = -1;
+    next[1] = 0;
+    int i = 1, j = 0;
+    while (i < word.size()) {
         if (word[i] == word[j]) {
             i++;
             j++;
-            // Use i == word.length() to ensure word[i] is not out of bounds
-            if (use_origin_next || i == word.length() || word[i] != word[j]) {
-                next[i - 1] = j;
-            } else {
-                next[i - 1] = next[j - 1];
-            }
+            next[i] = j;
         } else if (j == 0) {
             i++;
         } else {
-            j = next[j - 1];
+            j = next[j];
         }
     }
     return next;
 }
 
 // Return the match position, zero-indexed
-vector<int> kmp(const string &text, const string &word, bool use_origin_next = true) {
-    vector<int> res;
-    auto &&next = get_next(word, use_origin_next);
-    size_t i = 0, j = 0;
-    while (i < text.length()) {
+template<typename T>
+std::vector<int> kmp(const T &text, const T &word) {
+    std::vector<int> res;
+    auto &&next = get_next(word);
+    int i = 0, j = 0;
+    while (i < text.size()) {
         if (text[i] == word[j]) {
             i++;
             j++;
-            if (j == word.length()) {
+            if (j == word.size()) {
                 res.emplace_back(i - j);
-                j = next[j - 1];
+                j = next[j];
             }
         } else if (j == 0) {
             i++;
         } else {
-            j = next[j - 1];
+            j = next[j];
         }
     }
     return res;
-}
-
-int main() {
-    string text, word;
-    cin >> text >> word;
-    auto &&res = kmp(text, word);
-    for (auto &&item : res) { cout << item + 1 << '\n'; }
-    auto &&next = get_next(word);
-    for (auto &&item : next) { cout << item << ' '; }
-    return 0;
 }
