@@ -132,6 +132,29 @@ public:
         }
     }
 
+    // solve the system of linear congruences when m are not coprime
+    // return the solution x (minimal and positive) and the lcm of m
+    // if there is no solution, x = -1 and l = -1
+    template <typename T>
+    static void ex_crt(const std::vector<T> &a, const std::vector<T> &m, T &x, T &l) {
+        x = 0;
+        l = 1;
+        for (int i = 0; i < a.size(); i++) {
+            T t0, _;
+            T d = gcd(l, m[i]);
+            if ((a[i] - x) % d != 0) {
+                x = l = -1;
+                return;
+            }
+            ex_gcd(l / d, m[i] / d, t0, _);
+            t0 = (a[i] - x) / d * t0 % (m[i] / d);
+            t0 = (t0 % (m[i] / d) + (m[i] / d)) % (m[i] / d);
+            x = x + t0 * l;
+            l = m[i] / d * l;
+            x %= l;
+        }
+    }
+
 private:
     static const int miller_rabin_test[7];
 };
