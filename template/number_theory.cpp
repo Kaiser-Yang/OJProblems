@@ -76,25 +76,12 @@ public:
     }
 
     template <typename T1, typename T2, typename T3>
-    static T3 multiply(T1 a, T2 b, T3 mod) {
-        T3 res = 0;
-        a %= mod;
-        b %= mod;
-        while (b) {
-            if (b & 1) { res = (0ull + res + a) % mod; }
-            a = (0ull + a + a) % mod;
-            b >>= 1;
-        }
-        return res;
-    }
-
-    template <typename T1, typename T2, typename T3>
     static T3 pow(T1 a, T2 b, T3 mod) {
         T3 res = 1 % mod;
         a %= mod;
         while (b) {
-            if (b & 1) { res = multiply(res, a, mod); }
-            a = multiply(a, a, mod);
+            if (b & 1) { res = 1ull * res * a % mod; }
+            a = 1ull * a * a % mod;
             b >>= 1;
         }
         return res;
