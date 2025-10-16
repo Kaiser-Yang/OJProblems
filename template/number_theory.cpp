@@ -19,27 +19,28 @@ public:
         return res;
     }
 
-    template <typename T, typename R = T>
-    static R lcm(T a, T b) {
-        return R(a) / gcd(a, b) * b;
+    template <typename T>
+    static T lcm(T a, T b) {
+        return a / gcd(a, b) * b;
     }
 
-    template <typename T, typename R = T>
-    static R lcm(const std::vector<T> &a) {
-        R res = 1;
-        for (auto &&x : a) { res = lcm<T, R>(res, x); }
+    template <typename T>
+    static T lcm(const std::vector<T> &a) {
+        T res = 1;
+        for (auto &&x : a) { res = lcm(res, x); }
         return res;
     }
+
     // return the greatest common divisor of a and b,
     // and find x and y such that ax + by = gcd(a, b)
-    template <typename T1, typename T2>
-    static T1 ex_gcd(T1 a, T1 b, T2 &x, T2 &y) {
+    template <typename T>
+    static T ex_gcd(T a, T b, T &x, T &y) {
         if (b == 0) {
             x = 1;
             y = 0;
             return a;
         } else {
-            T1 d = ex_gcd(b, a % b, y, x);
+            T d = ex_gcd(b, a % b, y, x);
             y -= (a / b) * x;
             return d;
         }
@@ -48,36 +49,36 @@ public:
     // return the inverse of a modulo mod
     template <typename T>
     static T inverse_of(T a, T mod) {
-        i64 x, y;
+        T x, y;
         (void)ex_gcd(a, mod, x, y);
         return (x % mod + mod) % mod;
     }
 
     // return the inverse of each element in a modulo mod
-    template <typename T1, typename T2>
-    static std::vector<T2> inverse(const std::vector<T1> &a, T2 mod) {
-        std::vector<T2> prod(a.size() + 1, 1);
-        for (int i = 0; i < a.size(); i++) { prod[i + 1] = 1ull * prod[i] * (a[i] % mod) % mod; }
-        std::vector<T2> inv(a.size());
+    template <typename T>
+    static std::vector<T> inverse(const std::vector<T> &a, T mod) {
+        std::vector<T> prod(a.size() + 1, 1);
+        for (int i = 0; i < a.size(); i++) { prod[i + 1] = prod[i] * (a[i] % mod) % mod; }
+        std::vector<T> inv(a.size());
         auto s = inverse_of(prod.back(), mod);
         for (int i = a.size() - 1; i >= 0; i--) {
-            inv[i] = 1ull * s * prod[i] % mod;
-            s = 1ull * s * a[i] % mod;
+            inv[i] = s * prod[i] % mod;
+            s = s * a[i] % mod;
         }
         return inv;
     }
 
     // return the factorial of [0, n) modulo mod
-    template <typename T1, typename T2>
-    static std::vector<T2> factorial(T1 n, T2 mod) {
-        std::vector<T2> fact(n, 1);
-        for (T1 i = 2; i < n; i++) { fact[i] = 1ull * fact[i - 1] * i % mod; }
+    template <typename T>
+    static std::vector<T> factorial(T n, T mod) {
+        std::vector<T> fact(n, 1);
+        for (T i = 2; i < n; i++) { fact[i] = fact[i - 1] * i % mod; }
         return fact;
     }
 
-    template <typename T1, typename T2, typename T3>
-    static T3 pow(T1 a, T2 b, T3 mod) {
-        T3 res = 1 % mod;
+    template <typename T>
+    static T pow(T a, T b, T mod) {
+        T res = 1 % mod;
         a %= mod;
         while (b) {
             if (b & 1) { res = 1ull * res * a % mod; }
@@ -121,13 +122,13 @@ public:
     // ...
     // x ≡ an (mod mn)
     // return the solution x (minimal and positive) and the lcm of m1, m2, ..., mn
-    template <typename T1, typename T2>
-    static void crt(const std::vector<T1> &a, const std::vector<T1> &m, T2 &x, T2 &l) {
+    template <typename T>
+    static void crt(const std::vector<T> &a, const std::vector<T> &m, T &x, T &l) {
         assert(a.size() == m.size());
         x = 0;
-        l = lcm<T1, T2>(m);
+        l = lcm(m);
         for (int i = 0; i < a.size(); i++) {
-            x = (x + 1ull * a[i] * (l / m[i]) % l * inverse_of(l / m[i], (T2)m[i]) % l) % l;
+            x = (x + a[i] * (l / m[i]) % l * inverse_of(l / m[i], m[i]) % l) % l;
         }
     }
 
