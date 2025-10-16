@@ -12,6 +12,24 @@ public:
         return b == 0 ? a : gcd(b, a % b);
     }
 
+    template <typename T>
+    static T gcd(const std::vector<T> &a) {
+        T res = 0;
+        for (auto &&x : a) { res = gcd(res, x); }
+        return res;
+    }
+
+    template <typename T, typename R = T>
+    static R lcm(T a, T b) {
+        return R(a) / gcd(a, b) * b;
+    }
+
+    template <typename T, typename R = T>
+    static R lcm(const std::vector<T> &a) {
+        R res = 1;
+        for (auto &&x : a) { res = lcm<T, R>(res, x); }
+        return res;
+    }
     // return the greatest common divisor of a and b,
     // and find x and y such that ax + by = gcd(a, b)
     template <typename T1, typename T2>
@@ -28,8 +46,8 @@ public:
     }
 
     // return the inverse of a modulo mod
-    template <typename T1, typename T2>
-    static T2 inverse_of(T1 a, T2 mod) {
+    template <typename T>
+    static T inverse_of(T a, T mod) {
         i64 x, y;
         (void)ex_gcd(a, mod, x, y);
         return (x % mod + mod) % mod;
@@ -108,6 +126,22 @@ public:
             if (!ok) { return false; }
         }
         return true;
+    }
+
+    // solve the system of linear congruences:
+    // x ≡ a1 (mod m1)
+    // x ≡ a2 (mod m2)
+    // ...
+    // x ≡ an (mod mn)
+    // return the solution x (minimal and positive) and the lcm of m1, m2, ..., mn
+    template <typename T1, typename T2>
+    static void crt(const std::vector<T1> &a, const std::vector<T1> &m, T2 &x, T2 &l) {
+        assert(a.size() == m.size());
+        x = 0;
+        l = lcm<T1, T2>(m);
+        for (int i = 0; i < a.size(); i++) {
+            x = (x + 1ull * a[i] * (l / m[i]) % l * inverse_of(l / m[i], (T2)m[i]) % l) % l;
+        }
     }
 
 private:
