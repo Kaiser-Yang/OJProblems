@@ -77,7 +77,7 @@ public:
 
     template <typename T1, typename T2, typename T3>
     static T3 multiply(T1 a, T2 b, T3 mod) {
-        T3 res = 1;
+        T3 res = 0;
         a %= mod;
         b %= mod;
         while (b) {
