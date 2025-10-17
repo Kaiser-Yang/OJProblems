@@ -5,7 +5,7 @@
 
 class string_utils {
     template <typename T>
-    std::vector<int> get_next(const T &word) {
+    std::vector<int> kmp_next(const T &word) {
         assert(word.size() > 0);
         std::vector<int> next(word.size() + 1);
         next[0] = -1;
@@ -29,7 +29,7 @@ class string_utils {
     template <typename T>
     std::vector<int> kmp(const T &text, const T &word) {
         std::vector<int> res;
-        auto &&next = get_next(word);
+        auto &&next = kmp_next(word);
         int i = 0, j = 0;
         while (i < text.size()) {
             if (text[i] == word[j]) {
