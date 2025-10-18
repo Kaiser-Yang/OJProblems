@@ -1,9 +1,9 @@
 // problem statement: https://www.luogu.com.cn/problem/P3805
 
+#include <algorithm>
 #include <iostream>
 #include <string>
 #include <vector>
-#include <algorithm>
 
 template <typename T>
 std::vector<int> manacher(const T &s) {

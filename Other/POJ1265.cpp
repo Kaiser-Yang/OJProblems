@@ -1,11 +1,11 @@
 // problem statement: http://poj.org/problem?id=1265
 
 #include <cmath>
+#include <cstdlib>
 #include <iomanip>
 #include <ios>
 #include <iostream>
 #include <vector>
-#include <cstdlib>
 
 template <typename T, typename R>
 static R polygon_area(const std::vector<std::pair<T, T> > &points) {

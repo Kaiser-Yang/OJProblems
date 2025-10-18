@@ -87,9 +87,7 @@ int main() {
         cnt[now]++;
     }
     std::vector<std::vector<int>> g(ac.node_count);
-    for (int i = 1; i < ac.node_count; i++) {
-        g[ac.trie[i].fail].emplace_back(i);
-    }
+    for (int i = 1; i < ac.node_count; i++) { g[ac.trie[i].fail].emplace_back(i); }
     std::function<void(int)> dfs = [&](int u) {
         for (auto &&v : g[u]) {
             dfs(v);

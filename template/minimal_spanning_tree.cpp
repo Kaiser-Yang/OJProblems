@@ -3,9 +3,9 @@
 #include <limits>
 #include <numeric>
 #include <queue>
+#include <tuple>
 #include <utility>
 #include <vector>
-#include <tuple>
 
 class minimal_spanning_tree {
 public:

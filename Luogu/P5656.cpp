@@ -51,8 +51,8 @@ int main() {
         }
         i64 cnt = (c - a * minimal_x) / b / dy;
         if ((c - a * minimal_x) / b % dy) { cnt++; }
-        std::cout << cnt << ' ' << minimal_x << ' ' << minimal_y << ' '
-                  << (c - b * minimal_y) / a << ' ' << (c - a * minimal_x) / b << '\n';
+        std::cout << cnt << ' ' << minimal_x << ' ' << minimal_y << ' ' << (c - b * minimal_y) / a
+                  << ' ' << (c - a * minimal_x) / b << '\n';
     }
     return 0;
 }
