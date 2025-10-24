@@ -1,4 +1,4 @@
-// problem statement:
+// problem statement: https://www.luogu.com.cn/problem/P1352
 
 #include <bits/stdc++.h>
 
