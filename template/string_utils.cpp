@@ -1,9 +1,14 @@
 #include <array>
 #include <cassert>
+#include <cstdint>
 #include <queue>
+#include <string>
 #include <vector>
 
+using u64 = uint64_t;
+
 class string_utils {
+public:
     template <typename T>
     std::vector<int> kmp_next(const T &word) {
         assert(word.size() > 0);
@@ -70,6 +75,38 @@ class string_utils {
         }
         return p;
     }
+
+    template <typename T = u64, T base = T(131), T mod = T(1e9 + 7)>
+    class hash {
+    public:
+        hash(const std::string &s) { build(s); }
+
+        // [0, pos)
+        T get(int pos) const {
+            assert(pos >= 0 && pos < prefix_hash.size());
+            return prefix_hash[pos];
+        }
+
+        // [l, r)
+        T get(int l, int r) const {
+            assert(l >= 0 && r < prefix_hash.size() && l < r);
+            return (prefix_hash[r] - prefix_hash[l] * power[r - l] % mod + mod) % mod;
+        }
+
+    private:
+        void build(const std::string &s) {
+            auto n = s.size();
+            prefix_hash.resize(n + 1, 0);
+            power.resize(n + 1, 1);
+            for (int i = 0; i < n; i++) {
+                prefix_hash[i + 1] = (prefix_hash[i] * base + s[i]) % mod;
+                power[i + 1] = (power[i] * base) % mod;
+            }
+        }
+
+        std::vector<T> prefix_hash;
+        std::vector<T> power;
+    };
 
     template <int MAX_NODE_NUM, int ALPHABET_SIZE, typename id_generator>
     class aho_corasick_automaton {
