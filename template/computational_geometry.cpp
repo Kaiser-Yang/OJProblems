@@ -4,7 +4,7 @@
 class computational_geometry {
 public:
     template <typename T, typename R = T>
-    static R polygon_area(const std::vector<std::array<T, 2>> &points) {
+    static R polygon_area(const std::vector<std::array<T, 2>> &points, R _ = R()) {
         R area = 0;
         for (int i = 0; i < points.size(); i++) {
             int j = (i + 1) % points.size();
