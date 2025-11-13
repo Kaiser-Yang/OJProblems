@@ -25,10 +25,10 @@ public:
         const int target = s.size() / 4;
         int l = 0, r = 0, ans = s.size();
         while (l < s.size()) {
-            while (r < s.size() &&
-                   (std::any_of(
-                        cnt.begin(), cnt.end() - 1, [target](int x) { return x > target; }) ||
-                    cnt[4] > 0)) {
+            while (
+                r < s.size() &&
+                (std::any_of(cnt.begin(), cnt.end() - 1, [target](int x) { return x > target; }) ||
+                 cnt[4] > 0)) {
                 cnt[get_id(s[r++])]--;
             }
             if (std::all_of(cnt.begin(), cnt.end() - 1, [target](int x) { return x <= target; }) &&
