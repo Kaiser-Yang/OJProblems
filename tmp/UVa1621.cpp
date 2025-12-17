@@ -3,8 +3,7 @@
 
 using namespace std;
 
-void output(string &ans, int p, int a, int b)
-{
+void output(string &ans, int p, int a, int b) {
     for (int i = 1; i < a; i++) {
         ans += to_string(p + i);
         ans += " ";
@@ -17,8 +16,11 @@ void output(string &ans, int p, int a, int b)
             ans += to_string(p + 2 * i);
             ans += " ";
         }
-        if (b % 2 == 0) { p += b + 1;}
-        else { p += b; }
+        if (b % 2 == 0) {
+            p += b + 1;
+        } else {
+            p += b;
+        }
         ans += to_string(p);
         ans += " ";
         for (int i = 1; i <= b / 2; i++) {
@@ -28,8 +30,7 @@ void output(string &ans, int p, int a, int b)
     }
 }
 
-int main()
-{
+int main() {
     freopen("jumping.in", "r", stdin);
     freopen("jumping.out", "w", stdout);
     ios::sync_with_stdio(false);

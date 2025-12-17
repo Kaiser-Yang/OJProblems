@@ -2,17 +2,12 @@
 
 using namespace std;
 
-struct Bulb
-{
+struct Bulb {
     int v, k, c, l;
-    bool operator < (const Bulb &other)
-    {
-        return v < other.v;
-    }
+    bool operator<(const Bulb &other) { return v < other.v; }
 };
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n;
     vector<Bulb> bulb;

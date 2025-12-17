@@ -1,8 +1,8 @@
-#include <iostream>
 #include <cstring>
-#include <vector>
+#include <iostream>
 #include <limits>
 #include <queue>
+#include <vector>
 
 using namespace std;
 
@@ -13,7 +13,7 @@ const int MAXM = 5010;
 struct Edge {
     int from, to, nex;
     long long flow, capacity;
-}es[MAXM << 1];
+} es[MAXM << 1];
 
 int n, m, s, t;
 int u, v, c;
@@ -22,8 +22,7 @@ int ecnt;
 int head[MAXN], nowHead[MAXN];
 int depth[MAXN];
 
-void addEdge(int u, int v, int c, int f)
-{
+void addEdge(int u, int v, int c, int f) {
     es[ecnt].from = u;
     es[ecnt].to = v;
     es[ecnt].capacity = c;
@@ -32,8 +31,7 @@ void addEdge(int u, int v, int c, int f)
     head[u] = ecnt++;
 }
 
-long long EK()
-{
+long long EK() {
     long long maxFlow = 0;
     while (true) {
         vector<long long> x(n + 1, 0);
@@ -64,8 +62,7 @@ long long EK()
     return maxFlow;
 }
 
-bool findAugmentedPath()
-{
+bool findAugmentedPath() {
     queue<int> q;
     memset(depth, 0, sizeof(depth));
     q.push(s);
@@ -85,8 +82,7 @@ bool findAugmentedPath()
     return depth[t] != 0;
 }
 
-long long dfs(int u, long long inFlow)
-{
+long long dfs(int u, long long inFlow) {
     if (u == t || inFlow == 0) { return inFlow; }
     long long outFlow = 0;
     for (int i = nowHead[u]; i != -1; i = es[i].nex) {
@@ -102,15 +98,13 @@ long long dfs(int u, long long inFlow)
     return outFlow;
 }
 
-long long Dinic()
-{
+long long Dinic() {
     long long maxFlow = 0;
     while (findAugmentedPath()) { maxFlow += dfs(s, INF); }
     return maxFlow;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     memset(head, -1, sizeof(head));
     cin >> n >> m >> s >> t;

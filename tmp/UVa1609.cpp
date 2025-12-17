@@ -9,8 +9,7 @@ need find out one match solution to make the 1-st team to get the champion.
 
 using namespace std;
 
-void solve(vector<vector<bool>> &win, vector<bool> &out)
-{
+void solve(vector<vector<bool>> &win, vector<bool> &out) {
     int n = out.size();
     vector<int> losed(n);
     bool done = true;
@@ -51,8 +50,11 @@ void solve(vector<vector<bool>> &win, vector<bool> &out)
                 if (i == j) { continue; }
                 if (!out[j] && losed[j] == 0) {
                     losed[i] = losed[j] = -1;
-                    if (win[i][j]) { out[j] = true; }
-                    else { out[i] = true; }
+                    if (win[i][j]) {
+                        out[j] = true;
+                    } else {
+                        out[i] = true;
+                    }
                     printf("%d %d\n", i + 1, j + 1);
                     break;
                 }
@@ -67,8 +69,11 @@ void solve(vector<vector<bool>> &win, vector<bool> &out)
         int j = i + 1;
         while (out[j] || losed[j] == -1) { j++; }
         losed[i] = losed[j] = -1;
-        if (win[i][j]) { out[j] = true; }
-        else { out[i] = true; }
+        if (win[i][j]) {
+            out[j] = true;
+        } else {
+            out[i] = true;
+        }
         printf("%d %d\n", i + 1, j + 1);
         i = j + 1;
     }
@@ -76,17 +81,16 @@ void solve(vector<vector<bool>> &win, vector<bool> &out)
     solve(win, out);
 }
 
-int main()
-{
+int main() {
     int n;
     char s[n];
     vector<vector<bool>> win;
-    while (scanf("%d" , &n) != EOF) {
+    while (scanf("%d", &n) != EOF) {
         win.resize(n);
         for (int i = 0; i < n; i++) {
             cin >> s;
             win[i].resize(n);
-            for (int j = 0;j < n; j++) { win[i][j] = s[j] - '0'; }
+            for (int j = 0; j < n; j++) { win[i][j] = s[j] - '0'; }
         }
         vector<bool> out(n, false);
         solve(win, out);

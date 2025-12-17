@@ -7,8 +7,7 @@ there is at least one number which only appears one time in the subsequence.
 
 using namespace std;
 
-bool isNonBoring(int left, int right, vector<int> &l, vector<int> &r)
-{
+bool isNonBoring(int left, int right, vector<int> &l, vector<int> &r) {
     if (right - left <= 1) { return true; }
     for (int i = 0; left + i <= right - 1 - i; i++) {
         if (l[left + i] < left && r[left + i] >= right) {
@@ -21,8 +20,7 @@ bool isNonBoring(int left, int right, vector<int> &l, vector<int> &r)
     return false;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n;
     vector<int> a, l, r;

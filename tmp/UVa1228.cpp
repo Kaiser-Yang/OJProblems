@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, delay, kase = 0;
     unsigned long long k;
@@ -28,16 +27,20 @@ int main()
         }
         vector<vector<unsigned long long>> d;
         d.resize(cnt0 + 1);
-        for (int i = 0; i <= cnt0; i++)  {
-            d[i].resize(cnt1 + 1);
-        }
+        for (int i = 0; i <= cnt0; i++) { d[i].resize(cnt1 + 1); }
         d[0][0] = 1;
         for (int i = 0; i <= cnt0; i++) {
             for (int j = 0; j <= cnt1; j++) {
-                if (i + 1 <= cnt0 && (j == cnt1 || sendTime1[j] + delay >= sendTime0[i])) { // the next one can reach after the next zero
+                if (i + 1 <= cnt0 &&
+                    (j == cnt1 ||
+                     sendTime1[j] + delay >=
+                         sendTime0[i])) {  // the next one can reach after the next zero
                     d[i + 1][j] += d[i][j];
                 }
-                if (j + 1 <= cnt1 && (i == cnt0 || sendTime0[i] + delay >= sendTime1[j])) { // the next zero can reach after the next one
+                if (j + 1 <= cnt1 &&
+                    (i == cnt0 ||
+                     sendTime0[i] + delay >=
+                         sendTime1[j])) {  // the next zero can reach after the next one
                     d[i][j + 1] += d[i][j];
                 }
             }
@@ -51,15 +54,13 @@ int main()
                 reachTime.push_back({i, 1});
             }
         }
-        sort(reachTime.begin(), reachTime.end(), [](const pair<int, int> &lhs, const pair<int, int> &rhs) {
-            if (lhs.first != rhs.first) {
-                return lhs.first > rhs.first;
-            }
-            return lhs.second < rhs.second;
-        });
-        for (int i = 0; i < n; i++) {
-            maxAns += 1LL * reachTime[i].second << i;
-        }
+        sort(reachTime.begin(),
+             reachTime.end(),
+             [](const pair<int, int> &lhs, const pair<int, int> &rhs) {
+                 if (lhs.first != rhs.first) { return lhs.first > rhs.first; }
+                 return lhs.second < rhs.second;
+             });
+        for (int i = 0; i < n; i++) { maxAns += 1LL * reachTime[i].second << i; }
         reachTime.clear();
         for (int i = 0; i < n; i++) {
             if (bit[i] == 0) {
@@ -68,15 +69,13 @@ int main()
                 reachTime.push_back({i + delay, 1});
             }
         }
-        sort(reachTime.begin(), reachTime.end(), [](const pair<int, int> &lhs, const pair<int, int> &rhs) {
-            if (lhs.first != rhs.first) {
-                return lhs.first > rhs.first;
-            }
-            return lhs.second > rhs.second;
-        });
-        for (int i = 0; i < n; i++) {
-            minAns += 1LL * reachTime[i].second << i;
-        }
+        sort(reachTime.begin(),
+             reachTime.end(),
+             [](const pair<int, int> &lhs, const pair<int, int> &rhs) {
+                 if (lhs.first != rhs.first) { return lhs.first > rhs.first; }
+                 return lhs.second > rhs.second;
+             });
+        for (int i = 0; i < n; i++) { minAns += 1LL * reachTime[i].second << i; }
         cout << "Case " << ++kase << ": ";
         cout << d[cnt0][cnt1] << " " << minAns << " " << maxAns << endl;
     }

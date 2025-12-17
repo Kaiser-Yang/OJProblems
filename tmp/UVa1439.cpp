@@ -2,12 +2,9 @@
 
 using namespace std;
 
-int dp(int s, vector<int> &d, vector<vector<int>> &g, vector<bool> &reachable, vector<int> &pre)
-{
+int dp(int s, vector<int> &d, vector<vector<int>> &g, vector<bool> &reachable, vector<int> &pre) {
     int &ans = d[s];
-    if (ans != -1) {
-        return ans;
-    }
+    if (ans != -1) { return ans; }
     if (s == 0) {
         ans = 0;
         return ans;
@@ -23,8 +20,7 @@ int dp(int s, vector<int> &d, vector<vector<int>> &g, vector<bool> &reachable, v
     return ans;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, cnt;
     vector<pair<char, char>> resource;
@@ -59,9 +55,7 @@ int main()
             g[v].push_back(u);
             resource.push_back({a[0], b[0]});
             for (int s = 0; s < (1 << 15); s++) {
-                if (s & (1 << u) && s & (1 << v)) {
-                    reachable[s] = true;
-                }
+                if (s & (1 << u) && s & (1 << v)) { reachable[s] = true; }
             }
         }
         cout << dp((1 << id.size()) - 1, d, g, reachable, pre) - 2 << endl;
@@ -69,9 +63,7 @@ int main()
         cnt = 0;
         for (int s = (1 << id.size()) - 1; s != 0; s = pre[s]) {
             for (int i = 0; i < 15; i++) {
-                if (s & (1 << i)) {
-                    depth[i] = cnt;
-                }
+                if (s & (1 << i)) { depth[i] = cnt; }
             }
             cnt++;
         }

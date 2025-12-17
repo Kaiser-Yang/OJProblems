@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, m;
     vector<vector<int>> mp, dp, path;
@@ -46,9 +45,7 @@ int main()
             }
         }
         cout << first + 1;
-        for (int i = path[first][0], j = 1; j < m; i = path[i][j], j++) {
-            cout << " " << i + 1;
-        }
+        for (int i = path[first][0], j = 1; j < m; i = path[i][j], j++) { cout << " " << i + 1; }
         cout << endl << ans << endl;
     }
     return 0;

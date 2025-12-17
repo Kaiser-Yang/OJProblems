@@ -17,13 +17,11 @@ TwoDVector dot2Vector(TwoDVector &dot1, TwoDVector &dot2) {
     return {dot2.first - dot1.first, dot2.second - dot1.second};
 }
 
-int crossProduct(TwoDVector &lhs, TwoDVector &rhs)
-{
+int crossProduct(TwoDVector &lhs, TwoDVector &rhs) {
     return lhs.first * rhs.second - lhs.second * rhs.first;
 }
 
-int scanArea(int index, vector<TwoDVector> &dot, vector<int> &color, vector<TwoDVector> &newDot)
-{
+int scanArea(int index, vector<TwoDVector> &dot, vector<int> &color, vector<TwoDVector> &newDot) {
     TwoDVector origin = dot[index];
     int n = 0;
     for (int i = 0; i < dot.size(); i++) {
@@ -45,7 +43,8 @@ int scanArea(int index, vector<TwoDVector> &dot, vector<int> &color, vector<TwoD
             right = left;
             nowAns++;
         }
-        while ((right + 1) % n != left && crossProduct(newDot[left], newDot[(right + 1) % n]) >= 0) {
+        while ((right + 1) % n != left &&
+               crossProduct(newDot[left], newDot[(right + 1) % n]) >= 0) {
             right = (right + 1) % n;
             nowAns++;
         }
@@ -56,8 +55,7 @@ int scanArea(int index, vector<TwoDVector> &dot, vector<int> &color, vector<TwoD
     return ans;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, ans;
     vector<int> color;
@@ -67,12 +65,8 @@ int main()
         dot.resize(n);
         color.resize(n);
         newDot.resize(n - 1);
-        for (int i = 0; i < n; i++) {
-            cin >> dot[i].first >> dot[i].second >> color[i];
-        }
-        for (int i = 0; i < n; i++) {
-            ans = max(ans, scanArea(i, dot, color, newDot));
-        }
+        for (int i = 0; i < n; i++) { cin >> dot[i].first >> dot[i].second >> color[i]; }
+        for (int i = 0; i < n; i++) { ans = max(ans, scanArea(i, dot, color, newDot)); }
         cout << ans << endl;
     }
     return 0;

@@ -2,8 +2,7 @@
 
 using namespace std;
 
-void mergeSort(vector<int> &a, int l, int r, vector<int> &t, int &cnt)
-{
+void mergeSort(vector<int> &a, int l, int r, vector<int> &t, int &cnt) {
     if (r - l <= 1) { return; }
     int mid = (l + r) >> 1;
     mergeSort(a, l, mid, t, cnt);
@@ -20,8 +19,7 @@ void mergeSort(vector<int> &a, int l, int r, vector<int> &t, int &cnt)
     for (int i = l; i < r; i++) { a[i] = t[i]; }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n;
     vector<int> a;
@@ -29,13 +27,16 @@ int main()
     while (T--) {
         cin >> n;
         a.resize(n);
-        for (int i = 0; i < n; i++) { cin >>a[i]; }
+        for (int i = 0; i < n; i++) { cin >> a[i]; }
         vector<int> t;
         t.resize(n);
         int cnt = 0;
         mergeSort(a, 0, n, t, cnt);
-        if (cnt % 2 == 1 && n % 2 == 1) { cout << "impossible" << endl; }
-        else { cout << "possible" << endl; }
+        if (cnt % 2 == 1 && n % 2 == 1) {
+            cout << "impossible" << endl;
+        } else {
+            cout << "possible" << endl;
+        }
     }
     return 0;
 }

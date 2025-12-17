@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n, t;
     vector<vector<int>> dp, time;
@@ -22,7 +21,10 @@ int main()
         dp.resize(n + 1);
         time.resize(n + 1);
         tot = min(tot, t);
-        for (int i = 0; i <= n; i++) { dp[i].resize(tot + 1); time[i].resize(tot + 1); }
+        for (int i = 0; i <= n; i++) {
+            dp[i].resize(tot + 1);
+            time[i].resize(tot + 1);
+        }
         for (int i = n - 1; i >= 0; i--) {
             for (int c = 0; c < dp[i].size(); c++) {
                 dp[i][c] = dp[i + 1][c];

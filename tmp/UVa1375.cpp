@@ -6,8 +6,7 @@ int cnt;
 map<string, int> id;
 map<int, string> name;
 
-int ID(const string &s)
-{
+int ID(const string &s) {
     if (!id.count(s)) {
         name[cnt] = s;
         id[s] = cnt++;
@@ -15,26 +14,19 @@ int ID(const string &s)
     return id[s];
 }
 
-bool isAllLowerCase(const string &s)
-{
+bool isAllLowerCase(const string &s) {
     for (auto ch : s) {
-        if (ch != tolower(ch)) {
-            return false;
-        }
+        if (ch != tolower(ch)) { return false; }
     }
     return true;
 }
 
-string myMin(const string &s1, const string &s2)
-{
-    if (s1 != "-" && s2 != "-") {
-        return min(s1, s2);
-    }
+string myMin(const string &s1, const string &s2) {
+    if (s1 != "-" && s2 != "-") { return min(s1, s2); }
     return s1 == "-" ? s2 : s1;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, l;
     vector<string> rule;
@@ -62,9 +54,7 @@ int main()
             for (int j = 2; j < len; j++) {
                 string S = rule[i].substr(j);
                 int s = ID(S);
-                if (S.length() < 2) {
-                    continue;
-                }
+                if (S.length() < 2) { continue; }
                 int h = ID(S.substr(0, 1));
                 int t = ID(S.substr(1, S.length() - 1));
                 g[h].push_back({s, t});
@@ -75,15 +65,11 @@ int main()
         }
         dp.clear();
         dp.resize(cnt);
-        for (int i = 0; i < cnt; i++) {
-            dp[i].resize(l + 1, "-");
-        }
+        for (int i = 0; i < cnt; i++) { dp[i].resize(l + 1, "-"); }
         dp[0][0] = "";
         for (int j = 0; j <= l; j++) {
             for (int i = 0; i < cnt; i++) {
-                if (name[i].length() == j && isAllLowerCase(name[i])) {
-                    dp[i][j] = name[i];
-                }
+                if (name[i].length() == j && isAllLowerCase(name[i])) { dp[i][j] = name[i]; }
                 if (name[i].length() < 2) { continue; }
                 int s1 = head[i], s2 = tail[i];
                 for (int k = 1; k < j; k++) {
@@ -93,20 +79,17 @@ int main()
                 }
             }
             vector<bool> vis(cnt);
-            priority_queue<pair<string, int>, vector<pair<string, int>>, greater<pair<string, int>>> q;
+            priority_queue<pair<string, int>, vector<pair<string, int>>, greater<pair<string, int>>>
+                q;
             for (int i = 0; i < cnt; i++) {
-                if (dp[i][j] != "-") {
-                    q.push({dp[i][j], i});
-                }
+                if (dp[i][j] != "-") { q.push({dp[i][j], i}); }
             }
             while (!q.empty()) {
                 auto top = q.top();
                 q.pop();
                 int &&u = std::move(top.second);
                 string &&s = std::move(top.first);
-                if (vis[u]) {
-                    continue;
-                }
+                if (vis[u]) { continue; }
                 vis[u] = true;
                 for (int k = 0; k < g[u].size(); k++) {
                     int target = g[u][k].first;

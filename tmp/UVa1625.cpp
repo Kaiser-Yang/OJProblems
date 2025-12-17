@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T;
     string s, t;
@@ -36,9 +35,7 @@ int main()
             for (int j = m; j >= 0; j--) {
                 int cost = 0;
                 for (int c = 0; c < 26; c++) {
-                    if ((ss[c] < i || st[c] < j) && (es[c] >= i || et[c] >= j)) {
-                        cost++;
-                    }
+                    if ((ss[c] < i || st[c] < j) && (es[c] >= i || et[c] >= j)) { cost++; }
                 }
                 if (i == n) {
                     if (j == m) {

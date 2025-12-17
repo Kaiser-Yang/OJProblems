@@ -7,8 +7,7 @@ vector<int> chopstick;
 vector<vector<int>> d;
 constexpr int INF = numeric_limits<int>::max();
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
@@ -26,7 +25,9 @@ int main()
             for (int j = 1; j <= K && 3 * j <= i; j++) {
                 d[i][j] = d[i - 1][j];
                 if (d[i - 2][j - 1] != INF) {
-                    d[i][j] = min(d[i][j], d[i - 2][j - 1] + (chopstick[i] - chopstick[i - 1]) * (chopstick[i] - chopstick[i - 1]));
+                    d[i][j] = min(d[i][j],
+                                  d[i - 2][j - 1] + (chopstick[i] - chopstick[i - 1]) *
+                                                        (chopstick[i] - chopstick[i - 1]));
                 }
             }
         }

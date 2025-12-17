@@ -7,8 +7,7 @@ vector<pair<int, int>> p;
 vector<vector<vector<int>>> d;
 const double PI = acos(-1.0);
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     for (int t = 1; t <= T; t++) {
@@ -19,12 +18,10 @@ int main()
             cin >> p[i].first >> p[i].second;
             totHeight += p[i].second;
         }
-        sort(p.begin(), p.end(), [] (const pair<int, int> &lhs, const pair<int, int> &rhs) {
+        sort(p.begin(), p.end(), [](const pair<int, int> &lhs, const pair<int, int> &rhs) {
             double thelta1 = atan2(lhs.second, lhs.first);
             double thelta2 = atan2(rhs.second, rhs.first);
-            if (thelta1 != thelta2) {
-                return thelta1 > thelta2;
-            }
+            if (thelta1 != thelta2) { return thelta1 > thelta2; }
             return lhs.first < rhs.first;
         });
         d.clear();
@@ -42,7 +39,9 @@ int main()
                 for (int h = 0; h <= totHeight; h++) {
                     d[i][j][h] = d[i - 1][j][h];
                     if (h >= p[i].second) {
-                        d[i][j][h] = max(d[i][j][h], d[i - 1][j - 1][h - p[i].second] + 2 * h * p[i].first - p[i].first * p[i].second);
+                        d[i][j][h] = max(d[i][j][h],
+                                         d[i - 1][j - 1][h - p[i].second] + 2 * h * p[i].first -
+                                             p[i].first * p[i].second);
                     }
                 }
             }

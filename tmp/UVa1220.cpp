@@ -2,8 +2,10 @@
 
 using namespace std;
 
-pair<int, bool> dfs(int u, vector<vector<int>> &dp, vector<vector<bool>> &isUnique, vector<vector<int>> &g)
-{
+pair<int, bool> dfs(int u,
+                    vector<vector<int>> &dp,
+                    vector<vector<bool>> &isUnique,
+                    vector<vector<int>> &g) {
     if (g[u].size() == 0) {
         dp[u][0] = 0;
         dp[u][1] = 1;
@@ -28,17 +30,12 @@ pair<int, bool> dfs(int u, vector<vector<int>> &dp, vector<vector<bool>> &isUniq
             isUnique[u][0] = false;
         }
     }
-    if (dp[u][0] == dp[u][1]) {
-        return {dp[u][0], false};
-    }
-    if (dp[u][0] > dp[u][1]) {
-        return {dp[u][0], isUnique[u][0]};
-    }
+    if (dp[u][0] == dp[u][1]) { return {dp[u][0], false}; }
+    if (dp[u][0] > dp[u][1]) { return {dp[u][0], isUnique[u][0]}; }
     return {dp[u][1], isUnique[u][1]};
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, cnt;
     string root, u, v;
@@ -62,7 +59,10 @@ int main()
         dp.resize(n);
         isUnique.clear();
         isUnique.resize(n);
-        for (int i = 0; i < n; i++) { dp[i].resize(2); isUnique[i].resize(2); }
+        for (int i = 0; i < n; i++) {
+            dp[i].resize(2);
+            isUnique[i].resize(2);
+        }
         pair<int, bool> ans = dfs(0, dp, isUnique, g);
         cout << ans.first << " " << (ans.second ? "Yes" : "No") << endl;
     }

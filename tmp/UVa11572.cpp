@@ -1,12 +1,12 @@
 /*
-    You need to find the maximum subsequence that is subject to that there is no repetition of any number in the subsequence.
+    You need to find the maximum subsequence that is subject to that there is no repetition of any
+   number in the subsequence.
 */
 #include <bits/stdc++.h>
 
 using namespace std;
 
-int main()
-{
+int main() {
     // freopen("test.in", "r", stdin);
     // freopen("test.out", "w", stdout);
     ios::sync_with_stdio(false);

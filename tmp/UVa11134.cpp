@@ -9,8 +9,7 @@ output any solution which includes the place of each rook in order.
 
 using namespace std;
 
-bool assign(vector<pair<int, int>> &interval, vector<int> &result)
-{
+bool assign(vector<pair<int, int>> &interval, vector<int> &result) {
     vector<bool> assigned(interval.size(), false);
     for (int i = 1; i <= interval.size(); i++) {
         int index = -1, right = 0;
@@ -28,8 +27,7 @@ bool assign(vector<pair<int, int>> &interval, vector<int> &result)
     return true;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, a, b, c, d;
     vector<pair<int, int>> x, y;
@@ -47,9 +45,7 @@ int main()
         if (!assign(x, px) || !assign(y, py)) {
             cout << "IMPOSSIBLE" << endl;
         } else {
-            for (int i = 0; i < n; i++) {
-                cout << px[i] << " " << py[i] << endl;
-            }
+            for (int i = 0; i < n; i++) { cout << px[i] << " " << py[i] << endl; }
         }
     }
     return 0;

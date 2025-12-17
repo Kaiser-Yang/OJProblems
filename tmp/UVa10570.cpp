@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n;
     vector<int> a;
@@ -15,7 +14,7 @@ int main()
             vector<int> tmp(n);
             for (int j = 0; j < n; j++) { tmp[j] = a[(i + j) % n]; }
             int cnt = 0;
-            for (int j = 0; j < n; ) {
+            for (int j = 0; j < n;) {
                 if (tmp[j] != j + 1) {
                     cnt++;
                     swap(tmp[j], tmp[tmp[j] - 1]);
@@ -38,7 +37,6 @@ int main()
             if (ans == 0) { break; }
         }
         cout << ans << endl;
-
     }
     return 0;
 }

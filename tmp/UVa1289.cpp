@@ -7,8 +7,7 @@ vector<vector<int>> plate, pos, d;
 vector<int> maxD;
 vector<vector<bool>> occur;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     while (cin >> n) {
         int ALL = 0;
@@ -19,9 +18,7 @@ int main()
             int height, lastHeight = -1;
             for (int j = 0; j < h; j++) {
                 cin >> height;
-                if (height == lastHeight) {
-                    continue;
-                }
+                if (height == lastHeight) { continue; }
                 ALL++;
                 plate[i].push_back(height);
                 lastHeight = height;
@@ -29,16 +26,12 @@ int main()
         }
         vector<int> np;
         for (int i = 0; i < n; i++) {
-            for (int j = 0; j < plate[i].size(); j++) {
-                np.push_back(plate[i][j]);
-            }
+            for (int j = 0; j < plate[i].size(); j++) { np.push_back(plate[i][j]); }
         }
         sort(np.begin(), np.end());
         int len = unique(np.begin(), np.end()) - np.begin();
         pos.resize(len);
-        for (int i = 0; i < len; i++) {
-            pos[i].clear();
-        }
+        for (int i = 0; i < len; i++) { pos[i].clear(); }
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < plate[i].size(); j++) {
                 int p = lower_bound(np.begin(), np.begin() + len, plate[i][j]) - np.begin();
@@ -49,9 +42,7 @@ int main()
         occur.resize(len);
         for (int i = 0; i < len; i++) {
             occur[i].resize(n, false);
-            for (int j : pos[i]) {
-                occur[i][j] = true;
-            }
+            for (int j : pos[i]) { occur[i][j] = true; }
         }
         d.clear();
         d.resize(len);

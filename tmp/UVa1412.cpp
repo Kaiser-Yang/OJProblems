@@ -2,8 +2,14 @@
 
 using namespace std;
 
-void dfs(int stock, vector<int> &lot, int totLot, int N, map<vector<int>, int> &id, vector<vector<int>> &state, vector<int> &k, int K)
-{
+void dfs(int stock,
+         vector<int> &lot,
+         int totLot,
+         int N,
+         map<vector<int>, int> &id,
+         vector<vector<int>> &state,
+         vector<int> &k,
+         int K) {
     if (stock == N) {
         id[lot] = state.size();
         state.push_back(lot);
@@ -15,19 +21,24 @@ void dfs(int stock, vector<int> &lot, int totLot, int N, map<vector<int>, int> &
     }
 }
 
-void print(int day, int s, vector<vector<double>> &dp, vector<vector<int>> &pre, vector<vector<int>> &opt, vector<string> &name)
-{
-    if (day == 0) {
-        return;
-    }
+void print(int day,
+           int s,
+           vector<vector<double>> &dp,
+           vector<vector<int>> &pre,
+           vector<vector<int>> &opt,
+           vector<string> &name) {
+    if (day == 0) { return; }
     print(day - 1, pre[day][s], dp, pre, opt, name);
-    if (opt[day][s] == 0) { cout << "HOLD\n"; }
-    else if (opt[day][s] > 0) { cout << "BUY " << name[opt[day][s] - 1] << endl; }
-    else { cout << "SELL " << name[-opt[day][s] - 1] << endl; }
+    if (opt[day][s] == 0) {
+        cout << "HOLD\n";
+    } else if (opt[day][s] > 0) {
+        cout << "BUY " << name[opt[day][s] - 1] << endl;
+    } else {
+        cout << "SELL " << name[-opt[day][s] - 1] << endl;
+    }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     double C;
     int M, N, K;
@@ -68,9 +79,7 @@ int main()
         sellNext.resize(state.size());
         for (int s = 0; s < state.size(); s++) {
             int totLot = 0;
-            for (int i = 0; i < N; i++) {
-                totLot += state[s][i];
-            }
+            for (int i = 0; i < N; i++) { totLot += state[s][i]; }
             buyNext[s].resize(N);
             sellNext[s].resize(N);
             for (int i = 0; i < N; i++) {
@@ -99,16 +108,15 @@ int main()
         dp[0][0] = C;
         for (int i = 0; i < M; i++) {
             for (int s = 0; s < state.size(); s++) {
-                if (dp[i][s] == -1) {
-                    continue;
-                }
+                if (dp[i][s] == -1) { continue; }
                 if (dp[i + 1][s] < dp[i][s]) {
                     dp[i + 1][s] = dp[i][s];
                     pre[i + 1][s] = s;
                     opt[i + 1][s] = 0;
                 }
                 for (int j = 0; j < N; j++) {
-                    if (buyNext[s][j] >= 0 && dp[i][s] >= price[j][i] - 1e-3 && dp[i + 1][buyNext[s][j]] < dp[i][s] - price[j][i]) {
+                    if (buyNext[s][j] >= 0 && dp[i][s] >= price[j][i] - 1e-3 &&
+                        dp[i + 1][buyNext[s][j]] < dp[i][s] - price[j][i]) {
                         dp[i + 1][buyNext[s][j]] = dp[i][s] - price[j][i];
                         pre[i + 1][buyNext[s][j]] = s;
                         opt[i + 1][buyNext[s][j]] = j + 1;
@@ -117,14 +125,12 @@ int main()
                         dp[i + 1][sellNext[s][j]] = dp[i][s] + price[j][i];
                         pre[i + 1][sellNext[s][j]] = s;
                         opt[i + 1][sellNext[s][j]] = -(j + 1);
-
                     }
                 }
             }
         }
         cout << fixed << setprecision(2) << dp[M][0] << endl;
         print(M, 0, dp, pre, opt, name);
-
     }
     return 0;
 }

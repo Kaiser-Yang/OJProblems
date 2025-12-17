@@ -2,25 +2,18 @@
 
 using namespace std;
 
-int right(int d, int x, int y)
-{
-    return sqrt(d * d - y * y) + x;
-}
+int right(int d, int x, int y) { return sqrt(d * d - y * y) + x; }
 
-int left(int d, int x, int y)
-{
-    return x - sqrt(d * d - y * y);
-}
+int left(int d, int x, int y) { return x - sqrt(d * d - y * y); }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int len, d, n;
     vector<pair<int, int>> point;
     while (cin >> len >> d >> n) {
         point.resize(n);
         for (int i = 0; i < n; i++) { cin >> point[i].first >> point[i].second; }
-        sort(point.begin(), point.end(), [] (const pair<int, int> &lhs, const pair<int, int> &rhs) {
+        sort(point.begin(), point.end(), [](const pair<int, int> &lhs, const pair<int, int> &rhs) {
             if (lhs.first == rhs.first) { return lhs.second > rhs.second; }
             return lhs.first < rhs.first;
         });

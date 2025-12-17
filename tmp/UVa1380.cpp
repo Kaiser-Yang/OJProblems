@@ -4,8 +4,7 @@ using namespace std;
 
 const int INF = 1e7;
 
-bool dp(int u, int fa, int x, vector<int> &f, vector<int> &g, vector<vector<pair<int, int>>> &son)
-{
+bool dp(int u, int fa, int x, vector<int> &f, vector<int> &g, vector<vector<pair<int, int>>> &son) {
     if (son[u].size() == 0) {
         f[u] = g[u] = 0;
         return true;
@@ -17,28 +16,22 @@ bool dp(int u, int fa, int x, vector<int> &f, vector<int> &g, vector<vector<pair
         if (!dp(son[u][i].first, u, x, f, g, son)) { return false; }
         if (son[u][i].second == 0) {
             temp.push_back(son[u][i].first);
-        } else if (son[u][i].second == 1) { // downward
+        } else if (son[u][i].second == 1) {  // downward
             maxSonG = max(maxSonG, g[son[u][i].first] + 1);
-        } else { // upward
+        } else {  // upward
             maxSonF = max(maxSonF, f[son[u][i].first] + 1);
         }
     }
     if (temp.empty()) {
         f[u] = maxSonF;
         g[u] = maxSonG;
-        if (f[u] + g[u] + 1 > x) {
-            f[u] = g[u] = INF;
-        }
+        if (f[u] + g[u] + 1 > x) { f[u] = g[u] = INF; }
         return f[u] + g[u] + 1 <= x;
     }
     f[u] = g[u] = INF;
     vector<int> maxG(temp.size() + 1), maxF(temp.size() + 1);
-    sort(temp.begin(), temp.end(), [&f](int i, int j) {
-        return f[i] < f[j];
-    });
-    for (int i = temp.size() - 1; i >= 0; i--) {
-        maxG[i] = max(g[temp[i]], maxG[i + 1]);
-    }
+    sort(temp.begin(), temp.end(), [&f](int i, int j) { return f[i] < f[j]; });
+    for (int i = temp.size() - 1; i >= 0; i--) { maxG[i] = max(g[temp[i]], maxG[i + 1]); }
     for (int i = 0; i <= temp.size(); i++) {
         int maxSonF0 = maxSonF, maxSonG0 = maxSonG;
         if (i > 0) { maxSonF0 = max(maxSonF0, f[temp[i - 1]] + 1); }
@@ -48,12 +41,8 @@ bool dp(int u, int fa, int x, vector<int> &f, vector<int> &g, vector<vector<pair
             break;
         }
     }
-    sort(temp.begin(), temp.end(), [&g](int i, int j) {
-        return g[i] < g[j];
-    });
-    for (int i = temp.size() - 1; i >= 0; i--) {
-        maxF[i] = max(f[temp[i]], maxF[i + 1]);
-    }
+    sort(temp.begin(), temp.end(), [&g](int i, int j) { return g[i] < g[j]; });
+    for (int i = temp.size() - 1; i >= 0; i--) { maxF[i] = max(f[temp[i]], maxF[i + 1]); }
     for (int i = 0; i <= temp.size(); i++) {
         int maxSonF0 = maxSonF, maxSonG0 = maxSonG;
         if (i > 0) { maxSonG0 = max(maxSonG0, g[temp[i - 1]] + 1); }
@@ -63,9 +52,7 @@ bool dp(int u, int fa, int x, vector<int> &f, vector<int> &g, vector<vector<pair
             break;
         }
     }
-    if (f[u] + g[u] + 1 > x) {
-        f[u] = g[u] = INF;
-    }
+    if (f[u] + g[u] + 1 > x) { f[u] = g[u] = INF; }
     return f[u] + g[u] + 1 <= x;
 }
 
@@ -74,15 +61,12 @@ int dfs(int u, int fa, vector<vector<pair<int, int>>> &son) {
     for (int i = 0; i < son[u].size(); i++) {
         int v = son[u][i].first;
         if (v == fa) { continue; }
-        if (son[u][i].second == 1) {
-            ans = max(ans, dfs(v, u, son) + 1);
-        }
+        if (son[u][i].second == 1) { ans = max(ans, dfs(v, u, son) + 1); }
     }
     return ans;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     while (true) {
         string x;
@@ -135,9 +119,7 @@ int main()
             }
         }
         int longest = 0;
-        for (int i = 1; i <= 200; i++) {
-            longest = max(longest, dfs(i, 0, son) + 1);
-        }
+        for (int i = 1; i <= 200; i++) { longest = max(longest, dfs(i, 0, son) + 1); }
         vector<int> f(201), g(201);
         if (dp(root, 0, longest, f, g, son)) {
             cout << longest << endl;

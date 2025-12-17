@@ -2,9 +2,7 @@
 
 using namespace std;
 
-enum MOVEMENT_ENUM {
-    UP, DOWN, LEFT, RIGHT
-};
+enum MOVEMENT_ENUM { UP, DOWN, LEFT, RIGHT };
 
 void getMovement(int n, vector<MOVEMENT_ENUM> &movement) {
     if (n == 1) {
@@ -14,16 +12,11 @@ void getMovement(int n, vector<MOVEMENT_ENUM> &movement) {
     }
     getMovement(n - 1, movement);
     int size = movement.size();
-    for (int i = 0; i < size / 2; i++) {
-        movement.push_back(MOVEMENT_ENUM(movement[i] ^ 1));
-    }
-    for (int i = size / 2; i < size; i++) {
-        movement.push_back(MOVEMENT_ENUM(movement[i]));
-    }
+    for (int i = 0; i < size / 2; i++) { movement.push_back(MOVEMENT_ENUM(movement[i] ^ 1)); }
+    for (int i = size / 2; i < size; i++) { movement.push_back(MOVEMENT_ENUM(movement[i])); }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n;
     vector<MOVEMENT_ENUM> movement;
@@ -74,22 +67,18 @@ int main()
         maxC -= minC;
         vector<vector<char>> ans;
         ans.resize(maxR + 1);
-        for (int i = 0; i <= maxR; i++) {
-            ans[i].resize(maxC + 1, ' ');
-        }
-        for (int i = 0; i < movement.size(); i++ ) {
+        for (int i = 0; i <= maxR; i++) { ans[i].resize(maxC + 1, ' '); }
+        for (int i = 0; i < movement.size(); i++) {
             if (movement[i] == UP || movement[i] == DOWN) {
-                ans[place[i].first - minR][place[i].second -minC] =  '|';
+                ans[place[i].first - minR][place[i].second - minC] = '|';
             } else {
-                ans[place[i].first - minR][place[i].second -minC] =  '_';
+                ans[place[i].first - minR][place[i].second - minC] = '_';
             }
         }
         for (int i = 0; i <= maxR; i++) {
             int right = maxC;
             while (ans[i][right] == ' ') { right--; }
-            for (int j = 0; j <= right; j++) {
-                cout << ans[i][j];
-            }
+            for (int j = 0; j <= right; j++) { cout << ans[i][j]; }
             cout << endl;
         }
         cout << "^" << endl;

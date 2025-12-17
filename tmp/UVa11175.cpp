@@ -3,8 +3,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, m, k, x, y;
     vector<vector<int>> g;
@@ -29,13 +28,9 @@ int main()
                     if (g[i][k] ^ g[j][k]) { ok2 = true; }
                 }
                 ok = !(ok1 && ok2);
-                if (!ok) {
-                    break;
-                }
+                if (!ok) { break; }
             }
-            if (!ok) {
-                break;
-            }
+            if (!ok) { break; }
         }
         cout << "Case #" << t << ": " << (ok ? "Yes" : "No") << endl;
     }

@@ -9,12 +9,11 @@ output the minimum number of cost of n-1 operations.
 
 using namespace std;
 
-int main()
-{
+int main() {
     int n, a;
     long long ans;
     priority_queue<long long, vector<long long>, greater<long long>> q;
-    while(cin >> n && n != 0) {
+    while (cin >> n && n != 0) {
         while (!q.empty()) { q.pop(); }
         ans = 0;
         for (int i = 0; i < n; i++) {
@@ -22,8 +21,10 @@ int main()
             q.push(a);
         }
         while (q.size() >= 2) {
-            long long a = q.top(); q.pop();
-            long long b = q.top(); q.pop();
+            long long a = q.top();
+            q.pop();
+            long long b = q.top();
+            q.pop();
             ans += a + b;
             q.push(a + b);
         }

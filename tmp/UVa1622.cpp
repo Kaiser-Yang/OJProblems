@@ -2,8 +2,7 @@
 
 using namespace std;
 
-long long solve(long long r, long long c, long long n, long long s, long long w, long long e)
-{
+long long solve(long long r, long long c, long long n, long long s, long long w, long long e) {
     if (n < s) { swap(n, s); }
     if (w < e) { swap(w, e); }
     long long res = 0;
@@ -50,8 +49,7 @@ long long solve(long long r, long long c, long long n, long long s, long long w,
     return res;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int r, c;
     int n, s, w, e;
@@ -59,7 +57,8 @@ int main()
     while (cin >> r >> c && r != 0 && c != 0) {
         cin >> n >> s >> w >> e;
         t++;
-        cout << "Case " << t << ": " << max(solve(r, c, n, s, w, e), solve(c, r, w, e, n, s)) << endl;
+        cout << "Case " << t << ": " << max(solve(r, c, n, s, w, e), solve(c, r, w, e, n, s))
+             << endl;
     }
     return 0;
 }

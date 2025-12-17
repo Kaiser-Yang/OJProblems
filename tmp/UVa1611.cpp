@@ -2,8 +2,7 @@
 
 using namespace std;
 
-void change(vector<pair<int, int>> &ans, vector<int> &a, vector<int> &pos, int i)
-{
+void change(vector<pair<int, int>> &ans, vector<int> &a, vector<int> &pos, int i) {
     int left = i;
     int right = pos[i];
     swap(pos[a[left]], pos[a[right]]);
@@ -13,8 +12,7 @@ void change(vector<pair<int, int>> &ans, vector<int> &a, vector<int> &pos, int i
     ans.push_back(make_pair(left, right));
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n;
     vector<int> a;
@@ -48,7 +46,6 @@ int main()
         for (int i = 0; i < ans.size(); i++) {
             cout << ans[i].first << " " << ans[i].second << endl;
         }
-
     }
     return 0;
 }

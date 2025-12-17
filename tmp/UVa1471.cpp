@@ -8,13 +8,10 @@ using namespace std;
 
 struct NodeInfo {
     int first, second;
-    constexpr bool operator<(const NodeInfo &rhs) const {
-        return this->first < rhs.first;
-    }
+    constexpr bool operator<(const NodeInfo &rhs) const { return this->first < rhs.first; }
 };
 
-int  main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n, ans;
     vector<int> a, f, g;
@@ -28,13 +25,19 @@ int  main()
         for (int i = 0; i < n; i++) { cin >> a[i]; }
         f[0] = 1;
         for (int i = 1; i < n; i++) {
-            if (a[i] > a[i - 1]) { f[i] = f[i - 1] + 1; }
-            else { f[i] = 1; }
+            if (a[i] > a[i - 1]) {
+                f[i] = f[i - 1] + 1;
+            } else {
+                f[i] = 1;
+            }
         }
         g[n - 1] = 1;
         for (int i = n - 2; i >= 0; i--) {
-            if (a[i] < a[i + 1]) { g[i] = g[i + 1] + 1; }
-            else { g[i] = 1; }
+            if (a[i] < a[i + 1]) {
+                g[i] = g[i + 1] + 1;
+            } else {
+                g[i] = 1;
+            }
         }
         s.clear();
         ans = 1;
@@ -54,11 +57,12 @@ int  main()
                 left--;
                 if (left->first == a[i] && left->second >= g[i]) { continue; }
                 while (left->second <= g[i]) {
-                    if (left == s.begin()) {
+                    if (left == s.begin()) { break; }
+                    left--;
+                    if (left->second > g[i]) {
+                        left++;
                         break;
                     }
-                    left--;
-                    if (left->second > g[i]) { left++; break; }
                 }
                 s.erase(left, pos);
                 s.insert({a[i], g[i]});

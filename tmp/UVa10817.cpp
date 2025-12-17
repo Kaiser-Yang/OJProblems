@@ -2,19 +2,21 @@
 
 using namespace std;
 
-int dp(int i, int s0, int s1, int s2, int M, int N, int S, vector<vector<vector<int>>> &d, vector<int> &cost, vector<int> &course)
-{
-    if (i == M + N) {
-        return (s2 == (1 << S) - 1 ? 0 : 50000 * 120);
-    }
+int dp(int i,
+       int s0,
+       int s1,
+       int s2,
+       int M,
+       int N,
+       int S,
+       vector<vector<vector<int>>> &d,
+       vector<int> &cost,
+       vector<int> &course) {
+    if (i == M + N) { return (s2 == (1 << S) - 1 ? 0 : 50000 * 120); }
     int &ans = d[i][s1][s2];
-    if (ans >= 0) {
-        return ans;
-    }
+    if (ans >= 0) { return ans; }
     ans = 50000 * 120;
-    if (i >= M) {
-        ans = dp(i + 1, s0, s1, s2, M, N, S, d, cost, course);
-    }
+    if (i >= M) { ans = dp(i + 1, s0, s1, s2, M, N, S, d, cost, course); }
     int m0 = course[i] & s0;
     int m1 = course[i] & s1;
     s0 ^= m0;
@@ -24,8 +26,7 @@ int dp(int i, int s0, int s1, int s2, int M, int N, int S, vector<vector<vector<
     return ans;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int S, M, N, number;
     vector<int> cost, course;
@@ -63,9 +64,7 @@ int main()
         d.resize(N + M);
         for (int i = 0; i < N + M; i++) {
             d[i].resize(1 << S);
-            for (int s1 = 0; s1 < (1 << S); s1++) {
-                d[i][s1].resize(1 << S, -1);
-            }
+            for (int s1 = 0; s1 < (1 << S); s1++) { d[i][s1].resize(1 << S, -1); }
         }
         cout << dp(0, (1 << S) - 1, 0, 0, M, N, S, d, cost, course) << endl;
     }

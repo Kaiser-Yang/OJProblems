@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T;
     string s;
@@ -33,7 +32,10 @@ int main()
         }
         dp.resize(n);
         for (int i = 0; i < n; i++) {
-            if (palindrome[0][i]) { dp[i] = 1; continue; }
+            if (palindrome[0][i]) {
+                dp[i] = 1;
+                continue;
+            }
             dp[i] = i + 1;
             for (int j = 0; j < i; j++) {
                 if (palindrome[j + 1][i]) { dp[i] = min(dp[i], dp[j] + 1); }

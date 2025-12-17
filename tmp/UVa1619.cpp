@@ -2,14 +2,15 @@
 
 using namespace std;
 
-bool check(int i, int n, bool reverse)
-{
-    if (reverse) { return i >= 1; }
-    else { return i <= n; }
+bool check(int i, int n, bool reverse) {
+    if (reverse) {
+        return i >= 1;
+    } else {
+        return i <= n;
+    }
 }
 
-void init(vector<int> &res, vector<int> &a, bool reverse)
-{
+void init(vector<int> &res, vector<int> &a, bool reverse) {
     int n = a.size() - 1;
     stack<int> number;
     int i = 1;
@@ -17,9 +18,7 @@ void init(vector<int> &res, vector<int> &a, bool reverse)
     for (; check(i, n, reverse);) {
         vector<int> p;
         while (!number.empty() && a[i] <= a[number.top()]) {
-            if (a[i] == a[number.top()]) {
-                p.push_back(number.top());
-            }
+            if (a[i] == a[number.top()]) { p.push_back(number.top()); }
             number.pop();
         }
         if (number.empty()) {
@@ -34,13 +33,15 @@ void init(vector<int> &res, vector<int> &a, bool reverse)
             number.push(p.back());
             number.push(i);
         }
-        if (reverse) { i--; }
-        else { i++; }
+        if (reverse) {
+            i--;
+        } else {
+            i++;
+        }
     }
 }
 
-int main()
-{
+int main() {
     freopen("test.in", "r", stdin);
     freopen("test.out", "w", stdout);
     ios::sync_with_stdio(false);
@@ -53,7 +54,10 @@ int main()
         l.resize(n + 1);
         r.resize(n + 1);
         sum.resize(n + 1);
-        for (int i = 1; i <= n; i++) { cin >> a[i]; sum[i] = sum[i - 1] + a[i]; }
+        for (int i = 1; i <= n; i++) {
+            cin >> a[i];
+            sum[i] = sum[i - 1] + a[i];
+        }
         init(l, a, false);
         init(r, a, true);
         long long ans = a[1];

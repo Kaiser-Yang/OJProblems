@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n;
     vector<int> a;
@@ -20,13 +19,11 @@ int main()
                 bool done = true;
                 for (int i = 0; i < n; i++) {
                     if (a[(pos + i) % n] != i + 1) {
-                        done  = false;
+                        done = false;
                         break;
                     }
                 }
-                if (done) {
-                    break;
-                }
+                if (done) { break; }
                 pos = (pos - 1 + n) % n;
                 ans.push_back(2);
             }

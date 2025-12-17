@@ -2,8 +2,7 @@
 
 using namespace std;
 
-void dfs(int u, vector<vector<int>> &g, vector<int> &color, int k)
-{
+void dfs(int u, vector<vector<int>> &g, vector<int> &color, int k) {
     for (int col = 1; col <= k; col++) {
         bool ok = true;
         for (int i = 0; i < g[u].size(); i++) {
@@ -25,8 +24,7 @@ void dfs(int u, vector<vector<int>> &g, vector<int> &color, int k)
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, m, u, v;
     vector<vector<int>> g;
@@ -46,13 +44,11 @@ int main()
             degree[v]++;
         }
         int k = 0;
-        for (int i = 1; i <= n; i++) {
-            k = max(k, degree[i]);
-        }
+        for (int i = 1; i <= n; i++) { k = max(k, degree[i]); }
         if (k % 2 == 0) { k++; }
         dfs(1, g, color, k);
         cout << k << endl;
-        for (int i = 1; i <= n; i++) { cout << color[i] << endl;}
+        for (int i = 1; i <= n; i++) { cout << color[i] << endl; }
         cout << endl;
     }
     return 0;

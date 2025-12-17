@@ -7,24 +7,21 @@ to make sure that the rest of inputs has the same effect with that before doing 
 
 using namespace std;
 
-void addEdge(int u, int v, vector<vector<int>> &g)
-{
-    g[u].push_back(v);
-}
+void addEdge(int u, int v, vector<vector<int>> &g) { g[u].push_back(v); }
 
-int topoSort(vector<int> &input, int n, int m, vector<int> degree, vector<vector<int>> &g)
-{
+int topoSort(vector<int> &input, int n, int m, vector<int> degree, vector<vector<int>> &g) {
     queue<int> q;
     vector<int> val(n + (m - 1) * 3 + 3 + 1, 0);
-    for (int i = 1; i <= m; i++) { if (degree[i] == 0) { q.push(i); } }
+    for (int i = 1; i <= m; i++) {
+        if (degree[i] == 0) { q.push(i); }
+    }
     for (int i = 1; i <= n; i++) {
-        for (size_t j = 0; j < g[i].size(); j++) {
-            val[g[i][j]] = input[i];
-        }
+        for (size_t j = 0; j < g[i].size(); j++) { val[g[i][j]] = input[i]; }
     }
     int res = 0;
     while (!q.empty()) {
-        int u = q.front(); q.pop();
+        int u = q.front();
+        q.pop();
         int in1 = (u - 1) * 3 + 1 + n;
         int in2 = (u - 1) * 3 + 2 + n;
         int out = (u - 1) * 3 + 3 + n;
@@ -38,8 +35,7 @@ int topoSort(vector<int> &input, int n, int m, vector<int> degree, vector<vector
     return res;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n, m, a, b;
     vector<int> degree, input;
@@ -84,10 +80,13 @@ int main()
             while (left <= right) {
                 int mid = (left + right) >> 1;
                 for (int i = 1; i <= n; i++) { input[i] = i <= mid ? 1 : 0; }
-                if (topoSort(input, n, m, degree, g) != res1) { right = mid - 1; }
-                else { left = mid + 1; }
+                if (topoSort(input, n, m, degree, g) != res1) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
             }
-            for (int i = 1; i <= n; i++) { cout << (i <  left ? "1" : (i == left ? "x" : "0")); }
+            for (int i = 1; i <= n; i++) { cout << (i < left ? "1" : (i == left ? "x" : "0")); }
             cout << endl;
         }
     }

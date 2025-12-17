@@ -8,8 +8,7 @@ of each perimeter.
 
 using namespace std;
 
-int main()
-{
+int main() {
     freopen("test.in", "r", stdin);
     freopen("test.out", "w", stdout);
     ios::sync_with_stdio(false);
@@ -26,9 +25,7 @@ int main()
             g[i].resize(m + 1);
             for (int j = 1; j <= m; j++) {
                 g[i][j] = str[j - 1] == '.' ? 1 : 0;
-                if (g[i][j] == 1) {
-                    g[i][j] += g[i - 1][j];
-                }
+                if (g[i][j] == 1) { g[i][j] += g[i - 1][j]; }
             }
         }
         stack<pair<int, int>> s;

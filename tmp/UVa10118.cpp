@@ -2,14 +2,17 @@
 
 using namespace std;
 
-int dp(int i, int j, int k, int l, vector<vector<vector<vector<int>>>> &d, set<int> &occur, vector<vector<int>> &color)
-{
+int dp(int i,
+       int j,
+       int k,
+       int l,
+       vector<vector<vector<vector<int>>>> &d,
+       set<int> &occur,
+       vector<vector<int>> &color) {
     int n = d.size() - 1;
     int &ans = d[i][j][k][l];
     if (ans != -1) { return ans; }
-    if (occur.size() == 5) {
-        return ans = 0;
-    }
+    if (occur.size() == 5) { return ans = 0; }
     ans = 0;
     if (i < n) {
         if (occur.count(color[0][i])) {
@@ -58,8 +61,7 @@ int dp(int i, int j, int k, int l, vector<vector<vector<vector<int>>>> &d, set<i
     return ans;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n;
     vector<vector<int>> color;
@@ -68,9 +70,7 @@ int main()
     while (cin >> n && n != 0) {
         color.clear();
         color.resize(4);
-        for (int i = 0; i < 4; i++) {
-            color[i].resize(n);
-        }
+        for (int i = 0; i < 4; i++) { color[i].resize(n); }
         for (int i = 0; i < n; i++) {
             cin >> color[0][i] >> color[1][i] >> color[2][i] >> color[3][i];
         }
@@ -81,9 +81,7 @@ int main()
             d[i].resize(n + 1);
             for (int j = 0; j < n + 1; j++) {
                 d[i][j].resize(n + 1);
-                for (int k = 0; k < n + 1; k++) {
-                    d[i][j][k].resize(n + 1, -1);
-                }
+                for (int k = 0; k < n + 1; k++) { d[i][j][k].resize(n + 1, -1); }
             }
         }
         cout << dp(0, 0, 0, 0, d, occur, color) << endl;

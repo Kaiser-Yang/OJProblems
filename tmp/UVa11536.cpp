@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n, m, k;
     vector<int> a;
@@ -36,8 +35,11 @@ int main()
         }
 
         cout << "Case " << t << ": ";
-        if (ans == -1) {cout << "sequence nai" << endl; }
-        else { cout << ans << endl; }
+        if (ans == -1) {
+            cout << "sequence nai" << endl;
+        } else {
+            cout << ans << endl;
+        }
     }
     return 0;
 }

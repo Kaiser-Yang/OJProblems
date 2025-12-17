@@ -2,61 +2,34 @@
 
 using namespace std;
 
-enum Direction {
-    UP,
-    DOWN,
-    LEFT,
-    RIGHT,
-    MAX_DIRECTION
-};
+enum Direction { UP, DOWN, LEFT, RIGHT, MAX_DIRECTION };
 
-Direction getDirection(char ch)
-{
-    if (ch == 'U') {
-        return UP;
-    }
-    if (ch == 'D') {
-        return DOWN;
-    }
-    if (ch == 'L') {
-        return LEFT;
-    }
+Direction getDirection(char ch) {
+    if (ch == 'U') { return UP; }
+    if (ch == 'D') { return DOWN; }
+    if (ch == 'L') { return LEFT; }
     return RIGHT;
 }
 
-int cost(int oldPlace, int newPlace, int nowFoot, int lastFoot)
-{
-    if (nowFoot != lastFoot) {
-        return 1;
-    }
-    if (newPlace == oldPlace) {
-        return 3;
-    }
+int cost(int oldPlace, int newPlace, int nowFoot, int lastFoot) {
+    if (nowFoot != lastFoot) { return 1; }
+    if (newPlace == oldPlace) { return 3; }
     if (oldPlace == UP) {
-        if (newPlace == DOWN) {
-            return 7;
-        }
+        if (newPlace == DOWN) { return 7; }
         return 5;
     } else if (oldPlace == DOWN) {
-        if (newPlace == UP) {
-            return 7;
-        }
+        if (newPlace == UP) { return 7; }
         return 5;
     } else if (oldPlace == LEFT) {
-        if (newPlace == RIGHT) {
-            return 7;
-        }
+        if (newPlace == RIGHT) { return 7; }
         return 5;
     } else {
-        if (newPlace == LEFT) {
-            return 7;
-        }
+        if (newPlace == LEFT) { return 7; }
         return 5;
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     string str;
     vector<vector<vector<vector<int>>>> dp;
@@ -90,9 +63,7 @@ int main()
                 dp[n][a][b].resize(3, numeric_limits<int>::max() / 2);
                 if (a == b) { continue; }
                 if (a == RIGHT && b == LEFT) { continue; }
-                for (int s = 0; s < 3; s++) {
-                    dp[n][a][b][s] = 0;
-                }
+                for (int s = 0; s < 3; s++) { dp[n][a][b][s] = 0; }
             }
         }
         for (int i = n - 1; i >= 0; i--) {
@@ -114,7 +85,6 @@ int main()
                                     dp[i][a][b][s] = dp[i + 1][a][k][2] + cost(b, k, 2, s);
                                     nex[i][a][b][s] = {a, k};
                                     ans[i][a][b][s] = 'R';
-
                                 }
                             }
                             if (dp[i][a][b][s] > dp[i + 1][a][b][0]) {
@@ -123,15 +93,21 @@ int main()
                                 ans[i][a][b][s] = '.';
                             }
                         } else {
-                            if (!((a == UP || a == DOWN) && b == LEFT && a != getDirection(str[i])) &&
-                                dp[i][a][b][s] > dp[i + 1][getDirection(str[i])][b][1] + cost(a, getDirection(str[i]), 1, s)) {
-                                dp[i][a][b][s] = dp[i + 1][getDirection(str[i])][b][1] + cost(a, getDirection(str[i]), 1, s);
+                            if (!((a == UP || a == DOWN) && b == LEFT &&
+                                  a != getDirection(str[i])) &&
+                                dp[i][a][b][s] > dp[i + 1][getDirection(str[i])][b][1] +
+                                                     cost(a, getDirection(str[i]), 1, s)) {
+                                dp[i][a][b][s] = dp[i + 1][getDirection(str[i])][b][1] +
+                                                 cost(a, getDirection(str[i]), 1, s);
                                 nex[i][a][b][s] = {getDirection(str[i]), b};
                                 ans[i][a][b][s] = 'L';
                             }
-                            if (!((b == UP || b == DOWN) && a == RIGHT && b != getDirection(str[i])) &&
-                                dp[i][a][b][s] > dp[i + 1][a][getDirection(str[i])][2] + cost(b, getDirection(str[i]), 2, s)) {
-                                dp[i][a][b][s] = dp[i + 1][a][getDirection(str[i])][2] + cost(b, getDirection(str[i]), 2, s);
+                            if (!((b == UP || b == DOWN) && a == RIGHT &&
+                                  b != getDirection(str[i])) &&
+                                dp[i][a][b][s] > dp[i + 1][a][getDirection(str[i])][2] +
+                                                     cost(b, getDirection(str[i]), 2, s)) {
+                                dp[i][a][b][s] = dp[i + 1][a][getDirection(str[i])][2] +
+                                                 cost(b, getDirection(str[i]), 2, s);
                                 nex[i][a][b][s] = {a, getDirection(str[i])};
                                 ans[i][a][b][s] = 'R';
                             }

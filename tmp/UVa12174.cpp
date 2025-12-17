@@ -8,8 +8,7 @@ subsequence has no repetition of any nubmer.
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, s, n;
     vector<int> a, cnt;
@@ -29,7 +28,7 @@ int main()
                 cnt[a[i - s]]--;
                 if (cnt[a[i - s]] == 1) { num--; }
             }
-            if (i < n ) {
+            if (i < n) {
                 cnt[a[i]]++;
                 if (cnt[a[i]] == 2) { num++; }
             }

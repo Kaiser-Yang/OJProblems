@@ -2,8 +2,13 @@
 
 using namespace std;
 
-int dp(int i, int j, int k, int pos, vector<vector<vector<vector<int>>>> &d, vector<int> &p, vector<int> &e)
-{
+int dp(int i,
+       int j,
+       int k,
+       int pos,
+       vector<vector<vector<vector<int>>>> &d,
+       vector<int> &p,
+       vector<int> &e) {
     int &ans = d[i][j][k][pos];
     if (ans != -1) { return ans; }
     if (k == 0) {
@@ -28,13 +33,11 @@ int dp(int i, int j, int k, int pos, vector<vector<vector<vector<int>>>> &d, vec
             temp = abs(p[ii] - p[j]);
         }
         ans = max(ans, e[ii] - k * temp + dp(i, ii, k - 1, 1, d, p, e));
-
     }
     return ans;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n;
     vector<int> p, e;
@@ -43,21 +46,15 @@ int main()
         cin >> n;
         p.resize(n);
         e.resize(n);
-        for (int i = 0; i < n; i++)  {
-            cin >> p[i];
-        }
-        for (int i = 0; i < n; i++) {
-            cin >> e[i];
-        }
+        for (int i = 0; i < n; i++) { cin >> p[i]; }
+        for (int i = 0; i < n; i++) { cin >> e[i]; }
         vector<vector<vector<vector<int>>>> d;
         d.resize(n);
         for (int i = 0; i < n; i++) {
             d[i].resize(n);
             for (int j = 0; j < n; j++) {
                 d[i][j].resize(n);
-                for (int k = 0; k < n; k++) {
-                    d[i][j][k].resize(2, -1);
-                }
+                for (int k = 0; k < n; k++) { d[i][j][k].resize(2, -1); }
             }
         }
         int ans = 0;

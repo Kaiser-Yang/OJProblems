@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, d;
     string num;
@@ -22,9 +21,7 @@ int main()
             d--;
             ans.pop_back();
         }
-        for (int i = 0; i < ans.size(); i++) {
-            cout << ans[i];
-        }
+        for (int i = 0; i < ans.size(); i++) { cout << ans[i]; }
         cout << endl;
     }
     return 0;

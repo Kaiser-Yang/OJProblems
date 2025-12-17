@@ -10,23 +10,24 @@ vector<vector<pair<int, int>>> p;
 vector<int> opponent;
 vector<vector<vector<vector<int>>>> dp[2];
 
-template<class T0, class ...T>
-bool same(T0 arg0, T ...args)
-{
+template <class T0, class... T>
+bool same(T0 arg0, T... args) {
     T0 t[] = {arg0, args...};
     int len = sizeof(t) / sizeof(T0);
     for (int i = 0; i < len; i++) {
         if (t[i].first <= 0 || t[i].second == 0) { continue; }
         for (int j = i + 1; j < len; j++) {
             if (t[j].first <= 0 || t[j].second == 0) { continue; }
-            if (p[opponent[t[i].first]][t[i].second].second == p[opponent[t[j].first]][t[j].second].second) { return true; }
+            if (p[opponent[t[i].first]][t[i].second].second ==
+                p[opponent[t[j].first]][t[j].second].second) {
+                return true;
+            }
         }
     }
     return false;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
@@ -38,12 +39,12 @@ int main()
                 cin >> p[i][j].first;
                 p[i][j].second = j;
             }
-            sort(p[i].begin() + 1, p[i].end(), [] (const pair<int, int> &lhs, const pair<int, int> &rhs) {
-                if (lhs.first != rhs.first) {
-                    return lhs.first > rhs.first;
-                }
-                return lhs.second < rhs.second;
-            });
+            sort(p[i].begin() + 1,
+                 p[i].end(),
+                 [](const pair<int, int> &lhs, const pair<int, int> &rhs) {
+                     if (lhs.first != rhs.first) { return lhs.first > rhs.first; }
+                     return lhs.second < rhs.second;
+                 });
         }
         g += 10;
         opponent.resize(g + 1);
@@ -71,9 +72,7 @@ int main()
             for (int a = 0; a < maxNum; a++) {
                 for (int b = 0; b < maxNum; b++) {
                     for (int c = 0; c < maxNum; c++) {
-                        for (int d = 0; d < maxNum; d++) {
-                            dp[now][a][b][c][d] = 0;
-                        }
+                        for (int d = 0; d < maxNum; d++) { dp[now][a][b][c][d] = 0; }
                     }
                 }
             }
@@ -87,15 +86,30 @@ int main()
                     for (int d = 0; d < maxNum; d++) {
                         if (d == 0 && i - 3 >= 1 && opponent[i - 3] != 0) { continue; }
                         if (d != 0 && (i - 3 <= 0 || opponent[i - 3] == 0)) { break; }
-                        if (same(make_pair(i - 1, b), make_pair(i - 2, c), make_pair(i - 3, d))) { continue; }
+                        if (same(make_pair(i - 1, b), make_pair(i - 2, c), make_pair(i - 3, d))) {
+                            continue;
+                        }
                         for (int x = 0; x < maxNum; x++) {
                             if (x == 0 && i - 4 >= 1 && opponent[i - 4] != 0) { continue; }
                             if (x != 0 && (i - 4 <= 0 || opponent[i - 4] == 0)) { break; }
-                            if (same(make_pair(i - 1, b), make_pair(i - 2, c), make_pair(i - 3, d), make_pair(i - 4, x))) { continue; }
+                            if (same(make_pair(i - 1, b),
+                                     make_pair(i - 2, c),
+                                     make_pair(i - 3, d),
+                                     make_pair(i - 4, x))) {
+                                continue;
+                            }
                             if (opponent[i] != 0) {
-                                for (int a = 1; a < maxNum; a++){
-                                    if (same(make_pair(i - 1, b), make_pair(i - 2, c), make_pair(i - 3, d), make_pair(i - 4, x), make_pair(i, a))) { continue; }
-                                    dp[now][a][b][c][d] = max(dp[now][a][b][c][d], dp[las][b][c][d][x] + p[opponent[i]][a].first);
+                                for (int a = 1; a < maxNum; a++) {
+                                    if (same(make_pair(i - 1, b),
+                                             make_pair(i - 2, c),
+                                             make_pair(i - 3, d),
+                                             make_pair(i - 4, x),
+                                             make_pair(i, a))) {
+                                        continue;
+                                    }
+                                    dp[now][a][b][c][d] =
+                                        max(dp[now][a][b][c][d],
+                                            dp[las][b][c][d][x] + p[opponent[i]][a].first);
                                 }
                             } else {
                                 dp[now][0][b][c][d] = max(dp[now][0][b][c][d], dp[las][b][c][d][x]);
@@ -109,9 +123,7 @@ int main()
         for (int a = 0; a < maxNum; a++) {
             for (int b = 0; b < maxNum; b++) {
                 for (int c = 0; c < maxNum; c++) {
-                    for (int d = 0; d < maxNum; d++) {
-                        ans = max(ans, dp[now][a][b][c][d]);
-                    }
+                    for (int d = 0; d < maxNum; d++) { ans = max(ans, dp[now][a][b][c][d]); }
                 }
             }
         }

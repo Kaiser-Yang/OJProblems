@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n;
     long long d;
@@ -20,17 +19,13 @@ int main()
         }
         vector<long long> x;
         for (int i = 0; i < n; i++) {
-            for (int j = -n + 1; j <= n -1; j++) {
-                x.push_back(h[i] + j * d);
-            }
+            for (int j = -n + 1; j <= n - 1; j++) { x.push_back(h[i] + j * d); }
         }
         sort(x.begin(), x.end());
         int len = unique(x.begin(), x.end()) - x.begin();
         dp.clear();
         dp.resize(n);
-        for (int i = 0; i < n; i++) {
-            dp[i].resize(len, numeric_limits<long long>::max());
-        }
+        for (int i = 0; i < n; i++) { dp[i].resize(len, numeric_limits<long long>::max()); }
         deque<int> dq;
         for (int j = 0; j < len; j++) {
             if (x[j] == h[0]) {
@@ -42,9 +37,7 @@ int main()
             int left = 0, right = left;
             for (int j = 0; j < len; j++) {
                 while (left < len && x[left] < x[j] - d) {
-                    while (!dq.empty() && dq.front() <= left) {
-                        dq.pop_front();
-                    }
+                    while (!dq.empty() && dq.front() <= left) { dq.pop_front(); }
                     left++;
                 }
                 if (right < left) { right = left; }

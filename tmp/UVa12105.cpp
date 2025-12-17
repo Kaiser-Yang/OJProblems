@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     vector<int> cost({6, 2, 5, 5, 4, 5, 6, 3, 7, 6});
     vector<vector<int>> dp, p;
@@ -23,7 +22,8 @@ int main()
                 if (j == 0) { dp[i][j] = 0; }
                 for (int d = 9; d >= 0; d--) {
                     if (i - cost[d] < 0) { continue; }
-                    if (dp[i - cost[d]][(j * 10 + d) % m] >= 0 && dp[i - cost[d]][(j * 10 + d) % m] + 1 > dp[i][j]){
+                    if (dp[i - cost[d]][(j * 10 + d) % m] >= 0 &&
+                        dp[i - cost[d]][(j * 10 + d) % m] + 1 > dp[i][j]) {
                         dp[i][j] = dp[i - cost[d]][(j * 10 + d) % m] + 1;
                         p[i][j] = d;
                     }
@@ -41,9 +41,7 @@ int main()
             for (int d = p[i][j]; d >= 0; d = p[i][j]) {
                 i -= cost[d];
                 j = (j * 10 + d) % m;
-                if (first && d == 0 && p[i][j] >= 0) {
-                    continue;
-                }
+                if (first && d == 0 && p[i][j] >= 0) { continue; }
                 first = false;
                 cout << d;
             }

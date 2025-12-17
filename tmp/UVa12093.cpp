@@ -8,24 +8,19 @@ int n, c1, c2, u, v;
 vector<int> g[MAXN];
 vector<int> d[4];
 
-template<typename T>
-T myMin(T arg)
-{
+template <typename T>
+T myMin(T arg) {
     return arg;
 }
 
-template<typename T0, typename...T1>
-T0 myMin(T0 arg0, T1 ...arg)
-{
+template <typename T0, typename... T1>
+T0 myMin(T0 arg0, T1... arg) {
     return min(arg0, myMin(arg...));
 }
 
-void addEdge(int u, int v) {
-    g[u].push_back(v);
-}
+void addEdge(int u, int v) { g[u].push_back(v); }
 
-void dp(int u, int fa)
-{
+void dp(int u, int fa) {
     d[0][u] = d[3][u] = 0;
     d[1][u] = c1;
     d[2][u] = c2;
@@ -34,7 +29,7 @@ void dp(int u, int fa)
         int v = g[u][i];
         if (v == fa) { continue; }
         dp(v, u);
-        int  x = myMin(d[0][v], d[1][v], d[2][v]);
+        int x = myMin(d[0][v], d[1][v], d[2][v]);
         d[0][u] += myMin(d[1][v], d[2][v]);
         d[1][u] += x;
         d[2][u] += myMin(d[0][v], d[1][v], d[2][v], d[3][v]);
@@ -46,8 +41,7 @@ void dp(int u, int fa)
     d[1][u] = min(d[1][u], res);
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     while (cin >> n >> c1 >> c2 && !(n == 0 && c1 == 0 && c2 == 0)) {
         for (int i = 1; i <= n; i++) { g[i].clear(); }

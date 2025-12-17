@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int solve(vector<int> &h, int left)
-{
+int solve(vector<int> &h, int left) {
     left = abs(left);
     int n = h.size();
     int res = h[0] * 2;
@@ -33,21 +32,16 @@ int solve(vector<int> &h, int left)
         i++;
         while (i < n) {
             rightMostVolumn += maxHeight * 2;
-            if (h[i] > maxHeight) {
-                break;
-            }
+            if (h[i] > maxHeight) { break; }
             i++;
         }
         res += leftVolumn;
-        if (leftVolumn > rightMostVolumn) {
-            res -= leftVolumn - rightMostVolumn;
-        }
+        if (leftVolumn > rightMostVolumn) { res -= leftVolumn - rightMostVolumn; }
     }
     return res;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int left, right;
     vector<int> h;

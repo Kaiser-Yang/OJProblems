@@ -2,15 +2,13 @@
 
 using namespace std;
 
-void deleteNode(int i, vector<int> &pre, vector<int> &nex, vector<int> &ud)
-{
+void deleteNode(int i, vector<int> &pre, vector<int> &nex, vector<int> &ud) {
     nex[pre[i]] = nex[i];
     pre[nex[i]] = pre[i];
     ud[i] = 0;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, L, P, a, b;
     vector<int> pre, nex, ud;
@@ -31,7 +29,7 @@ int main()
         pre[0] = L - 1;
         nex[L - 1] = 0;
         for (int i = 0; i < P; i++) {
-            cin >> a >> b; // a is above b
+            cin >> a >> b;  // a is above b
             link[a] = b;
             link[b] = a;
             ud[a] = 1;
@@ -39,9 +37,7 @@ int main()
         }
 
         for (int i = 0; i < L; i++) {
-            if (ud[i] == 0) {
-                deleteNode(i, pre, nex, ud);
-            }
+            if (ud[i] == 0) { deleteNode(i, pre, nex, ud); }
         }
 
         int i = 0;
@@ -66,9 +62,7 @@ int main()
                     break;
                 }
             }
-            if (!ok) {
-                break;
-            }
+            if (!ok) { break; }
         }
         cout << "Case #" << t << ": ";
         if (P != 0) {
@@ -76,7 +70,6 @@ int main()
         } else {
             cout << "YES" << endl;
         }
-
     }
     return 0;
 }

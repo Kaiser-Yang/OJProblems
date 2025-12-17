@@ -2,8 +2,7 @@
 
 using namespace std;
 
-void dfs(int u, int fa, vector<vector<int>> &dp, vector<vector<int>> &g)
-{
+void dfs(int u, int fa, vector<vector<int>> &dp, vector<vector<int>> &g) {
     dp[u][0] = 1;
     dp[u][1] = 0;
     dp[u][2] = g.size();
@@ -21,8 +20,7 @@ void dfs(int u, int fa, vector<vector<int>> &dp, vector<vector<int>> &g)
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int N, u, v;
     vector<vector<int>> g, dp;
@@ -40,9 +38,7 @@ int main()
         dfs(1, 0, dp, g);
         cout << min(dp[1][0], dp[1][2]) << endl;
         cin >> N;
-        if (N == -1) {
-            break;
-        }
+        if (N == -1) { break; }
     }
     return 0;
 }

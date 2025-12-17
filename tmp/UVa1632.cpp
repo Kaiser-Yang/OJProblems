@@ -7,22 +7,14 @@ int d[10001][10001][2];
 vector<pair<int, int>> x;
 constexpr int INF = numeric_limits<int>::max() / 10;
 
-int dis(int i, int j)
-{
-    return abs(x[i].first - x[j].first);
-}
+int dis(int i, int j) { return abs(x[i].first - x[j].first); }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     while (cin >> n) {
         x.resize(n + 1);
-        for (int i = 1; i <= n; i++) {
-            cin >> x[i].first >> x[i].second;
-        }
-        for (int i = 1; i <= n; i++) {
-            d[i][i][0] = d[i][i][1] = 0;
-        }
+        for (int i = 1; i <= n; i++) { cin >> x[i].first >> x[i].second; }
+        for (int i = 1; i <= n; i++) { d[i][i][0] = d[i][i][1] = 0; }
         for (int l = n - 1; l >= 1; l--) {
             for (int r = l + 1; r <= n; r++) {
                 d[l][r][0] = min(d[l + 1][r][0] + dis(l + 1, l), d[l + 1][r][1] + dis(r, l));
@@ -32,9 +24,11 @@ int main()
             }
         }
         int ans = min(d[1][n][0], d[1][n][1]);
-        if (ans >= INF) { cout << "No solution\n"; }
-        else { cout << ans << endl; }
-
+        if (ans >= INF) {
+            cout << "No solution\n";
+        } else {
+            cout << ans << endl;
+        }
     }
     return 0;
 }

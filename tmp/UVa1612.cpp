@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, t = 1;
     vector<double> a, b, c;
@@ -21,7 +20,10 @@ int main()
             c[i] = round(c[i] * 100);
         }
         bool ok = true;
-        for (int i = 0; i < n; i++) { cin >> id[i]; id[i]--; }
+        for (int i = 0; i < n; i++) {
+            cin >> id[i];
+            id[i]--;
+        }
         score[0] = a[id[0]] + b[id[0]] + c[id[0]];
         for (int i = 1; i < n; i++) {
             score[i] = a[id[i]] + b[id[i]] + c[id[i]];

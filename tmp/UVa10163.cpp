@@ -9,8 +9,7 @@ constexpr int INF = numeric_limits<int>::max() / 10;
 int N, M;
 int p[MAXM], d[MAXN][MAXM];
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     while (cin >> N >> M && !(N == 0 && M == 0)) {
         for (int i = 1; i <= M; i++) { cin >> p[i]; }
@@ -36,9 +35,7 @@ int main()
             for (int j = 1; j <= M; j++) {
                 d[i][j] = d[i][j - 1];
                 for (int k = 0; k < i; k++) {
-                    if (p[j] / (i - k) >= temp) {
-                        d[i][j] = min(d[i][j], d[k][j - 1] + p[j]);
-                    }
+                    if (p[j] / (i - k) >= temp) { d[i][j] = min(d[i][j], d[k][j - 1] + p[j]); }
                 }
             }
         }

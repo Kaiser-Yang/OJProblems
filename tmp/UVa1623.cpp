@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n, m;
     vector<int> rain;
@@ -32,9 +31,7 @@ int main()
         if (ok) {
             cout << "YES" << endl;
             for (int i = 0; i < m; i++) {
-                if (rain[i] == 0) {
-                    cout << ans[i] << " ";
-                }
+                if (rain[i] == 0) { cout << ans[i] << " "; }
             }
             cout << endl;
         } else {

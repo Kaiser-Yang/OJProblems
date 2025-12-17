@@ -2,17 +2,12 @@
 
 using namespace std;
 
-struct Book
-{
+struct Book {
     int h, w;
-    bool operator < (const Book &other)
-    {
-        return h > other.h;
-    }
+    bool operator<(const Book &other) { return h > other.h; }
 };
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n;
     vector<Book> book;
@@ -22,9 +17,7 @@ int main()
     while (T--) {
         cin >> n;
         book.resize(n + 1);
-        for (int i = 1; i <= n; i++) {
-            cin >> book[i].h >> book[i].w;
-        }
+        for (int i = 1; i <= n; i++) { cin >> book[i].h >> book[i].w; }
         sort(book.begin() + 1, book.end());
         sumW.clear();
         sumW.resize(n + 1);
@@ -45,19 +38,17 @@ int main()
                     if (i + j > sumW[i] - sumW[1]) { break; }
                     if (j > sumW[i] - j - k + 30) { break; }
                     if (k > j + 30) { break; }
-                    if (dp[now][j][k] == numeric_limits<int>::max()) {
-                        continue;
-                    }
+                    if (dp[now][j][k] == numeric_limits<int>::max()) { continue; }
                     dp[nex][j][k] = min(dp[nex][j][k], dp[now][j][k]);
-                    dp[nex][j + book[i].w][k] = min(dp[nex][j + book[i].w][k], dp[now][j][k] + (j == 0 ? book[i].h : 0));
-                    dp[nex][j][k + book[i].w] = min(dp[nex][j][k + book[i].w], dp[now][j][k] + (k == 0 ? book[i].h : 0));
+                    dp[nex][j + book[i].w][k] =
+                        min(dp[nex][j + book[i].w][k], dp[now][j][k] + (j == 0 ? book[i].h : 0));
+                    dp[nex][j][k + book[i].w] =
+                        min(dp[nex][j][k + book[i].w], dp[now][j][k] + (k == 0 ? book[i].h : 0));
                 }
             }
             swap(now, nex);
             for (int j = 0; j <= sumW[n]; j++) {
-                for (int k = 0; k <= sumW[n]; k++) {
-                    dp[nex][j][k] = numeric_limits<int>::max();
-                }
+                for (int k = 0; k <= sumW[n]; k++) { dp[nex][j][k] = numeric_limits<int>::max(); }
             }
         }
         int ans = numeric_limits<int>::max();

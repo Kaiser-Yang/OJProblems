@@ -2,12 +2,10 @@
 
 using namespace std;
 
-struct Cube
-{
+struct Cube {
     int a, b, c;
     Cube() = default;
-    Cube(int a, int b, int c)
-    {
+    Cube(int a, int b, int c) {
         if (a > b) { swap(a, b); }
         if (a > c) { swap(a, c); }
         if (b > c) { swap(b, c); }
@@ -16,16 +14,14 @@ struct Cube
         this->c = c;
     }
 
-    int& operator[](int index)
-    {
+    int &operator[](int index) {
         if (index == 0) { return a; }
         if (index == 1) { return b; }
         return c;
     }
 };
 
-int dp(int index, int k, vector<vector<int>> &d, vector<Cube> &cube)
-{
+int dp(int index, int k, vector<vector<int>> &d, vector<Cube> &cube) {
     int &ans = d[index][k];
     if (ans != -1) { return ans; }
 
@@ -45,15 +41,9 @@ int dp(int index, int k, vector<vector<int>> &d, vector<Cube> &cube)
     ans = 0;
 
     for (int i = 0; i < n; i++) {
-        if (nowa > cube[i][1] && nowb > cube[i][2]) {
-            ans = max(ans, dp(i, 0, d, cube));
-        }
-        if (nowa > cube[i][0] && nowb > cube[i][2]) {
-            ans = max(ans, dp(i, 1, d, cube));
-        }
-        if (nowa > cube[i][0] && nowb > cube[i][1]) {
-            ans = max(ans, dp(i, 2, d, cube));
-        }
+        if (nowa > cube[i][1] && nowb > cube[i][2]) { ans = max(ans, dp(i, 0, d, cube)); }
+        if (nowa > cube[i][0] && nowb > cube[i][2]) { ans = max(ans, dp(i, 1, d, cube)); }
+        if (nowa > cube[i][0] && nowb > cube[i][1]) { ans = max(ans, dp(i, 2, d, cube)); }
     }
 
     ans += cube[index][k];
@@ -61,8 +51,7 @@ int dp(int index, int k, vector<vector<int>> &d, vector<Cube> &cube)
     return ans;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n, a, b, c, kase = 0;
     vector<Cube> cube;
@@ -72,7 +61,6 @@ int main()
         for (int i = 0; i < n; i++) {
             cin >> a >> b >> c;
             cube[i] = Cube(a, b, c);
-
         }
         kase++;
         cout << "Case " << kase << ": maximum height = ";

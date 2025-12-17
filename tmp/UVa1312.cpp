@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n, w, h;
     vector<pair<int, int>> p;
@@ -50,7 +49,6 @@ int main()
         }
         cout << ansx << " " << ansy << " " << ans << endl;
         if (T != 0) { cout << endl; }
-
     }
     return 0;
 }

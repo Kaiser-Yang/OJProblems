@@ -8,8 +8,7 @@ int T, n, cntA, cntB;
 vector<pair<int, int>> carA(201), carB(201);
 vector<vector<vector<int>>> dp(201, vector<vector<int>>(201, vector<int>(2)));
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin >> T;
     while (T--) {
@@ -28,9 +27,7 @@ int main()
             }
         }
         for (int i = 0; i <= cntA; i++) {
-            for (int j = 0; j <= cntB; j++) {
-                dp[i][j][0] = dp[i][j][1] = INF;
-            }
+            for (int j = 0; j <= cntB; j++) { dp[i][j][0] = dp[i][j][1] = INF; }
         }
         dp[0][0][0] = dp[0][0][1] = 0;
         for (int i = 0; i <= cntA; i++) {

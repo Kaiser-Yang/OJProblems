@@ -18,17 +18,20 @@ int quickPow(int a, int b) {
     return res;
 }
 
-long long f(int k, int i, vector<long long> &c)
-{
-    if (i == 0) { return 0; }
-    else if (k == 0) { return 1; }
-    else if (i <= quickPow(2, k -1)) { return f(k - 1, i, c) * 2; }
-    else { return 2 * c[k - 1] + f(k - 1, i - quickPow(2, k - 1), c); }
+long long f(int k, int i, vector<long long> &c) {
+    if (i == 0) {
+        return 0;
+    } else if (k == 0) {
+        return 1;
+    } else if (i <= quickPow(2, k - 1)) {
+        return f(k - 1, i, c) * 2;
+    } else {
+        return 2 * c[k - 1] + f(k - 1, i - quickPow(2, k - 1), c);
+    }
     return 0;
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, a, b, k;
     vector<long long> c(31);

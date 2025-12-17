@@ -2,35 +2,32 @@
 
 using namespace std;
 
-bool dfs(int u, int col, vector<vector<int>> &g, vector<int> &color)
-{
+bool dfs(int u, int col, vector<vector<int>> &g, vector<int> &color) {
     color[u] = col;
     for (int i = 0; i < g[u].size(); i++) {
         int v = g[u][i];
-        if (color[v] != -1 && color[v] != (col ^ 1)) {
-            return false;
-        }
-        if (color[v] == -1 && !dfs(v, col ^ 1, g, color)) {
-            return false;
-        }
+        if (color[v] != -1 && color[v] != (col ^ 1)) { return false; }
+        if (color[v] == -1 && !dfs(v, col ^ 1, g, color)) { return false; }
     }
     return true;
 }
 
-void print(int i, int j, vector<vector<bool>> &dp, vector<int> &val, vector<pair<vector<int>, vector<int>>> &person, vector<int> &ans0, vector<int> &ans1, int sum)
-{
+void print(int i,
+           int j,
+           vector<vector<bool>> &dp,
+           vector<int> &val,
+           vector<pair<vector<int>, vector<int>>> &person,
+           vector<int> &ans0,
+           vector<int> &ans1,
+           int sum) {
     if (i == 0) {
         if (j == val[i] + sum) {
-            for (int k = 0; k < person[i].first.size(); k++) {
-                ans0.push_back(person[i].first[k]);
-            }
+            for (int k = 0; k < person[i].first.size(); k++) { ans0.push_back(person[i].first[k]); }
             for (int k = 0; k < person[i].second.size(); k++) {
                 ans1.push_back(person[i].second[k]);
             }
         } else {
-            for (int k = 0; k < person[i].first.size(); k++) {
-                ans1.push_back(person[i].first[k]);
-            }
+            for (int k = 0; k < person[i].first.size(); k++) { ans1.push_back(person[i].first[k]); }
             for (int k = 0; k < person[i].second.size(); k++) {
                 ans0.push_back(person[i].second[k]);
             }
@@ -39,26 +36,16 @@ void print(int i, int j, vector<vector<bool>> &dp, vector<int> &val, vector<pair
     }
     if (j - val[i] >= 0 && j - val[i] < sum * 2 + 1 && dp[i - 1][j - val[i]]) {
         print(i - 1, j - val[i], dp, val, person, ans0, ans1, sum);
-        for (int k = 0; k < person[i].first.size(); k++) {
-            ans0.push_back(person[i].first[k]);
-        }
-        for (int k = 0; k < person[i].second.size(); k++) {
-            ans1.push_back(person[i].second[k]);
-        }
-    }
-    else if (j + val[i] >= 0 && j + val[i] < sum * 2 + 1 && dp[i - 1][j + val[i]]) {
+        for (int k = 0; k < person[i].first.size(); k++) { ans0.push_back(person[i].first[k]); }
+        for (int k = 0; k < person[i].second.size(); k++) { ans1.push_back(person[i].second[k]); }
+    } else if (j + val[i] >= 0 && j + val[i] < sum * 2 + 1 && dp[i - 1][j + val[i]]) {
         print(i - 1, j + val[i], dp, val, person, ans0, ans1, sum);
-        for (int k = 0; k < person[i].first.size(); k++) {
-            ans1.push_back(person[i].first[k]);
-        }
-        for (int k = 0; k < person[i].second.size(); k++) {
-            ans0.push_back(person[i].second[k]);
-        }
+        for (int k = 0; k < person[i].first.size(); k++) { ans1.push_back(person[i].first[k]); }
+        for (int k = 0; k < person[i].second.size(); k++) { ans0.push_back(person[i].second[k]); }
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, N;
     cin >> T;
@@ -71,9 +58,7 @@ int main()
             int who;
             vector<bool> know(N + 1, false);
             know[i] = true;
-            while (cin >> who && who != 0) {
-                know[who] = true;
-            }
+            while (cin >> who && who != 0) { know[who] = true; }
             for (int j = 1; j <= N; j++) {
                 if (!know[j]) {
                     g[i].push_back(j);
@@ -117,13 +102,9 @@ int main()
         } else {
             int sum = 0;
             vector<vector<bool>> dp;
-            for (int i = 0; i < val.size(); i++) {
-                sum += abs(val[i]);
-            }
+            for (int i = 0; i < val.size(); i++) { sum += abs(val[i]); }
             dp.resize(val.size());
-            for (int i = 0; i < val.size(); i++) {
-                dp[i].resize(sum * 2 + 1, false);
-            }
+            for (int i = 0; i < val.size(); i++) { dp[i].resize(sum * 2 + 1, false); }
             for (int i = 0; i < val.size(); i++) {
                 if (i == 0) {
                     dp[i][val[i] + sum] = true;
@@ -131,8 +112,12 @@ int main()
                     continue;
                 }
                 for (int j = 0; j < sum * 2 + 1; j++) {
-                    if (j - val[i] >= 0 && j - val[i] < sum * 2 + 1) { dp[i][j] = max(dp[i][j], dp[i - 1][j - val[i]]); }
-                    if (j + val[i] >= 0 && j + val[i] < sum * 2 + 1) { dp[i][j] = max(dp[i][j], dp[i - 1][j + val[i]]); }
+                    if (j - val[i] >= 0 && j - val[i] < sum * 2 + 1) {
+                        dp[i][j] = max(dp[i][j], dp[i - 1][j - val[i]]);
+                    }
+                    if (j + val[i] >= 0 && j + val[i] < sum * 2 + 1) {
+                        dp[i][j] = max(dp[i][j], dp[i - 1][j + val[i]]);
+                    }
                 }
             }
             int ans = numeric_limits<int>::max(), ansj = 0;
@@ -152,9 +137,7 @@ int main()
             for (int i = 0; i < ans1.size(); i++) { cout << " " << ans1[i]; }
             cout << endl;
         }
-        if (T != 0) {
-            cout << endl;
-        }
+        if (T != 0) { cout << endl; }
     }
     return 0;
 }

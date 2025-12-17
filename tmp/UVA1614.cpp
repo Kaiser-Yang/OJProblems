@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int n;
     vector<pair<int, int>> a;
@@ -11,12 +10,13 @@ int main()
     while (cin >> n) {
         a.resize(n);
         positive.resize(n);
-        for (int i = 0; i < n; i++) { cin >> a[i].first; a[i].second = i; }
+        for (int i = 0; i < n; i++) {
+            cin >> a[i].first;
+            a[i].second = i;
+        }
         sort(a.begin(), a.end());
         long long sum = 0;
-        for (int i = 0; i < n; i++) {
-            sum += a[i].first;
-        }
+        for (int i = 0; i < n; i++) { sum += a[i].first; }
         if (sum % 2 == 1) {
             cout << "No" << endl;
             continue;
@@ -37,12 +37,14 @@ int main()
             }
         }
         cout << "Yes" << endl;
-        for  (int i = 0; i < n; i++) {
-            if (positive[i]) { cout << "1"; }
-            else { cout << "-1"; }
-            cout << (i == n - 1 ? "\n": " ");
+        for (int i = 0; i < n; i++) {
+            if (positive[i]) {
+                cout << "1";
+            } else {
+                cout << "-1";
+            }
+            cout << (i == n - 1 ? "\n" : " ");
         }
-
     }
     return 0;
 }

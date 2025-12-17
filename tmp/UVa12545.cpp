@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     freopen("test.in", "r", stdin);
     freopen("test.out", "w", stdout);
     ios::sync_with_stdio(false);
@@ -70,9 +69,7 @@ int main()
             }
             cnt = 0;
             for (int i = 0; i < len; i++) {
-                if (str1[i] != str2[i]) {
-                    cnt++;
-                }
+                if (str1[i] != str2[i]) { cnt++; }
             }
             ans += cnt / 2;
         }

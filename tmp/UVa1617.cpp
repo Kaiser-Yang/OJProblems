@@ -2,8 +2,7 @@
 
 using namespace std;
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     int T, n;
     vector<pair<int, int>> p;
@@ -11,10 +10,8 @@ int main()
     while (T--) {
         cin >> n;
         p.resize(n);
-        for (int i = 0; i < n; i++) {
-            cin >> p[i].first >> p[i].second;
-        }
-        sort(p.begin(), p.end(), [] (const pair<int, int> &lhs, pair<int, int> &rhs) {
+        for (int i = 0; i < n; i++) { cin >> p[i].first >> p[i].second; }
+        sort(p.begin(), p.end(), [](const pair<int, int> &lhs, pair<int, int> &rhs) {
             if (lhs.second == rhs.second) { return lhs.first < rhs.first; }
             return lhs.second < rhs.second;
         });
